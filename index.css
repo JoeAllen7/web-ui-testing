@@ -249,9 +249,9 @@ input[type='number'] {
 .actionNumberImage {
 	width: 8vmin;
 	height: 8vmin;
-	left: 0px;
+	left: -11vmin;
 	top: 0px;
-	position: absolute;
+	position: relative;
 }
 
 .actionButton:hover {
