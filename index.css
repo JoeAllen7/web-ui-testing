@@ -47,7 +47,7 @@ input[type='number'] {
 }
 
 #multiturnHeader {
-	display: block;
+	display: none;
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -87,6 +87,18 @@ input[type='number'] {
 	left: 0px;
 	right: 0px;
 	bottom: 0%;
+}
+
+.fullScreenContent {
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	bottom: 0%;
+	top: 0%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 }
 
 .belowHeaderContent {
