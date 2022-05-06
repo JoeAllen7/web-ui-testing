@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="UTF-8" />
+		<meta content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+		<link href="index.css" rel="stylesheet" />
+		<title>MultiTurn Co OPERATION</title>
+	</head>
+
+	<body>
+		<!-- Background, shows in all views -->
+		<div id="background"></div>
+		<div id="backgroundImage"></div>
+
+		<!-- This is first view players see - they can enter a join code, their name and then press Join Game -->
+		<div class="view" id="Lobby">
+			<div class="belowHeaderContent">
+				<div id="joinPanel">
+					<div class="verticalCentreLayout">
+						<p class="titleText">Join Code</p>
+						<input class="joinFormField" id="joinCode" name="joinCode" type="number" placeholder="Enter Code" />
+						<p class="titleText">Name</p>
+						<input
+							class="joinFormField"
+							id="playerName"
+							name="playerName"
+							type="text"
+							placeholder="Enter Name"
+							maxlength="20"
+						/>
+					</div>
+				</div>
+				<button type="button" class="pressEffectButton mainButtonSpacing" id="startButton">Join Game</button>
+			</div>
+
+			<div id="socialLinks">
+				<a href="https://mindfeastgames.com" target="_blank">
+					<img src="Assets/Logo_MindFeast_512.png" alt="Mind Feast Games" class="socialButton" />
+				</a>
+				<a href="https://twitter.com/MindFeastGames" target="_blank">
+					<img src="Assets/Icon_Twitter_256.png" alt="Twitter" class="socialButton" />
+				</a>
+				<a href="https://discord.gg/5RSq85mQ6q" target="_blank">
+					<img src="Assets/Icon_Discord_256.png" alt="Discord" class="socialButton" />
+				</a>
+			</div>
+		</div>
+		<!-- End of Lobby view -->
+
+		<!-- This is what players see after first joining. They are told to wait, and the player with control can select a Package -->
+		<div class="view" id="GameLobby">
+			<div class="belowHeaderContent">
+				<div class="verticalCentreLayout">
+					<p class="titleText">Waiting to start...</p>
+				</div>
+			</div>
+		</div>
+		<!-- End of GameLobby view -->
+
+		<!-- This is where players select actions -->
+		<div class="view" id="GameInputPhase">
+			<div class="belowHeaderContent">
+				<div class="adaptiveCentreLayout blurPanel">
+					<!-- <div id="moveInfoContainer">
+						<p class="infoText">Press the buttons to schedule actions.</p>
+						<p class="infoText">You can leave actions blank if needed.</p>
+					</div> -->
+					<!-- <p class="infoText">Press the buttons to schedule actions. You can leave actions blank if needed.</p> -->
+
+					<div class="actionInfoContainer hideInLandscape">
+						<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
+						<div class="verticalCentreLayout">
+							<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
+						</div>
+					</div>
+
+					<div class="actionButtonLayout">
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-0">
+							<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+						</div>
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-1">
+							<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+						</div>
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-2">
+							<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+						</div>
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-3">
+							<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+						</div>
+					</div>
+
+					<div class="actionInfoContainer">
+						<div class="verticalCentreLayout">
+							<div class="hideInPortrait">
+								<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
+								<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
+								<p class="infoText"><br /></p>
+							</div>
+
+							<button type="button" class="pressEffectButton mainButtonSpacing" id="readyButton">Ready!</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of GameInputPhase view -->
+
+		<!-- Logo header -->
+		<header id="multiturnHeader">
+			<div class="verticalCentreLayout">
+				<img id="logo" alt="MultiTurn: Co OPERATION Logo" src="Assets/Logo_Game_1140.png" />
+			</div>
+		</header>
+	</body>
+</html>
