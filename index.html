@@ -18,6 +18,13 @@
 		<div id="background"></div>
 		<div id="backgroundImage"></div>
 
+		<!-- Logo header, shown in Lobby and GameLobby views -->
+		<header id="multiturnHeader">
+			<div class="verticalCentreLayout">
+				<img id="logo" alt="MultiTurn: Co OPERATION Logo" src="Assets/Logo_Game_1140.png" />
+			</div>
+		</header>
+
 		<!-- This is first view players see - they can enter a join code, their name and then press Join Game -->
 		<div class="view" id="Lobby">
 			<div class="belowHeaderContent">
@@ -65,7 +72,7 @@
 
 		<!-- This is where players select actions -->
 		<div class="view" id="GameInputPhase">
-			<div class="belowHeaderContent">
+			<div class="fullScreenContent">
 				<div class="adaptiveCentreLayout blurPanel">
 					<!-- <div id="moveInfoContainer">
 						<p class="infoText">Press the buttons to schedule actions.</p>
@@ -110,12 +117,5 @@
 			</div>
 		</div>
 		<!-- End of GameInputPhase view -->
-
-		<!-- Logo header -->
-		<header id="multiturnHeader">
-			<div class="verticalCentreLayout">
-				<img id="logo" alt="MultiTurn: Co OPERATION Logo" src="Assets/Logo_Game_1140.png" />
-			</div>
-		</header>
 	</body>
 </html>
