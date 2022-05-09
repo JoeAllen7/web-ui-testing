@@ -44,7 +44,7 @@ input[type='number'] {
 	display: block;
 }
 
-#GameLobby {
+#WaitOrChoosePackage {
 	display: none;
 }
 
@@ -473,7 +473,8 @@ input[type='number'] {
 }
 
 .darkOverlay {
-	background-color: rgba(0, 18, 32, 0.5);
+	background-color: rgba(0, 18, 32, 0.7);
+	backdrop-filter: blur(1vmin);
 }
 
 .applyScaleMult {
