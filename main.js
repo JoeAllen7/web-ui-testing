@@ -1,21 +1,20 @@
 function showView(viewName) {
+	const views = document.getElementsByClassName('view');
 
-	const views = document.getElementsByClassName('view')
-	
 	const header = document.getElementById('multiturnHeader');
-	
-	if(viewName == 'Lobby' || viewName == 'GameLobby') {
+
+	if (viewName == 'Lobby' || viewName == 'WaitOrChoosePackage') {
 		header.style.display = 'block';
-	}
-	else {
+	} else {
 		header.style.display = 'none';
 	}
-	
+
 	for (i = 0; i < views.length; i++) {
-		if(views[i].id == viewName){
+		var isBackgroundView = viewName.includes(views[i].id);
+
+		if (views[i].id == viewName || isBackgroundView) {
 			views[i].style.display = 'block';
-		}
-		else if(views[i].id != 'TestButtons'){
+		} else if (views[i].id != 'TestButtons') {
 			views[i].style.display = 'none';
 		}
 	}
