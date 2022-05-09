@@ -13,6 +13,28 @@ input::-webkit-inner-spin-button {
 	margin: 0;
 }
 
+::-webkit-input-placeholder {
+	/* Chrome/Opera/Safari */
+	font-family: 'Atkinson Hyperlegible', sans-serif;
+	font-weight: normal;
+	font-style: italic;
+	color: rgba(0, 47, 70, 0.6);
+}
+::-moz-placeholder {
+	/* Firefox */
+	font-family: 'Atkinson Hyperlegible', sans-serif;
+	font-weight: normal;
+	font-style: italic;
+	color: rgba(0, 47, 70, 0.6);
+}
+:-ms-input-placeholder {
+	/* IE 10+ */
+	font-family: 'Atkinson Hyperlegible', sans-serif;
+	font-weight: normal;
+	font-style: italic;
+	color: rgba(0, 47, 70, 0.6);
+}
+
 /* Remove 'spin button' from number input: Firefox */
 input[type='number'] {
 	-moz-appearance: textfield;
@@ -36,7 +58,7 @@ input[type='number'] {
 
 #TestButtons {
 	width: 100%;
-	height: 45px;
+	height: 40px;
 }
 
 #tempViewSelection {
@@ -44,6 +66,7 @@ input[type='number'] {
 	display: flex;
 	height: 30px;
 	gap: 5px;
+	overflow: auto;
 }
 
 #backgroundImage {
@@ -67,7 +90,7 @@ input[type='number'] {
 }
 
 #multiturnHeader {
-	display: none;
+	display: block;
 	position: fixed;
 	top: 0px;
 	left: 0px;
@@ -99,6 +122,7 @@ input[type='number'] {
 	border-style: solid;
 	border-color: white;
 	padding-bottom: 3vmin;
+	margin-bottom: 1vmin;
 }
 
 .view {
@@ -139,6 +163,10 @@ input[type='number'] {
 	border-width: 0.8vmin;
 	border-style: solid;
 	border-color: white;
+	padding-top: 2vmin;
+	padding-right: 2vmin;
+	padding-bottom: 3.5vmin;
+	padding-left: 2vmin;
 }
 
 .pressEffectButton {
@@ -188,10 +216,9 @@ input[type='number'] {
 	color: white;
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
-	margin-top: 2vmin;
-	font-size: 6vmin;
-	/* font-size: min(30px, 6vmin); */
-	margin-bottom: 0.5vmin;
+	margin-top: 1.8vmin;
+	font-size: 7vmin;
+	margin-bottom: 0.8vmin;
 }
 
 .infoText {
@@ -205,10 +232,10 @@ input[type='number'] {
 .joinFormField {
 	color: rgb(0, 47, 70);
 	font-family: 'Atkinson Hyperlegible', sans-serif;
-	font-weight: regular;
+	font-weight: bold;
 	text-align: center;
-	font-size: 6vmin;
-	padding: 2.5vmin;
+	font-size: 7vmin;
+	padding: 3vmin;
 	border: none;
 	border-radius: 2vmin;
 	width: 80%;
@@ -246,7 +273,6 @@ input[type='number'] {
 	justify-content: center;
 	align-items: center;
 	gap: 2.5vmin;
-	padding: 2vmin;
 }
 
 .verticalPanelLayout {
@@ -255,7 +281,6 @@ input[type='number'] {
 	align-items: center;
 	flex-direction: column;
 	gap: 2.5vmin;
-	padding: 2vmin;
 }
 
 .actionButtonLayout {
@@ -282,12 +307,12 @@ input[type='number'] {
 .actionNumberImage {
 	width: 10vmin;
 	height: 10vmin;
-	left: -14vmin;
-	top: 0px;
+	left: -13.4vmin;
+	top: 0.5vmin;
 	position: relative;
 }
 
-.actionButton:hover {
+.actionButton:active {
 	opacity: 0.8;
 }
 
@@ -297,6 +322,84 @@ input[type='number'] {
 
 .applyScaleMult {
 	transform: scale(var(--scaleMult));
+}
+
+#interactButtonAnimation {
+	top: 2vmin;
+	right: 2vmin;
+	bottom: 2vmin;
+	left: 2vmin;
+	position: fixed;
+	/*background-image: url("Buttons/AnimatedButton-PickUpPutDown01.gif");*/ /* now uses <video> and eventually <picture> */
+	background-image: url('Assets/AnimatedButton-PickUpPutDown01-spritesheet.png'); /* CSS3 anim */
+	background-size: 1000%; /* for 10 images */
+	background-position-y: 0;
+	background-position-x: 0;
+	background-repeat: repeat-x;
+	/*animation: animPickUpPutDown 4s steps(1) infinite normal;*/
+	animation-name: animPickUpPutDown;
+	animation-duration: 4s;
+	animation-timing-function: steps(1); /* Each keyframe uses 1 step */
+	animation-iteration-count: infinite;
+	animation-direction: normal;
+	animation-play-state: running;
+}
+
+@keyframes animPickUpPutDown {
+	0% {
+		background-position: 0% 0;
+	}
+	8.70% {
+		background-position: 11.11% 0;
+	}
+	13.04% {
+		background-position: 22.22% 0;
+	}
+	17.39% {
+		background-position: 33.33% 0;
+	}
+	21.74% {
+		background-position: 44.44% 0;
+	}
+	30.43% {
+		background-position: 33.33% 0;
+	}
+	34.78% {
+		background-position: 22.22% 0;
+	}
+	39.13% {
+		background-position: 11.11% 0;
+	}
+	43.48% {
+		background-position: 0% 0;
+	}
+	52.17% {
+		background-position: 55.56% 0;
+	}
+	56.52% {
+		background-position: 66.67% 0;
+	}
+	60.87% {
+		background-position: 77.78% 0;
+	}
+	65.22% {
+		background-position: 88.89% 0;
+	}
+	69.57% {
+		background-position: 100% 0;
+	}
+	78.26% {
+		background-position: 88.89% 0;
+	}
+	82.61% {
+		background-position: 77.78% 0;
+	}
+	86.96% {
+		background-position: 66.67% 0;
+	}
+	91.30% {
+		background-position: 55.56% 0;
+	}
 }
 
 /* Portrait screens */
