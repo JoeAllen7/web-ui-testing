@@ -325,12 +325,13 @@ input[type='number'] {
 }
 
 #interactButtonAnimation {
-	top: 2vmin;
-	right: 2vmin;
-	bottom: 2vmin;
-	left: 2vmin;
-	position: fixed;
-	/*background-image: url("Buttons/AnimatedButton-PickUpPutDown01.gif");*/ /* now uses <video> and eventually <picture> */
+	position: relative;
+	top: 5%;
+	right: 5%;
+	bottom: 5%;
+	left: 5%;
+	width: 90%;
+	height: 90%;
 	background-image: url('Assets/AnimatedButton-PickUpPutDown01-spritesheet.png'); /* CSS3 anim */
 	background-size: 1000%; /* for 10 images */
 	background-position-y: 0;
