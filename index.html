@@ -45,7 +45,9 @@
 							/>
 						</div>
 					</div>
-					<button type="button" class="pressEffectButton mainButtonSpacing" id="startButton">Join Game</button>
+					<button type="button" class="pressEffectButton mainButtonSpacing largeButtonText" id="startButton">
+						Join Game
+					</button>
 				</div>
 			</div>
 
@@ -66,8 +68,21 @@
 		<!-- This is what players see after first joining. They are told to wait, and the player with control can select a Package -->
 		<div class="view" id="GameLobby">
 			<div class="belowHeaderContent">
-				<div class="verticalCentreLayout">
-					<p class="titleText">Waiting to start...</p>
+				<div class="verticalCentreLayout applyScaleMult">
+					<!-- <p class="titleText">Waiting to start...</p> -->
+					<p class="titleText">Choose a package to play:</p>
+
+					<div class="horizontalPanelLayout">
+						<div class="leftArrowButton" id="packageLeftButton"></div>
+						<div class="packagePanel blurPanel" id="packagePreview1"></div>
+						<div class="packagePanel blurPanel hideInPortrait" id="packagePreview2"></div>
+						<div class="packagePanel blurPanel hideInPortrait" id="packagePreview3"></div>
+						<div class="rightArrowButton" id="packageRightButton"></div>
+					</div>
+
+					<button type="button" class="pressEffectButton mainButtonSpacing smallButtonText" id="startButton">
+						Play [package name]
+					</button>
 				</div>
 			</div>
 		</div>
@@ -107,7 +122,9 @@
 								<p class="infoText"><br /></p>
 							</div>
 
-							<button type="button" class="pressEffectButton mainButtonSpacing" id="readyButton">Ready!</button>
+							<button type="button" class="pressEffectButton mainButtonSpacing largeButtonText" id="readyButton">
+								Ready!
+							</button>
 						</div>
 					</div>
 				</div>
