@@ -1,3 +1,7 @@
+html {
+	--scaleMult: 1;
+}
+
 body {
 	overflow: hidden;
 }
@@ -15,7 +19,7 @@ input[type='number'] {
 }
 
 #Lobby {
-	display: none;
+	display: block;
 }
 
 #GameLobby {
@@ -23,7 +27,23 @@ input[type='number'] {
 }
 
 #GameInputPhase {
-	display: block;
+	display: none;
+}
+
+#GameInputPhaseSelectInput {
+	display: none;
+}
+
+#TestButtons {
+	width: 100%;
+	height: 45px;
+}
+
+#tempViewSelection {
+	padding: 10px;
+	display: flex;
+	height: 30px;
+	gap: 5px;
 }
 
 #backgroundImage {
@@ -150,6 +170,7 @@ input[type='number'] {
 	padding: 2.5vmin;
 	padding-left: 5vmin;
 	padding-right: 5vmin;
+	font-size: 9vmin;
 }
 
 .actionInfoContainer {
@@ -158,7 +179,7 @@ input[type='number'] {
 }
 
 .playerImage {
-	height: 18vmin;
+	height: 20vmin;
 	width: 12vmin;
 	object-fit: cover;
 }
@@ -168,6 +189,8 @@ input[type='number'] {
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
 	margin-top: 2vmin;
+	font-size: 6vmin;
+	/* font-size: min(30px, 6vmin); */
 	margin-bottom: 0.5vmin;
 }
 
@@ -175,7 +198,7 @@ input[type='number'] {
 	color: white;
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
-	font-size: 4vmin;
+	font-size: 5vmin;
 	margin: 0px;
 }
 
@@ -218,10 +241,19 @@ input[type='number'] {
 	text-align: center;
 }
 
-.adaptiveCentreLayout {
+.adaptivePanelLayout {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	gap: 2.5vmin;
+	padding: 2vmin;
+}
+
+.verticalPanelLayout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	gap: 2.5vmin;
 	padding: 2vmin;
 }
@@ -231,8 +263,8 @@ input[type='number'] {
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	width: 63vmin;
-	height: 63vmin;
+	width: 80vmin;
+	height: 80vmin;
 	flex-direction: row;
 	flex-wrap: wrap;
 	gap: 3vmin;
@@ -242,14 +274,15 @@ input[type='number'] {
 	background-image: url(Assets/Doctor-01_0.png);
 	background-size: contain;
 	text-align: center;
-	width: 30vmin;
-	height: 30vmin;
+	width: 38vmin;
+	height: 38vmin;
+	/* height: 50%; */
 }
 
 .actionNumberImage {
-	width: 8vmin;
-	height: 8vmin;
-	left: -11vmin;
+	width: 10vmin;
+	height: 10vmin;
+	left: -14vmin;
 	top: 0px;
 	position: relative;
 }
@@ -258,11 +291,28 @@ input[type='number'] {
 	opacity: 0.8;
 }
 
+.darkOverlay {
+	background-color: rgba(0, 18, 32, 0.5);
+}
+
+.applyScaleMult {
+	transform: scale(var(--scaleMult));
+}
+
 /* Portrait screens */
 @media (orientation: portrait) {
+	html {
+		--scaleMult: 1;
+	}
+
 	#multiturnHeader {
 		height: 15%;
 	}
+
+	/* .gameInputPanel {
+		width: 85%;
+		height: 70%;
+	} */
 
 	#socialLinks {
 		left: 0px;
@@ -273,16 +323,16 @@ input[type='number'] {
 		top: 15%;
 	}
 
-	.titleText {
-		font-size: 6vmin;
-	}
-
-	.adaptiveCentreLayout {
+	.adaptivePanelLayout {
 		flex-direction: column;
 	}
 
+	/* .actionButtonLayout {
+		width: 95%;
+	} */
+
 	.actionInfoContainer {
-		width: 60vmin;
+		width: 68vmin;
 	}
 
 	.hideInPortrait {
@@ -292,24 +342,33 @@ input[type='number'] {
 
 /* Landscape screens */
 @media (orientation: landscape) {
+	html {
+		--scaleMult: 1;
+	}
+
 	#multiturnHeader {
 		height: 20%;
 	}
+
+	/* .gameInputPanel {
+		width: 70%;
+		height: 85%;
+	} */
 
 	.belowHeaderContent {
 		top: 20%;
 	}
 
-	.titleText {
-		font-size: 6vmin;
-	}
-
-	.adaptiveCentreLayout {
+	.adaptivePanelLayout {
 		flex-direction: row;
 	}
 
+	/* .actionButtonLayout {
+		height: 95%;
+	} */
+
 	.actionInfoContainer {
-		width: 40vmin;
+		width: 48vmin;
 	}
 
 	.hideInLandscape {
