@@ -219,16 +219,33 @@
 
 		<div class="view" id="TestButtons">
 			<div id="tempViewSelection">
-				<button type="button" id="setViewButton0" onclick="showView('Lobby')">Lobby</button>
-				<button type="button" id="setViewButton1" onclick="showView('WaitOrChoosePackage')">WaitOrChoosePackage</button>
-				<button type="button" id="setViewButton2" onclick="showView('GameInputPhase')">GameInputPhase</button>
-				<button type="button" id="setViewButton3" onclick="showView('GameInputPhaseSelectInput')">
+				<div id="test">
+					<button type="button" onclick="toggleViewButtons()">Show/Hide</button>
+				</div>
+				<button type="button" class="viewButton" id="setViewButton0" onclick="showView('Lobby')">Lobby</button>
+				<button type="button" class="viewButton" id="setViewButton1" onclick="showView('WaitOrChoosePackage')">
+					WaitOrChoosePackage
+				</button>
+				<button type="button" class="viewButton" id="setViewButton2" onclick="showView('GameInputPhase')">
+					GameInputPhase
+				</button>
+				<button type="button" class="viewButton" id="setViewButton3" onclick="showView('GameInputPhaseSelectInput')">
 					...SelectInput
 				</button>
-				<button type="button" id="setViewButton4" onclick="showView('GameInputPhaseSelectMoveInput')">
+				<button
+					type="button"
+					class="viewButton"
+					id="setViewButton4"
+					onclick="showView('GameInputPhaseSelectMoveInput')"
+				>
 					...MoveInput
 				</button>
-				<button type="button" id="setViewButton5" onclick="showView('GameInputPhaseSelectThrowInput')">
+				<button
+					type="button"
+					class="viewButton"
+					id="setViewButton5"
+					onclick="showView('GameInputPhaseSelectThrowInput')"
+				>
 					...ThrowInput
 				</button>
 			</div>
