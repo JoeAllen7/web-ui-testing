@@ -29,22 +29,24 @@
 		<!-- This is first view players see - they can enter a join code, their name and then press Join Game -->
 		<div class="view" id="Lobby">
 			<div class="belowHeaderContent">
-				<div id="joinPanel">
-					<div class="verticalCentreLayout">
-						<p class="titleText">Join Code</p>
-						<input class="joinFormField" id="joinCode" name="joinCode" type="number" placeholder="Enter Code" />
-						<p class="titleText">Name</p>
-						<input
-							class="joinFormField"
-							id="playerName"
-							name="playerName"
-							type="text"
-							placeholder="Enter Name"
-							maxlength="20"
-						/>
+				<div class="verticalCentreLayout applyScaleMult">
+					<div id="joinPanel">
+						<div class="verticalCentreLayout">
+							<p class="titleText">Join Code</p>
+							<input class="joinFormField" id="joinCode" name="joinCode" type="number" placeholder="Enter Code" />
+							<p class="titleText">Name</p>
+							<input
+								class="joinFormField"
+								id="playerName"
+								name="playerName"
+								type="text"
+								placeholder="Enter Name"
+								maxlength="20"
+							/>
+						</div>
 					</div>
+					<button type="button" class="pressEffectButton mainButtonSpacing" id="startButton">Join Game</button>
 				</div>
-				<button type="button" class="pressEffectButton mainButtonSpacing" id="startButton">Join Game</button>
 			</div>
 
 			<div id="socialLinks">
@@ -74,7 +76,7 @@
 		<!-- This is where players select an action slot or confirm that they're ready -->
 		<div class="view" id="GameInputPhase">
 			<div class="fullScreenContent">
-				<div class="adaptivePanelLayout gameInputPanel blurPanel applyScaleMult">
+				<div class="gameInputPanel blurPanel adaptivePanelLayout applyScaleMult">
 					<div class="actionInfoContainer hideInLandscape">
 						<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
 						<div class="verticalCentreLayout">
@@ -116,16 +118,24 @@
 		<!-- This is where players select an action type for a specific slot -->
 		<div class="view" id="GameInputPhaseSelectInput">
 			<div class="fullScreenContent darkOverlay">
-				<div class="verticalPanelLayout blurPanel">
+				<div class="blurPanel verticalPanelLayout applyScaleMult">
 					<div class="verticalCentreLayout">
 						<p class="infoText">Choose an action type:</p>
 					</div>
 
 					<div class="actionButtonLayout">
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-0"></div>
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-1"></div>
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-2"></div>
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-3"></div>
+						<div class="pressEffectButton actionButton choose-none" id="move-button">
+							<div id="interactButtonAnimation"></div>
+						</div>
+						<div class="pressEffectButton actionButton choose-none" id="interact-button">
+							<div id="interactButtonAnimation"></div>
+						</div>
+						<div class="pressEffectButton actionButton choose-none" id="throw-button">
+							<div id="interactButtonAnimation"></div>
+						</div>
+						<div class="pressEffectButton actionButton choose-none" id="nothing-button">
+							<div id="interactButtonAnimation"></div>
+						</div>
 					</div>
 				</div>
 			</div>
