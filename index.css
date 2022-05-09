@@ -343,7 +343,9 @@ input[type='number'] {
 /* Landscape screens */
 @media (orientation: landscape) {
 	html {
-		--scaleMult: 1;
+		-webkit-backface-visibility: hidden; /* Safari */
+		backface-visibility: hidden;
+		--scaleMult: 0.8;
 	}
 
 	#multiturnHeader {
