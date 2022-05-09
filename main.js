@@ -1,3 +1,5 @@
+var showViewButtons = true;
+
 function showView(viewName) {
 	const views = document.getElementsByClassName('view');
 
@@ -16,6 +18,20 @@ function showView(viewName) {
 			views[i].style.display = 'block';
 		} else if (views[i].id != 'TestButtons') {
 			views[i].style.display = 'none';
+		}
+	}
+}
+
+function toggleViewButtons() {
+	const viewButtons = document.getElementsByClassName('viewButton');
+
+	showViewButtons = !showViewButtons;
+
+	for (i = 0; i < viewButtons.length; i++) {
+		if (showViewButtons) {
+			viewButtons[i].style.display = 'block';
+		} else {
+			viewButtons[i].style.display = 'none';
 		}
 	}
 }
