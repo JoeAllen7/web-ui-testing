@@ -80,7 +80,7 @@
 						<div class="rightArrowButton" id="packageRightButton"></div>
 					</div>
 
-					<button type="button" class="pressEffectButton mainButtonSpacing smallButtonText" id="startButton">
+					<button type="button" class="pressEffectButton mainButtonSpacing smallButtonText" id="playButton">
 						Play [package name]
 					</button>
 				</div>
@@ -100,16 +100,20 @@
 					</div>
 
 					<div class="actionButtonLayout">
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-0">
+						<div class="pressEffectButton actionButton" id="interact-button-0">
+							<div class="choose-none"></div>
 							<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
 						</div>
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-1">
+						<div class="pressEffectButton actionButton" id="interact-button-1">
+							<div class="choose-none"></div>
 							<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
 						</div>
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-2">
+						<div class="pressEffectButton actionButton" id="interact-button-2">
+							<div class="choose-none"></div>
 							<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
 						</div>
-						<div class="pressEffectButton actionButton choose-none" id="interact-button-3">
+						<div class="pressEffectButton actionButton" id="interact-button-3">
+							<div class="choose-none"></div>
 							<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
 						</div>
 					</div>
@@ -141,17 +145,17 @@
 					</div>
 
 					<div class="actionButtonLayout">
-						<div class="pressEffectButton actionButton choose-none" id="move-button">
-							<div id="interactButtonAnimation"></div>
+						<div class="pressEffectButton actionButton" id="move-button">
+							<div class="actionButtonImage" id="moveButtonImage"></div>
 						</div>
-						<div class="pressEffectButton actionButton choose-none" id="interact-button">
-							<div id="interactButtonAnimation"></div>
+						<div class="pressEffectButton actionButton" id="interact-button">
+							<div class="actionButtonImage" id="interactButtonAnimation"></div>
 						</div>
-						<div class="pressEffectButton actionButton choose-none" id="throw-button">
-							<div id="interactButtonAnimation"></div>
+						<div class="pressEffectButton actionButton" id="throw-button">
+							<div class="actionButtonImage" id="throwButtonImage"></div>
 						</div>
-						<div class="pressEffectButton actionButton choose-none" id="nothing-button">
-							<div id="interactButtonAnimation"></div>
+						<div class="pressEffectButton actionButton" id="nothing-button">
+							<div class="actionButtonImage" id="nothingButtonImage"></div>
 						</div>
 					</div>
 				</div>
@@ -159,13 +163,73 @@
 		</div>
 		<!-- End of GameInputPhaseSelectInput view -->
 
+		<!-- This is where players select movement direction -->
+		<div class="view" id="GameInputPhaseSelectMoveInput">
+			<div class="fullScreenContent darkOverlay">
+				<div class="blurPanel verticalPanelLayout applyScaleMult">
+					<div class="verticalCentreLayout">
+						<p class="infoText">Choose a movement direction:</p>
+					</div>
+
+					<div class="actionButtonLayout">
+						<div class="pressEffectButton actionButton" id="move-west-button">
+							<div class="actionButtonImage" id="moveWestImage"></div>
+						</div>
+						<div class="pressEffectButton actionButton" id="move-north-button">
+							<div class="actionButtonImage" id="moveNorthImage"></div>
+						</div>
+						<div class="pressEffectButton actionButton" id="move-south-button">
+							<div class="actionButtonImage" id="moveSouthImage"></div>
+						</div>
+						<div class="pressEffectButton actionButton" id="move-east-button">
+							<div class="actionButtonImage" id="moveEastImage"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of GameInputPhaseSelectMoveInput view -->
+
+		<!-- This is where players select throw direction -->
+		<div class="view" id="GameInputPhaseSelectThrowInput">
+			<div class="fullScreenContent darkOverlay">
+				<div class="blurPanel verticalPanelLayout applyScaleMult">
+					<div class="verticalCentreLayout">
+						<p class="infoText">Choose a direction to throw in:</p>
+					</div>
+
+					<div class="actionButtonLayout">
+						<div class="pressEffectButton actionButton" id="throw-west-button">
+							<div class="actionButtonImage" id="throwWestImage"></div>
+						</div>
+						<div class="pressEffectButton actionButton" id="throw-north-button">
+							<div class="actionButtonImage" id="throwNorthImage"></div>
+						</div>
+						<div class="pressEffectButton actionButton" id="throw-south-button">
+							<div class="actionButtonImage" id="throwSouthImage"></div>
+						</div>
+						<div class="pressEffectButton actionButton" id="throw-east-button">
+							<div class="actionButtonImage" id="throwEastImage"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of GameInputPhaseSelectThrowInput view -->
+
 		<div class="view" id="TestButtons">
 			<div id="tempViewSelection">
 				<button type="button" id="setViewButton0" onclick="showView('Lobby')">Lobby</button>
 				<button type="button" id="setViewButton1" onclick="showView('GameLobby')">GameLobby</button>
 				<button type="button" id="setViewButton2" onclick="showView('GameInputPhase')">GameInputPhase</button>
 				<button type="button" id="setViewButton3" onclick="showView('GameInputPhaseSelectInput')">
-					GameInputPhaseSelectInput
+					...SelectInput
+				</button>
+				<button type="button" id="setViewButton4" onclick="showView('GameInputPhaseSelectMoveInput')">
+					...MoveInput
+				</button>
+				<button type="button" id="setViewButton5" onclick="showView('GameInputPhaseSelectThrowInput')">
+					...ThrowInput
 				</button>
 			</div>
 		</div>
