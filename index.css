@@ -175,12 +175,19 @@ input[type='number'] {
 	color: rgb(0, 47, 70);
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
-	font-size: 6vmin;
 	border-radius: 2vmin;
 	border: none;
 	box-shadow: 0 1.5vmin rgba(255, 255, 255, 0.75);
 	cursor: pointer;
 	transition: 0.05s;
+}
+
+.largeButtonText {
+	font-size: 9vmin;
+}
+
+.smallButtonText {
+	font-size: 6vmin;
 }
 
 .pressEffectButton:hover {
@@ -198,7 +205,6 @@ input[type='number'] {
 	padding: 2.5vmin;
 	padding-left: 5vmin;
 	padding-right: 5vmin;
-	font-size: 9vmin;
 }
 
 .actionInfoContainer {
@@ -268,6 +274,15 @@ input[type='number'] {
 	text-align: center;
 }
 
+.horizontalPanelLayout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	text-align: center;
+	gap: 2.5vmin;
+}
+
 .adaptivePanelLayout {
 	display: flex;
 	justify-content: center;
@@ -301,19 +316,40 @@ input[type='number'] {
 	text-align: center;
 	width: 38vmin;
 	height: 38vmin;
+	transform-origin: top left;
 	/* height: 50%; */
 }
 
 .actionNumberImage {
+	position: relative;
 	width: 10vmin;
 	height: 10vmin;
 	left: -13.4vmin;
 	top: 0.5vmin;
-	position: relative;
 }
 
 .actionButton:active {
 	opacity: 0.8;
+}
+
+.packagePanel {
+	width: 40vmin;
+	height: 40vmin;
+}
+
+.leftArrowButton {
+	background-image: url(Assets/Icon_Arrow1_128.png);
+	background-size: cover;
+	width: 15vmin;
+	height: 15vmin;
+}
+
+.rightArrowButton {
+	background-image: url(Assets/Icon_Arrow1_128.png);
+	transform: scaleX(-1);
+	background-size: cover;
+	width: 15vmin;
+	height: 15vmin;
 }
 
 .darkOverlay {
