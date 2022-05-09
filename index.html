@@ -71,16 +71,10 @@
 		</div>
 		<!-- End of GameLobby view -->
 
-		<!-- This is where players select actions -->
+		<!-- This is where players select an action slot or confirm that they're ready -->
 		<div class="view" id="GameInputPhase">
 			<div class="fullScreenContent">
-				<div class="adaptiveCentreLayout blurPanel">
-					<!-- <div id="moveInfoContainer">
-						<p class="infoText">Press the buttons to schedule actions.</p>
-						<p class="infoText">You can leave actions blank if needed.</p>
-					</div> -->
-					<!-- <p class="infoText">Press the buttons to schedule actions. You can leave actions blank if needed.</p> -->
-
+				<div class="adaptivePanelLayout gameInputPanel blurPanel applyScaleMult">
 					<div class="actionInfoContainer hideInLandscape">
 						<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
 						<div class="verticalCentreLayout">
@@ -118,5 +112,37 @@
 			</div>
 		</div>
 		<!-- End of GameInputPhase view -->
+
+		<!-- This is where players select an action type for a specific slot -->
+		<div class="view" id="GameInputPhaseSelectInput">
+			<div class="fullScreenContent darkOverlay">
+				<div class="verticalPanelLayout blurPanel">
+					<div class="verticalCentreLayout">
+						<p class="infoText">Choose an action type:</p>
+					</div>
+
+					<div class="actionButtonLayout">
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-0"></div>
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-1"></div>
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-2"></div>
+						<div class="pressEffectButton actionButton choose-none" id="interact-button-3"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of GameInputPhaseSelectInput view -->
+
+		<div class="view" id="TestButtons">
+			<div id="tempViewSelection">
+				<button type="button" id="setViewButton0" onclick="showView('Lobby')">Lobby</button>
+				<button type="button" id="setViewButton1" onclick="showView('GameLobby')">GameLobby</button>
+				<button type="button" id="setViewButton2" onclick="showView('GameInputPhase')">GameInputPhase</button>
+				<button type="button" id="setViewButton3" onclick="showView('GameInputPhaseSelectInput')">
+					GameInputPhaseSelectInput
+				</button>
+			</div>
+		</div>
+
+		<script src="main.js"></script>
 	</body>
 </html>
