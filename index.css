@@ -40,6 +40,8 @@ input[type='number'] {
 	-moz-appearance: textfield;
 }
 
+/* -- Views -- */
+
 #Lobby {
 	display: block;
 }
@@ -63,6 +65,12 @@ input[type='number'] {
 #GameInputPhaseSelectThrowInput {
 	display: none;
 }
+
+#LookAtScreen {
+	display: none;
+}
+
+/* -- End of views -- */
 
 #TestButtons {
 	width: 100%;
@@ -177,7 +185,7 @@ input[type='number'] {
 	background-image: url('Assets/ThrowWest.png');
 }
 
-#interactButtonAnimation {
+#interactButtonAnimated {
 	position: relative;
 	top: 5%;
 	right: 5%;
@@ -191,12 +199,94 @@ input[type='number'] {
 	background-position-x: 0;
 	background-repeat: repeat-x;
 	/*animation: animPickUpPutDown 4s steps(1) infinite normal;*/
-	animation-name: animPickUpPutDown;
+	animation-name: interactButtonAnimation;
 	animation-duration: 4s;
 	animation-timing-function: steps(1); /* Each keyframe uses 1 step */
 	animation-iteration-count: infinite;
 	animation-direction: normal;
 	animation-play-state: running;
+}
+
+@keyframes interactButtonAnimation {
+	0% {
+		background-position: 0% 0;
+	}
+	8.70% {
+		background-position: 11.11% 0;
+	}
+	13.04% {
+		background-position: 22.22% 0;
+	}
+	17.39% {
+		background-position: 33.33% 0;
+	}
+	21.74% {
+		background-position: 44.44% 0;
+	}
+	30.43% {
+		background-position: 33.33% 0;
+	}
+	34.78% {
+		background-position: 22.22% 0;
+	}
+	39.13% {
+		background-position: 11.11% 0;
+	}
+	43.48% {
+		background-position: 0% 0;
+	}
+	52.17% {
+		background-position: 55.56% 0;
+	}
+	56.52% {
+		background-position: 66.67% 0;
+	}
+	60.87% {
+		background-position: 77.78% 0;
+	}
+	65.22% {
+		background-position: 88.89% 0;
+	}
+	69.57% {
+		background-position: 100% 0;
+	}
+	78.26% {
+		background-position: 88.89% 0;
+	}
+	82.61% {
+		background-position: 77.78% 0;
+	}
+	86.96% {
+		background-position: 66.67% 0;
+	}
+	91.30% {
+		background-position: 55.56% 0;
+	}
+}
+
+#lookAtScreenImage {
+	display: block;
+	width: 50vmin;
+	height: 50vmin;
+	background-image: url('Assets/Icon_LookArrow_256.png');
+	background-size: cover;
+	animation: arrowBounceAnimation 0.3s ease-out alternate infinite;
+}
+
+@keyframes arrowBounceAnimation {
+	0% {
+		transform: translateY(1vmin);
+	}
+	100% {
+		transform: translateY(-2vmin);
+	}
+}
+
+#lookAtScreenPanel {
+	padding-top: 6vmin;
+	padding-right: 6vmin;
+	padding-bottom: 4vmin;
+	padding-left: 6vmin;
 }
 
 .view {
@@ -228,6 +318,63 @@ input[type='number'] {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+}
+
+.enterBounceAnimated {
+	animation: enterBounceAnimation 0.7s ease-in-out;
+	animation-fill-mode: both;
+}
+
+.animDelay1 {
+	animation-delay: 0.1s;
+}
+
+.animDelay2 {
+	animation-delay: 0.2s;
+}
+
+@keyframes enterBounceAnimation {
+	0% {
+		transform: scale(0);
+	}
+	30% {
+		transform: scale(1.15);
+	}
+	60% {
+		transform: scale(0.97);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+.actionPreviewPanel {
+	width: 15vmin;
+	height: 15vmin;
+	background-color: rgba(226, 242, 255, 0.8);
+	/* background-color: rgba(0, 47, 70, 0.7); */
+	backdrop-filter: blur(3vmin);
+	border-radius: 3vmin;
+	border-width: 0vmin;
+	padding: 1vmin;
+	/* border-width: 0.8vmin; */
+	border-style: solid;
+	border-color: white;
+}
+
+.actionPreviewHighlightPanel {
+	width: 15vmin;
+	height: 15vmin;
+	background-color: rgba(226, 242, 255, 0.8);
+	backdrop-filter: blur(3vmin);
+	border-radius: 3vmin;
+	border-width: 1vmin;
+	border-style: solid;
+	border-color: rgb(255, 248, 177);
+}
+
+.adaptivePreviewLayout {
+	flex-wrap: wrap;
 }
 
 .blurPanel {
@@ -448,6 +595,15 @@ input[type='number'] {
 	top: -34.3vmin;
 }
 
+.actionNumberImageSmall {
+	display: block;
+	position: relative;
+	width: 5vmin;
+	height: 5vmin;
+	left: -1vmin;
+	top: -14.6vmin;
+}
+
 .actionButton:active {
 	opacity: 0.8;
 }
@@ -473,8 +629,37 @@ input[type='number'] {
 }
 
 .darkOverlay {
-	background-color: rgba(0, 18, 32, 0.7);
+	background-color: rgba(0, 18, 32, 0.8);
 	backdrop-filter: blur(1vmin);
+}
+
+.fadeInAnimated {
+	animation: fadeAnimation 0.2s;
+}
+
+@keyframes fadeAnimation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.zoomFromAction1Animated {
+	animation: zoomFromAction1Animation 0.3s forwards;
+}
+
+.zoomFromAction2Animated {
+	animation: zoomFromAction2Animation 0.3s forwards;
+}
+
+.zoomFromAction3Animated {
+	animation: zoomFromAction3Animation 0.3s forwards;
+}
+
+.zoomFromAction4Animated {
+	animation: zoomFromAction4Animation 0.3s forwards;
 }
 
 .applyScaleMult {
@@ -490,63 +675,6 @@ input[type='number'] {
 	width: 90%;
 	height: 90%;
 	background-size: cover;
-}
-
-@keyframes animPickUpPutDown {
-	0% {
-		background-position: 0% 0;
-	}
-	8.70% {
-		background-position: 11.11% 0;
-	}
-	13.04% {
-		background-position: 22.22% 0;
-	}
-	17.39% {
-		background-position: 33.33% 0;
-	}
-	21.74% {
-		background-position: 44.44% 0;
-	}
-	30.43% {
-		background-position: 33.33% 0;
-	}
-	34.78% {
-		background-position: 22.22% 0;
-	}
-	39.13% {
-		background-position: 11.11% 0;
-	}
-	43.48% {
-		background-position: 0% 0;
-	}
-	52.17% {
-		background-position: 55.56% 0;
-	}
-	56.52% {
-		background-position: 66.67% 0;
-	}
-	60.87% {
-		background-position: 77.78% 0;
-	}
-	65.22% {
-		background-position: 88.89% 0;
-	}
-	69.57% {
-		background-position: 100% 0;
-	}
-	78.26% {
-		background-position: 88.89% 0;
-	}
-	82.61% {
-		background-position: 77.78% 0;
-	}
-	86.96% {
-		background-position: 66.67% 0;
-	}
-	91.30% {
-		background-position: 55.56% 0;
-	}
 }
 
 /* Portrait screens */
@@ -577,6 +705,10 @@ input[type='number'] {
 		flex-direction: column;
 	}
 
+	.adaptivePreviewLayout {
+		width: 80vmin;
+	}
+
 	/* .actionButtonLayout {
 		width: 95%;
 	} */
@@ -587,6 +719,42 @@ input[type='number'] {
 
 	.hideInPortrait {
 		display: none;
+	}
+
+	@keyframes zoomFromAction1Animation {
+		0% {
+			transform: translate(-21vmin, -30vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes zoomFromAction2Animation {
+		0% {
+			transform: translate(-21vmin, -30vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes zoomFromAction3Animation {
+		0% {
+			transform: translate(-21vmin, -30vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes zoomFromAction4Animation {
+		0% {
+			transform: translate(-21vmin, -30vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
 	}
 }
 
@@ -615,6 +783,10 @@ input[type='number'] {
 		flex-direction: row;
 	}
 
+	.adaptivePreviewLayout {
+		width: 40vmin;
+	}
+
 	/* .actionButtonLayout {
 		height: 95%;
 	} */
@@ -625,5 +797,41 @@ input[type='number'] {
 
 	.hideInLandscape {
 		display: none;
+	}
+
+	@keyframes zoomFromAction1Animation {
+		0% {
+			transform: translate(-67vmin, -27vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes zoomFromAction2Animation {
+		0% {
+			transform: translate(-67vmin, -27vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes zoomFromAction3Animation {
+		0% {
+			transform: translate(-67vmin, -27vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes zoomFromAction4Animation {
+		0% {
+			transform: translate(-67vmin, -27vmin) scale(0);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
 	}
 }
