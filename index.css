@@ -105,7 +105,7 @@ input[type='number'] {
 	background-color: lightgrey;
 }
 
-#multiturnHeader {
+.multiturnHeader {
 	display: block;
 	position: fixed;
 	top: 0px;
@@ -301,15 +301,26 @@ input[type='number'] {
 	position: fixed;
 	left: 0px;
 	right: 0px;
+	bottom: 0px;
+	top: 0px;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.belowHeaderContent {
+	position: fixed;
+	left: 0px;
+	right: 0px;
 	bottom: 0%;
-	top: 0%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
 }
 
-.belowHeaderContent {
+.portraitHeaderContent {
 	position: fixed;
 	left: 0px;
 	right: 0px;
@@ -632,6 +643,11 @@ input[type='number'] {
 }
 
 .darkOverlay {
+	position: fixed;
+	top: 0%;
+	right: 0%;
+	bottom: 0%;
+	left: 0%;
 	background-color: rgba(0, 18, 32, 0.5);
 	backdrop-filter: blur(1vmin);
 }
@@ -726,7 +742,7 @@ input[type='number'] {
 		--scaleMult: 1;
 	}
 
-	#multiturnHeader {
+	.multiturnHeader {
 		height: 15%;
 	}
 
@@ -741,6 +757,10 @@ input[type='number'] {
 	}
 
 	.belowHeaderContent {
+		top: 15%;
+	}
+
+	.portraitHeaderContent {
 		top: 15%;
 	}
 
@@ -762,6 +782,10 @@ input[type='number'] {
 
 	.hideInPortrait {
 		display: none;
+	}
+
+	.fullScreenContent {
+		top: 15%;
 	}
 
 	/* @keyframes zoomFromAction1Animation {
@@ -854,7 +878,7 @@ input[type='number'] {
 		--scaleMult: 0.8;
 	}
 
-	#multiturnHeader {
+	.multiturnHeader {
 		height: 20%;
 	}
 
@@ -865,6 +889,10 @@ input[type='number'] {
 
 	.belowHeaderContent {
 		top: 20%;
+	}
+
+	.portraitHeaderContent {
+		top: 0%;
 	}
 
 	.adaptivePanelLayout {
@@ -885,6 +913,10 @@ input[type='number'] {
 
 	.hideInLandscape {
 		display: none;
+	}
+
+	.fullScreenContent {
+		top: 0%;
 	}
 
 	/* @keyframes zoomFromAction1Animation {
@@ -966,5 +998,15 @@ input[type='number'] {
 		100% {
 			transform: translate(0, 0) scale(1);
 		}
+	}
+}
+
+/* Scale things down for near-square aspect ratios */
+@media (min-aspect-ratio: 6/9) and (max-aspect-ratio: 9/6) {
+	html {
+		--scaleMult: 0.8;
+	}
+	.fullScreenContent {
+		top: 0%;
 	}
 }
