@@ -73,7 +73,10 @@ input[type='number'] {
 /* -- End of views -- */
 
 #TestButtons {
-	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
 	height: 40px;
 }
 
@@ -121,12 +124,13 @@ input[type='number'] {
 
 #socialLinks {
 	position: fixed;
-	right: 0px;
-	bottom: 0px;
+	left: 3vmin;
+	bottom: 1.5vmin;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: row-reverse;
+	transform-origin: bottom left;
 }
 
 #joinPanel {
@@ -156,15 +160,12 @@ input[type='number'] {
 .moveNorthImage {
 	background-image: url('Assets/MoveNorth.png');
 }
-
 .moveEastImage {
 	background-image: url('Assets/MoveEast.png');
 }
-
 .moveSouthImage {
 	background-image: url('Assets/MoveSouth.png');
 }
-
 .moveWestImage {
 	background-image: url('Assets/MoveWest.png');
 }
@@ -172,17 +173,39 @@ input[type='number'] {
 .throwNorthImage {
 	background-image: url('Assets/ThrowNorth.png');
 }
-
 .throwEastImage {
 	background-image: url('Assets/ThrowEast.png');
 }
-
 .throwSouthImage {
 	background-image: url('Assets/ThrowSouth.png');
 }
-
 .throwWestImage {
 	background-image: url('Assets/ThrowWest.png');
+}
+
+.optionsImage {
+	background-image: url('Assets/Icon_Cog_64.png');
+}
+
+.musicOffImage {
+	background-image: url('Assets/Icon_MusicOff_80.png');
+}
+.musicOnImage {
+	background-image: url('Assets/Icon_MusicOn_80.png');
+}
+
+.soundOffImage {
+	background-image: url('Assets/Icon_SoundOff_80.png');
+}
+.soundOnImage {
+	background-image: url('Assets/Icon_SoundOn_80.png');
+}
+
+.timerOffImage {
+	background-image: url('Assets/Icon_SoundOff_80.png');
+}
+.timerOnImage {
+	background-image: url('Assets/Icon_SoundOn_80.png');
 }
 
 .interactButtonAnimated {
@@ -289,6 +312,22 @@ input[type='number'] {
 	padding-left: 6vmin;
 }
 
+#bottomRightButtons {
+	position: fixed;
+	bottom: 3.5vmin;
+	right: 2.5vmin;
+	transform-origin: bottom right;
+}
+
+#optionsScreen {
+	display: none;
+}
+
+.optionsButton {
+	width: 14vmin;
+	height: 14vmin;
+}
+
 .view {
 	position: fixed;
 	top: 0px;
@@ -309,18 +348,19 @@ input[type='number'] {
 	justify-content: center;
 }
 
-.belowHeaderContent {
+.fullScreenAdaptiveContent {
 	position: fixed;
 	left: 0px;
 	right: 0px;
-	bottom: 0%;
+	bottom: 0px;
+	top: 0px;
 	display: flex;
-	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	justify-content: center;
 }
 
-.portraitHeaderContent {
+.belowHeaderContent {
 	position: fixed;
 	left: 0px;
 	right: 0px;
@@ -440,6 +480,10 @@ input[type='number'] {
 	padding: 2.5vmin;
 	padding-left: 5vmin;
 	padding-right: 5vmin;
+}
+
+.optionsButtonSpacing {
+	padding: 0.5vmin;
 }
 
 .choose-none {
@@ -600,6 +644,11 @@ input[type='number'] {
 	/* height: 50%; */
 }
 
+.configButton {
+	width: 25vmin;
+	height: 25vmin;
+}
+
 .actionNumberImage {
 	display: block;
 	position: relative;
@@ -642,13 +691,21 @@ input[type='number'] {
 	height: 15vmin;
 }
 
-.darkOverlay {
+.overlay {
 	position: fixed;
 	top: 0%;
 	right: 0%;
 	bottom: 0%;
 	left: 0%;
+}
+
+.defaultBlur {
 	background-color: rgba(0, 18, 32, 0.5);
+	backdrop-filter: blur(1vmin);
+}
+
+.darkBlur {
+	background-color: rgba(0, 18, 32, 0.8);
 	backdrop-filter: blur(1vmin);
 }
 
@@ -705,22 +762,6 @@ input[type='number'] {
 	}
 }
 
-/* .zoomFromAction1Animated {
-	animation: zoomFromAction1Animation 0.3s forwards;
-}
-
-.zoomFromAction2Animated {
-	animation: zoomFromAction2Animation 0.3s forwards;
-}
-
-.zoomFromAction3Animated {
-	animation: zoomFromAction3Animation 0.3s forwards;
-}
-
-.zoomFromAction4Animated {
-	animation: zoomFromAction4Animation 0.3s forwards;
-} */
-
 .applyScaleMult {
 	transform: scale(var(--scaleMult));
 }
@@ -746,21 +787,7 @@ input[type='number'] {
 		height: 15%;
 	}
 
-	/* .gameInputPanel {
-		width: 85%;
-		height: 70%;
-	} */
-
-	#socialLinks {
-		left: 0px;
-		bottom: 3vmin;
-	}
-
 	.belowHeaderContent {
-		top: 15%;
-	}
-
-	.portraitHeaderContent {
 		top: 15%;
 	}
 
@@ -772,10 +799,6 @@ input[type='number'] {
 		width: 80vmin;
 	}
 
-	/* .actionButtonLayout {
-		width: 95%;
-	} */
-
 	.actionInfoContainer {
 		width: 68vmin;
 	}
@@ -784,45 +807,15 @@ input[type='number'] {
 		display: none;
 	}
 
-	.fullScreenContent {
-		top: 15%;
-	}
-
-	/* @keyframes zoomFromAction1Animation {
-		0% {
-			transform: translate(-21vmin, -30vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-	}
-
-	@keyframes zoomFromAction2Animation {
-		0% {
-			transform: translate(-21vmin, -30vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-	}
-
-	@keyframes zoomFromAction3Animation {
-		0% {
-			transform: translate(-21vmin, -30vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-	}
-
-	@keyframes zoomFromAction4Animation {
-		0% {
-			transform: translate(-21vmin, -30vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
+	/* #socialLinks {
+		left: 0px;
+		bottom: 3vmin;
 	} */
+
+	/* Content is pushed down vertically in portrait to make buttons easier to reach */
+	.fullScreenAdaptiveContent {
+		top: 13%;
+	}
 
 	@keyframes action1TransitionAnimation {
 		0% {
@@ -882,17 +875,8 @@ input[type='number'] {
 		height: 20%;
 	}
 
-	/* .gameInputPanel {
-		width: 70%;
-		height: 85%;
-	} */
-
 	.belowHeaderContent {
 		top: 20%;
-	}
-
-	.portraitHeaderContent {
-		top: 0%;
 	}
 
 	.adaptivePanelLayout {
@@ -903,10 +887,6 @@ input[type='number'] {
 		width: 40vmin;
 	}
 
-	/* .actionButtonLayout {
-		height: 95%;
-	} */
-
 	.actionInfoContainer {
 		width: 48vmin;
 	}
@@ -915,45 +895,10 @@ input[type='number'] {
 		display: none;
 	}
 
-	.fullScreenContent {
+	/* Content is centred vertically in landscape */
+	.fullScreenAdaptiveContent {
 		top: 0%;
 	}
-
-	/* @keyframes zoomFromAction1Animation {
-		0% {
-			transform: translate(-67vmin, -27vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-	}
-
-	@keyframes zoomFromAction2Animation {
-		0% {
-			transform: translate(-67vmin, -27vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-	}
-
-	@keyframes zoomFromAction3Animation {
-		0% {
-			transform: translate(-67vmin, -27vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-	}
-
-	@keyframes zoomFromAction4Animation {
-		0% {
-			transform: translate(-67vmin, -27vmin) scale(0);
-		}
-		100% {
-			transform: translate(0, 0) scale(1);
-		}
-	} */
 
 	@keyframes action1TransitionAnimation {
 		0% {
@@ -1006,7 +951,9 @@ input[type='number'] {
 	html {
 		--scaleMult: 0.8;
 	}
-	.fullScreenContent {
+
+	/* Also always centre content vertically so it fits nicely within the limited viewport */
+	.fullScreenAdaptiveContent {
 		top: 0%;
 	}
 }
