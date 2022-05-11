@@ -45,25 +45,23 @@
 							/>
 						</div>
 					</div>
-					<button
-						type="button"
-						class="pressEffectButton mainButtonSpacing largeButtonText enterBounceAnimated animDelay1"
-						id="startButton"
-					>
-						Join Game
-					</button>
+					<div class="enterBounceAnimated animDelay1">
+						<button type="button" class="pressEffectButton mainButtonSpacing largeButtonText" id="startButton">
+							Join Game
+						</button>
+					</div>
 				</div>
 			</div>
 
-			<div id="socialLinks">
-				<a href="https://mindfeastgames.com" target="_blank">
-					<img src="Assets/Logo_MindFeast_512.png" alt="Mind Feast Games" class="socialButton" />
+			<div class="applyScaleMult" id="socialLinks">
+				<a href="https://discord.gg/5RSq85mQ6q" target="_blank">
+					<img src="Assets/Icon_Discord_256.png" alt="Discord" class="socialButton" />
 				</a>
 				<a href="https://twitter.com/MindFeastGames" target="_blank">
 					<img src="Assets/Icon_Twitter_256.png" alt="Twitter" class="socialButton" />
 				</a>
-				<a href="https://discord.gg/5RSq85mQ6q" target="_blank">
-					<img src="Assets/Icon_Discord_256.png" alt="Discord" class="socialButton" />
+				<a href="https://mindfeastgames.com" target="_blank">
+					<img src="Assets/Logo_MindFeast_512.png" alt="Mind Feast Games" class="socialButton" />
 				</a>
 			</div>
 		</div>
@@ -94,8 +92,8 @@
 
 		<!-- This is where players select an action slot or confirm that they're ready -->
 		<div class="view" id="GameInputPhase">
-			<div class="fullScreenContent">
-				<div class="darkOverlay"></div>
+			<div class="fullScreenAdaptiveContent">
+				<div class="overlay defaultBlur"></div>
 				<div class="applyScaleMult">
 					<div class="gameInputPanel blurPanel adaptivePanelLayout">
 						<div class="actionInfoContainer hideInLandscape">
@@ -145,8 +143,8 @@
 
 		<!-- This is where players select an action type for a specific slot -->
 		<div class="view" id="GameInputPhaseSelectInput">
-			<div class="fullScreenContent">
-				<div class="darkOverlay"></div>
+			<div class="fullScreenAdaptiveContent">
+				<div class="overlay defaultBlur"></div>
 				<div class="applyScaleMult">
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
@@ -198,8 +196,8 @@
 
 		<!-- This is where players select movement direction -->
 		<div class="view" id="GameInputPhaseSelectMoveInput">
-			<div class="fullScreenContent">
-				<div class="darkOverlay"></div>
+			<div class="fullScreenAdaptiveContent">
+				<div class="overlay defaultBlur"></div>
 				<div class="applyScaleMult">
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
@@ -251,8 +249,8 @@
 
 		<!-- This is where players select throw direction -->
 		<div class="view" id="GameInputPhaseSelectThrowInput">
-			<div class="fullScreenContent">
-				<div class="darkOverlay"></div>
+			<div class="fullScreenAdaptiveContent">
+				<div class="overlay defaultBlur"></div>
 				<div class="adaptivePanelLayout applyScaleMult">
 					<!-- Action slot previews -->
 					<div class="horizontalPanelLayout adaptivePreviewLayout">
@@ -303,7 +301,7 @@
 		<!-- This view prompts players to look at the main screen -->
 		<div class="view" id="LookAtScreen">
 			<div class="fullScreenContent">
-				<div class="darkOverlay"></div>
+				<div class="overlay defaultBlur"></div>
 				<div class="verticalCentreLayout applyScaleMult">
 					<!-- <p class="titleText">Waiting to start...</p> -->
 					<div id="lookAtScreenPanel" class="verticalPanelLayout blurPanel">
@@ -315,8 +313,47 @@
 		</div>
 		<!-- End of LookAtScreen view -->
 
+		<div class="fullScreenContent" id="optionsScreen">
+			<div class="overlay darkBlur"></div>
+			<div class="verticalCentreLayout applyScaleMult">
+				<div class="adaptivePanelLayout">
+					<div class="verticalPanelLayout enterBounceAnimated">
+						<p class="infoText">Music: Off</p>
+						<div class="pressEffectButton configButton">
+							<div class="actionButtonImage musicOffImage" id="toggleMusicButton"></div>
+						</div>
+					</div>
+					<div></div>
+					<div class="verticalPanelLayout enterBounceAnimated animDelay1">
+						<p class="infoText">Sounds: Off</p>
+						<div class="pressEffectButton configButton">
+							<div class="actionButtonImage soundOffImage" id="toggleSoundButton"></div>
+						</div>
+					</div>
+					<div></div>
+					<div class="verticalPanelLayout enterBounceAnimated animDelay2">
+						<p class="infoText">Timer: Off</p>
+						<div class="pressEffectButton configButton">
+							<div class="actionButtonImage timerOffImage" id="toggleTimerButton"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="applyScaleMult" id="bottomRightButtons">
+			<div class="horizontalPanelLayout">
+				<div class="pressEffectButton optionsButtonSpacing optionsButton" id="optionsButton">
+					<div class="actionButtonImage optionsImage" onclick="toggleOptions()"></div>
+				</div>
+				<!-- <div class="pressEffectButton optionsButtonSpacing optionsButton" id="optionsButton">
+					<div class="actionButtonImage nothingButtonImage"></div>
+				</div> -->
+			</div>
+		</div>
+
 		<!-- Test buttons for switching views -->
-		<div class="view" id="TestButtons">
+		<div id="TestButtons">
 			<div id="tempViewSelection">
 				<div id="test">
 					<button type="button" onclick="toggleViewButtons()">Show/Hide</button>
