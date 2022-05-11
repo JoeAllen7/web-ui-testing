@@ -19,13 +19,6 @@
 		<div id="background"></div>
 		<div id="backgroundImage"></div>
 
-		<!-- Logo header, shown in Lobby and WaitOrChoosePackage views -->
-		<header id="lobbyHeader" class="multiturnHeader">
-			<div class="verticalCentreLayout">
-				<img id="logo" alt="MultiTurn: Co OPERATION Logo" src="Assets/Logo_Game_1140.png" />
-			</div>
-		</header>
-
 		<!-- This is first view players see - they can enter a join code, their name and then press Join Game -->
 		<div class="view" id="Lobby">
 			<div class="belowHeaderContent">
@@ -33,15 +26,31 @@
 					<div id="joinPanel" class="enterBounceAnimated">
 						<div class="verticalCentreLayout">
 							<p class="titleText">Join Code</p>
-							<input class="joinFormField" id="joinCode" name="joinCode" type="number" placeholder="Enter Code" />
+							<input
+								class="joinFormField"
+								id="joinCode"
+								name="joinCode"
+								placeholder="Enter Code"
+								type="text"
+								ondrop="return false;"
+								onpaste="return false;"
+								onkeypress="return event.charCode>=48 && event.charCode<=57"
+								autocapitalize="off"
+								autocomplete="off"
+								maxlength="4"
+							/>
 							<p class="titleText">Name</p>
 							<input
 								class="joinFormField"
 								id="playerName"
 								name="playerName"
-								type="text"
 								placeholder="Enter Name"
-								maxlength="20"
+								type="text"
+								ondrop="return false;"
+								onpaste="return false;"
+								autocapitalize="off"
+								autocomplete="off"
+								maxlength="14"
 							/>
 						</div>
 					</div>
@@ -70,21 +79,40 @@
 		<!-- This is what players see after first joining. They are told to wait, and the player with control can select a Package -->
 		<div class="view" id="WaitOrChoosePackage">
 			<div class="belowHeaderContent">
+				<div class="overlay defaultBlur fadeInAnimated"></div>
 				<div class="verticalCentreLayout applyScaleMult">
 					<!-- <p class="titleText">Waiting to start...</p> -->
-					<p class="titleText">Choose a package to play:</p>
+					<p class="titleText fadeInAnimated">Choose a package to play:</p>
+
+					<div class="spacer"></div>
 
 					<div class="horizontalPanelLayout">
 						<div class="leftArrowButton" id="packageLeftButton"></div>
-						<div class="packagePanel blurPanel" id="packagePreview1"></div>
-						<div class="packagePanel blurPanel hideInPortrait" id="packagePreview2"></div>
-						<div class="packagePanel blurPanel hideInPortrait" id="packagePreview3"></div>
+						<div class="packagePanel blurPanel enterBounceAnimated" id="packagePreview1">
+							<div class="packagePanelImage"></div>
+							<div class="packagePanelSeparator"></div>
+							<p class="infoText">Package 1</p>
+						</div>
+						<div class="packagePanel blurPanel hideInPortrait enterBounceAnimated animDelay1" id="packagePreview2">
+							<div class="packagePanelImage"></div>
+							<div class="packagePanelSeparator"></div>
+							<p class="infoText">Package 2</p>
+						</div>
+						<div class="packagePanel blurPanel hideInPortrait enterBounceAnimated animDelay2" id="packagePreview3">
+							<div class="packagePanelImage"></div>
+							<div class="packagePanelSeparator"></div>
+							<p class="infoText">Package 3</p>
+						</div>
 						<div class="rightArrowButton" id="packageRightButton"></div>
 					</div>
 
-					<button type="button" class="pressEffectButton mainButtonSpacing smallButtonText" id="playButton">
-						Play [package name]
-					</button>
+					<div class="spacer"></div>
+
+					<div class="fadeInAnimated">
+						<button type="button" class="pressEffectButton mainButtonSpacing smallButtonText" id="playButton">
+							Play packageName
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -95,8 +123,8 @@
 			<div class="fullScreenAdaptiveContent">
 				<div class="overlay defaultBlur"></div>
 				<div class="applyScaleMult">
-					<div class="gameInputPanel blurPanel adaptivePanelLayout">
-						<div class="actionInfoContainer hideInLandscape">
+					<div class="gameInputPanel blurPanel adaptivePanelLayout mainPanelTransitionAnimated">
+						<div class="actionInfoContainer hideInLandscape fadeInAnimated">
 							<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
 							<div class="verticalCentreLayout">
 								<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
@@ -104,26 +132,34 @@
 						</div>
 
 						<div class="actionButtonLayout">
-							<div class="pressEffectButton actionButton" id="interact-button-0">
-								<div class="choose-none"></div>
-								<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+							<div class="button1TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-0">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+								</div>
 							</div>
-							<div class="pressEffectButton actionButton" id="interact-button-1">
-								<div class="choose-none"></div>
-								<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+							<div class="button2TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-1">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+								</div>
 							</div>
-							<div class="pressEffectButton actionButton" id="interact-button-2">
-								<div class="choose-none"></div>
-								<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+							<div class="button3TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-2">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+								</div>
 							</div>
-							<div class="pressEffectButton actionButton" id="interact-button-3">
-								<div class="choose-none"></div>
-								<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+							<div class="button4TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-3">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+								</div>
 							</div>
 						</div>
 
 						<div class="actionInfoContainer">
-							<div class="verticalCentreLayout">
+							<div class="verticalCentreLayout fadeInAnimated">
 								<div class="hideInPortrait">
 									<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
 									<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
@@ -140,6 +176,13 @@
 			</div>
 		</div>
 		<!-- End of GameInputPhase view -->
+
+		<!-- Logo header, shown in Lobby and WaitOrChoosePackage views -->
+		<header id="lobbyHeader" class="multiturnHeader">
+			<div class="verticalCentreLayout">
+				<img id="logo" alt="MultiTurn: Co OPERATION Logo" src="Assets/Logo_Game_1140.png" />
+			</div>
+		</header>
 
 		<!-- This is where players select an action type for a specific slot -->
 		<div class="view" id="GameInputPhaseSelectInput">
@@ -304,7 +347,7 @@
 				<div class="overlay defaultBlur"></div>
 				<div class="verticalCentreLayout applyScaleMult">
 					<!-- <p class="titleText">Waiting to start...</p> -->
-					<div id="lookAtScreenPanel" class="verticalPanelLayout blurPanel">
+					<div id="lookAtScreenPanel" class="verticalPanelLayout blurPanel enterBounceAnimated">
 						<div id="lookAtScreenImage"></div>
 						<p class="titleText">Look at the main screen!</p>
 					</div>
@@ -352,6 +395,25 @@
 			</div>
 		</div>
 
+		<div class="fullScreenContent" id="confirmLeaveGame" style="display: none">
+			<div class="overlay darkBlur fadeInAnimated"></div>
+			<div class="verticalCentreLayout applyScaleMult">
+				<div class="verticalPanelLayout blurPanel mainButtonSpacing enterBounceAnimated">
+					<p class="titleText">Do you want to<br />leave the game?</p>
+					<div class="horizontalPanelLayout">
+						<div
+							class="pressEffectButton largeButtonText mainButtonSpacing"
+							style="width: 30vmin"
+							onclick="toggleConfirmLeavePopup()"
+						>
+							Cancel
+						</div>
+						<div class="pressEffectButton largeButtonText mainButtonSpacing" style="width: 25vmin">Yes</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
 		<!-- Test buttons for switching views -->
 		<div id="TestButtons">
 			<div id="tempViewSelection">
@@ -386,6 +448,10 @@
 				</button>
 				<button type="button" class="viewButton" id="setViewButton6" onclick="showView('LookAtScreen')">
 					LookAtScreen
+				</button>
+				<button type="button" class="viewButton" id="setViewButton7" onclick="showView('Options')">Options</button>
+				<button type="button" class="viewButton" id="setViewButton8" onclick="showView('ConfirmLeave')">
+					ConfirmLeave
 				</button>
 			</div>
 		</div>
