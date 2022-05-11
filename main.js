@@ -12,9 +12,10 @@ function showView(viewName) {
 	}
 
 	for (i = 0; i < views.length; i++) {
-		var isBackgroundView = viewName.includes(views[i].id);
+		//var isBackgroundView = viewName.includes(views[i].id);
 
-		if (views[i].id == viewName || isBackgroundView) {
+		if (views[i].id == viewName) {
+			// || isBackgroundView) {
 			views[i].style.display = 'block';
 		} else if (views[i].id != 'TestButtons') {
 			views[i].style.display = 'none';
