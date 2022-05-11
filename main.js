@@ -36,3 +36,13 @@ function toggleViewButtons() {
 		}
 	}
 }
+
+function toggleOptions() {
+	const options = document.getElementById('optionsScreen');
+
+	if (options.style.display == 'none') {
+		options.style.display = 'block';
+	} else {
+		options.style.display = 'none';
+	}
+}
