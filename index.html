@@ -94,45 +94,47 @@
 
 		<!-- This is where players select an action slot or confirm that they're ready -->
 		<div class="view" id="GameInputPhase">
-			<div class="fullScreenContent applyScaleMult">
-				<div class="gameInputPanel blurPanel adaptivePanelLayout enterBounceAnimated">
-					<div class="actionInfoContainer hideInLandscape">
-						<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
-						<div class="verticalCentreLayout">
-							<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
-						</div>
-					</div>
-
-					<div class="actionButtonLayout">
-						<div class="pressEffectButton actionButton" id="interact-button-0">
-							<div class="choose-none"></div>
-							<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
-						</div>
-						<div class="pressEffectButton actionButton" id="interact-button-1">
-							<div class="choose-none"></div>
-							<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
-						</div>
-						<div class="pressEffectButton actionButton" id="interact-button-2">
-							<div class="choose-none"></div>
-							<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
-						</div>
-						<div class="pressEffectButton actionButton" id="interact-button-3">
-							<div class="choose-none"></div>
-							<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
-						</div>
-					</div>
-
-					<div class="actionInfoContainer">
-						<div class="verticalCentreLayout">
-							<div class="hideInPortrait">
-								<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
+			<div class="fullScreenContent darkOverlay">
+				<div class="applyScaleMult">
+					<div class="gameInputPanel blurPanel adaptivePanelLayout">
+						<div class="actionInfoContainer hideInLandscape">
+							<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
+							<div class="verticalCentreLayout">
 								<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
-								<p class="infoText"><br /></p>
 							</div>
+						</div>
 
-							<button type="button" class="pressEffectButton mainButtonSpacing largeButtonText" id="readyButton">
-								Ready!
-							</button>
+						<div class="actionButtonLayout">
+							<div class="pressEffectButton actionButton" id="interact-button-0">
+								<div class="choose-none"></div>
+								<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+							</div>
+							<div class="pressEffectButton actionButton" id="interact-button-1">
+								<div class="choose-none"></div>
+								<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+							</div>
+							<div class="pressEffectButton actionButton" id="interact-button-2">
+								<div class="choose-none"></div>
+								<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+							</div>
+							<div class="pressEffectButton actionButton" id="interact-button-3">
+								<div class="choose-none"></div>
+								<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+							</div>
+						</div>
+
+						<div class="actionInfoContainer">
+							<div class="verticalCentreLayout">
+								<div class="hideInPortrait">
+									<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
+									<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
+									<p class="infoText"><br /></p>
+								</div>
+
+								<button type="button" class="pressEffectButton mainButtonSpacing largeButtonText" id="readyButton">
+									Ready!
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -142,47 +144,47 @@
 
 		<!-- This is where players select an action type for a specific slot -->
 		<div class="view" id="GameInputPhaseSelectInput">
-			<div class="fullScreenContent darkOverlay fadeInAnimated">
+			<div class="fullScreenContent darkOverlay">
 				<div class="applyScaleMult">
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
 						<div class="horizontalPanelLayout adaptivePreviewLayout">
-							<div class="actionPreviewHighlightPanel">
-								<div class="actionButtonImage" id="nothingButtonImage"></div>
+							<div class="actionPreviewHighlightPanel action1TransitionAnimated">
+								<div class="actionButtonImage nothingButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
 							</div>
-							<div class="actionPreviewPanel">
-								<div class="actionButtonImage" id="nothingButtonImage"></div>
+							<div class="actionPreviewPanel action2TransitionAnimated">
+								<div class="actionButtonImage nothingButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
 							</div>
-							<div class="actionPreviewPanel">
-								<div class="actionButtonImage" id="nothingButtonImage"></div>
+							<div class="actionPreviewPanel action3TransitionAnimated">
+								<div class="actionButtonImage nothingButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
 							</div>
-							<div class="actionPreviewPanel">
-								<div class="actionButtonImage" id="nothingButtonImage"></div>
+							<div class="actionPreviewPanel action4TransitionAnimated">
+								<div class="actionButtonImage nothingButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
 							</div>
 						</div>
 
 						<!-- Selection panel -->
-						<div class="blurPanel verticalPanelLayout zoomFromAction1Animated">
-							<div class="verticalCentreLayout">
+						<div class="blurPanel verticalPanelLayout inputPanelTransitionAnimated">
+							<div class="verticalCentreLayout fadeInAnimated">
 								<p class="infoText">Choose an action for turn 1:</p>
 							</div>
 
-							<div class="actionButtonLayout">
+							<div class="actionButtonLayout fadeInAnimated">
 								<div class="pressEffectButton actionButton" id="move-button">
-									<div class="actionButtonImage" id="moveButtonImage"></div>
+									<div class="actionButtonImage moveButtonImage"></div>
 								</div>
 								<div class="pressEffectButton actionButton" id="interact-button">
-									<div class="actionButtonImage" id="interactButtonAnimated"></div>
+									<div class="actionButtonImage interactButtonAnimated"></div>
 								</div>
 								<div class="pressEffectButton actionButton" id="throw-button">
-									<div class="actionButtonImage" id="throwButtonImage"></div>
+									<div class="actionButtonImage throwButtonImage"></div>
 								</div>
 								<div class="pressEffectButton actionButton" id="nothing-button">
-									<div class="actionButtonImage" id="nothingButtonImage"></div>
+									<div class="actionButtonImage nothingButtonImage"></div>
 								</div>
 							</div>
 						</div>
@@ -199,20 +201,20 @@
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
 						<div class="horizontalPanelLayout adaptivePreviewLayout">
-							<div class="actionPreviewHighlightPanel">
-								<div class="actionButtonImage" id="moveButtonImage"></div>
+							<div class="actionPreviewHighlightPanel buttonPromptAnimated">
+								<div class="actionButtonImage moveButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
 							</div>
 							<div class="actionPreviewPanel">
-								<div class="actionButtonImage" id="nothingButtonImage"></div>
+								<div class="actionButtonImage nothingButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
 							</div>
 							<div class="actionPreviewPanel">
-								<div class="actionButtonImage" id="nothingButtonImage"></div>
+								<div class="actionButtonImage nothingButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
 							</div>
 							<div class="actionPreviewPanel">
-								<div class="actionButtonImage" id="nothingButtonImage"></div>
+								<div class="actionButtonImage nothingButtonImage"></div>
 								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
 							</div>
 						</div>
@@ -225,16 +227,16 @@
 
 							<div class="actionButtonLayout">
 								<div class="pressEffectButton actionButton" id="move-west-button">
-									<div class="actionButtonImage" id="moveWestImage"></div>
+									<div class="actionButtonImage buttonPromptAnimated moveWestImage"></div>
 								</div>
 								<div class="pressEffectButton actionButton" id="move-north-button">
-									<div class="actionButtonImage" id="moveNorthImage"></div>
+									<div class="actionButtonImage buttonPromptAnimated moveNorthImage"></div>
 								</div>
 								<div class="pressEffectButton actionButton" id="move-south-button">
-									<div class="actionButtonImage" id="moveSouthImage"></div>
+									<div class="actionButtonImage buttonPromptAnimated moveSouthImage"></div>
 								</div>
 								<div class="pressEffectButton actionButton" id="move-east-button">
-									<div class="actionButtonImage" id="moveEastImage"></div>
+									<div class="actionButtonImage buttonPromptAnimated moveEastImage"></div>
 								</div>
 							</div>
 						</div>
@@ -250,20 +252,20 @@
 				<div class="adaptivePanelLayout applyScaleMult">
 					<!-- Action slot previews -->
 					<div class="horizontalPanelLayout adaptivePreviewLayout">
-						<div class="actionPreviewHighlightPanel">
-							<div class="actionButtonImage" id="throwButtonImage"></div>
+						<div class="actionPreviewHighlightPanel buttonPromptAnimated">
+							<div class="actionButtonImage throwButtonImage"></div>
 							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
 						</div>
 						<div class="actionPreviewPanel">
-							<div class="actionButtonImage" id="nothingButtonImage"></div>
+							<div class="actionButtonImage nothingButtonImage"></div>
 							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
 						</div>
 						<div class="actionPreviewPanel">
-							<div class="actionButtonImage" id="nothingButtonImage"></div>
+							<div class="actionButtonImage nothingButtonImage"></div>
 							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
 						</div>
 						<div class="actionPreviewPanel">
-							<div class="actionButtonImage" id="nothingButtonImage"></div>
+							<div class="actionButtonImage nothingButtonImage"></div>
 							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
 						</div>
 					</div>
@@ -276,16 +278,16 @@
 
 						<div class="actionButtonLayout">
 							<div class="pressEffectButton actionButton" id="throw-west-button">
-								<div class="actionButtonImage" id="throwWestImage"></div>
+								<div class="actionButtonImage buttonPromptAnimated throwWestImage"></div>
 							</div>
 							<div class="pressEffectButton actionButton" id="throw-north-button">
-								<div class="actionButtonImage" id="throwNorthImage"></div>
+								<div class="actionButtonImage buttonPromptAnimated throwNorthImage"></div>
 							</div>
 							<div class="pressEffectButton actionButton" id="throw-south-button">
-								<div class="actionButtonImage" id="throwSouthImage"></div>
+								<div class="actionButtonImage buttonPromptAnimated throwSouthImage"></div>
 							</div>
 							<div class="pressEffectButton actionButton" id="throw-east-button">
-								<div class="actionButtonImage" id="throwEastImage"></div>
+								<div class="actionButtonImage buttonPromptAnimated throwEastImage"></div>
 							</div>
 						</div>
 					</div>
