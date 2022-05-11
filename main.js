@@ -3,7 +3,7 @@ var showViewButtons = true;
 function showView(viewName) {
 	const views = document.getElementsByClassName('view');
 
-	const header = document.getElementById('multiturnHeader');
+	const header = document.getElementById('lobbyHeader');
 
 	if (viewName == 'Lobby' || viewName == 'WaitOrChoosePackage') {
 		header.style.display = 'block';
