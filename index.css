@@ -141,51 +141,51 @@ input[type='number'] {
 	margin-bottom: 1vmin;
 }
 
-#moveButtonImage {
+.moveButtonImage {
 	background-image: url('Assets/Move.png');
 }
 
-#throwButtonImage {
+.throwButtonImage {
 	background-image: url('Assets/Throw.png');
 }
 
-#nothingButtonImage {
+.nothingButtonImage {
 	background-image: url('Assets/Nothing.png');
 }
 
-#moveNorthImage {
+.moveNorthImage {
 	background-image: url('Assets/MoveNorth.png');
 }
 
-#moveEastImage {
+.moveEastImage {
 	background-image: url('Assets/MoveEast.png');
 }
 
-#moveSouthImage {
+.moveSouthImage {
 	background-image: url('Assets/MoveSouth.png');
 }
 
-#moveWestImage {
+.moveWestImage {
 	background-image: url('Assets/MoveWest.png');
 }
 
-#throwNorthImage {
+.throwNorthImage {
 	background-image: url('Assets/ThrowNorth.png');
 }
 
-#throwEastImage {
+.throwEastImage {
 	background-image: url('Assets/ThrowEast.png');
 }
 
-#throwSouthImage {
+.throwSouthImage {
 	background-image: url('Assets/ThrowSouth.png');
 }
 
-#throwWestImage {
+.throwWestImage {
 	background-image: url('Assets/ThrowWest.png');
 }
 
-#interactButtonAnimated {
+.interactButtonAnimated {
 	position: relative;
 	top: 5%;
 	right: 5%;
