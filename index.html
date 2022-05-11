@@ -19,8 +19,8 @@
 		<div id="background"></div>
 		<div id="backgroundImage"></div>
 
-		<!-- Logo header, shown in Lobby and GameLobby views -->
-		<header id="multiturnHeader">
+		<!-- Logo header, shown in Lobby and WaitOrChoosePackage views -->
+		<header id="lobbyHeader" class="multiturnHeader">
 			<div class="verticalCentreLayout">
 				<img id="logo" alt="MultiTurn: Co OPERATION Logo" src="Assets/Logo_Game_1140.png" />
 			</div>
@@ -94,7 +94,8 @@
 
 		<!-- This is where players select an action slot or confirm that they're ready -->
 		<div class="view" id="GameInputPhase">
-			<div class="fullScreenContent darkOverlay">
+			<div class="fullScreenContent">
+				<div class="darkOverlay"></div>
 				<div class="applyScaleMult">
 					<div class="gameInputPanel blurPanel adaptivePanelLayout">
 						<div class="actionInfoContainer hideInLandscape">
@@ -144,7 +145,8 @@
 
 		<!-- This is where players select an action type for a specific slot -->
 		<div class="view" id="GameInputPhaseSelectInput">
-			<div class="fullScreenContent darkOverlay">
+			<div class="fullScreenContent">
+				<div class="darkOverlay"></div>
 				<div class="applyScaleMult">
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
@@ -196,7 +198,8 @@
 
 		<!-- This is where players select movement direction -->
 		<div class="view" id="GameInputPhaseSelectMoveInput">
-			<div class="fullScreenContent darkOverlay">
+			<div class="fullScreenContent">
+				<div class="darkOverlay"></div>
 				<div class="applyScaleMult">
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
@@ -248,7 +251,8 @@
 
 		<!-- This is where players select throw direction -->
 		<div class="view" id="GameInputPhaseSelectThrowInput">
-			<div class="fullScreenContent darkOverlay">
+			<div class="fullScreenContent">
+				<div class="darkOverlay"></div>
 				<div class="adaptivePanelLayout applyScaleMult">
 					<!-- Action slot previews -->
 					<div class="horizontalPanelLayout adaptivePreviewLayout">
@@ -299,6 +303,7 @@
 		<!-- This view prompts players to look at the main screen -->
 		<div class="view" id="LookAtScreen">
 			<div class="fullScreenContent">
+				<div class="darkOverlay"></div>
 				<div class="verticalCentreLayout applyScaleMult">
 					<!-- <p class="titleText">Waiting to start...</p> -->
 					<div id="lookAtScreenPanel" class="verticalPanelLayout blurPanel">
