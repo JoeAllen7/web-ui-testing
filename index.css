@@ -145,6 +145,12 @@ input[type='number'] {
 	margin-bottom: 1vmin;
 }
 
+.spacer {
+	display: block;
+	width: 2vmin;
+	height: 2vmin;
+}
+
 .moveButtonImage {
 	background-image: url('Assets/Move.png');
 }
@@ -187,6 +193,16 @@ input[type='number'] {
 	background-image: url('Assets/Icon_Cog_64.png');
 }
 
+.optionsImage:active {
+	animation: spinAnimation 0.3s ease-out forwards;
+}
+
+@keyframes spinAnimation {
+	100% {
+		transform: rotate(90deg);
+	}
+}
+
 .musicOffImage {
 	background-image: url('Assets/Icon_MusicOff_80.png');
 }
@@ -206,6 +222,28 @@ input[type='number'] {
 }
 .timerOnImage {
 	background-image: url('Assets/Icon_SoundOn_80.png');
+}
+
+.packagePanelImage {
+	position: relative;
+	top: -2vmin;
+	right: -2vmin;
+	left: -2vmin;
+	width: 44vmin;
+	height: 22vmin;
+	border-top-left-radius: 4.5vmin;
+	border-top-right-radius: 4.5vmin;
+	background-image: url('Assets/Background1.png');
+	background-size: cover;
+}
+
+.packagePanelSeparator {
+	position: relative;
+	left: -2.5vmin;
+	top: -2vmin;
+	width: 45vmin;
+	height: 1vmin;
+	background-color: white;
 }
 
 .interactButtonAnimated {
@@ -725,8 +763,28 @@ input[type='number'] {
 	animation: action4TransitionAnimation 0.25s forwards ease-out;
 }
 
+.button1TransitionAnimated {
+	animation: button1TransitionAnimation 0.25s forwards ease-out;
+}
+
+.button2TransitionAnimated {
+	animation: button2TransitionAnimation 0.25s forwards ease-out;
+}
+
+.button3TransitionAnimated {
+	animation: button3TransitionAnimation 0.25s forwards ease-out;
+}
+
+.button4TransitionAnimated {
+	animation: button4TransitionAnimation 0.25s forwards ease-out;
+}
+
 .inputPanelTransitionAnimated {
 	animation: inputPanelTransitionAnimation 0.2s forwards ease-out;
+}
+
+.mainPanelTransitionAnimated {
+	animation: mainPanelTransitionAnimation 0.2s forwards ease-out;
 }
 
 .buttonPromptAnimated {
@@ -814,7 +872,7 @@ input[type='number'] {
 
 	/* Content is pushed down vertically in portrait to make buttons easier to reach */
 	.fullScreenAdaptiveContent {
-		top: 13%;
+		top: 10%;
 	}
 
 	@keyframes action1TransitionAnimation {
@@ -853,9 +911,54 @@ input[type='number'] {
 		}
 	}
 
+	@keyframes button1TransitionAnimation {
+		0% {
+			transform: translate(-9vmin, -60vmin) scale(0.39, 0.54);
+		}
+		100% {
+			transform: translate(0vmin, 0vmin) scaleY(1);
+		}
+	}
+
+	@keyframes button2TransitionAnimation {
+		0% {
+			transform: translate(-30vmin, -60vmin) scale(0.39, 0.54);
+		}
+		100% {
+			transform: translate(0vmin, 0vmin) scaleY(1);
+		}
+	}
+
+	@keyframes button3TransitionAnimation {
+		0% {
+			transform: translate(30vmin, -101vmin) scale(0.39, 0.54);
+		}
+		100% {
+			transform: translate(0vmin, 0vmin) scaleY(1);
+		}
+	}
+
+	@keyframes button4TransitionAnimation {
+		0% {
+			transform: translate(9vmin, -101vmin) scale(0.39, 0.54);
+		}
+		100% {
+			transform: translate(0vmin, 0vmin) scaleY(1);
+		}
+	}
+
 	@keyframes inputPanelTransitionAnimation {
 		0% {
 			transform: translate(0vmin, -10vmin) scaleY(1.37);
+		}
+		100% {
+			transform: translate(0vmin, 0vmin) scaleY(1);
+		}
+	}
+
+	@keyframes mainPanelTransitionAnimation {
+		0% {
+			transform: translate(0vmin, 10vmin) scaleY(0.73);
 		}
 		100% {
 			transform: translate(0vmin, 0vmin) scaleY(1);
@@ -936,9 +1039,54 @@ input[type='number'] {
 		}
 	}
 
+	@keyframes button1TransitionAnimation {
+		0% {
+			transform: translate(-74vmin, 12.5vmin) scale(0.62, 0.35);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes button2TransitionAnimation {
+		0% {
+			transform: translate(-84vmin, 12.5vmin) scale(0.62, 0.35);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes button3TransitionAnimation {
+		0% {
+			transform: translate(-74vmin, -11vmin) scale(0.62, 0.35);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes button4TransitionAnimation {
+		0% {
+			transform: translate(-84vmin, -11vmin) scale(0.62, 0.35);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
 	@keyframes inputPanelTransitionAnimation {
 		0% {
-			transform: translate(-21.2vmin, -0vmin) scale(1.595, 0.91);
+			transform: translate(-21.2vmin, 0vmin) scale(1.595, 0.91);
+		}
+		100% {
+			transform: translate(0, 0) scale(1);
+		}
+	}
+
+	@keyframes mainPanelTransitionAnimation {
+		0% {
+			transform: translate(21.2vmin, 0vmin) scale(0.627, 1.1);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
