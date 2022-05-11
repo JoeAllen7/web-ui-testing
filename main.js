@@ -1,6 +1,14 @@
 var showViewButtons = true;
 
 function showView(viewName) {
+	if (viewName == 'Options') {
+		toggleOptions();
+		return;
+	} else if (viewName == 'ConfirmLeave') {
+		toggleConfirmLeavePopup();
+		return;
+	}
+
 	const views = document.getElementsByClassName('view');
 
 	const header = document.getElementById('lobbyHeader');
@@ -44,5 +52,15 @@ function toggleOptions() {
 		options.style.display = 'block';
 	} else {
 		options.style.display = 'none';
+	}
+}
+
+function toggleConfirmLeavePopup() {
+	const popup = document.getElementById('confirmLeaveGame');
+
+	if (popup.style.display == 'none') {
+		popup.style.display = 'block';
+	} else {
+		popup.style.display = 'none';
 	}
 }
