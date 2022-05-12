@@ -55,9 +55,7 @@
 						</div>
 					</div>
 					<div class="enterBounceAnimated animDelay1">
-						<button type="button" class="pressEffectButton mainButtonSpacing largeButtonText" id="startButton">
-							Join Game
-						</button>
+						<div class="pressEffectButton mainButtonSpacing largeButtonText" id="startButton">Join Game</div>
 					</div>
 				</div>
 			</div>
@@ -82,26 +80,26 @@
 				<div class="overlay defaultBlur fadeInAnimated"></div>
 				<div class="verticalCentreLayout applyScaleMult">
 					<!-- <p class="titleText">Waiting to start...</p> -->
-					<p class="titleText fadeInAnimated">Choose a package to play:</p>
+					<p class="titleText fadeInAnimated">Choose a package:</p>
 
 					<div class="spacer"></div>
 
-					<div class="horizontalPanelLayout">
+					<div class="horizontalPanelLayout" style="gap: 2vmin">
 						<div class="leftArrowButton" id="packageLeftButton"></div>
 						<div class="packagePanel blurPanel enterBounceAnimated" id="packagePreview1">
 							<div class="packagePanelImage"></div>
 							<div class="packagePanelSeparator"></div>
-							<p class="infoText">Package 1</p>
+							<p class="infoText packagePanelText">Package 1</p>
 						</div>
 						<div class="packagePanel blurPanel hideInPortrait enterBounceAnimated animDelay1" id="packagePreview2">
 							<div class="packagePanelImage"></div>
 							<div class="packagePanelSeparator"></div>
-							<p class="infoText">Package 2</p>
+							<p class="infoText packagePanelText">Package 2</p>
 						</div>
 						<div class="packagePanel blurPanel hideInPortrait enterBounceAnimated animDelay2" id="packagePreview3">
 							<div class="packagePanelImage"></div>
 							<div class="packagePanelSeparator"></div>
-							<p class="infoText">Package 3</p>
+							<p class="infoText packagePanelText">Package 3</p>
 						</div>
 						<div class="rightArrowButton" id="packageRightButton"></div>
 					</div>
@@ -109,9 +107,10 @@
 					<div class="spacer"></div>
 
 					<div class="fadeInAnimated">
-						<button type="button" class="pressEffectButton mainButtonSpacing smallButtonText" id="playButton">
-							Play packageName
-						</button>
+						<div class="pressEffectButton mainButtonSpacing" id="playButton">
+							<div class="largeButtonText" style="font-size: 7vmin">Play!</div>
+							<div class="smallButtonText" style="font-size: 4.5vmin">(Everyone's here)</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -119,7 +118,7 @@
 		<!-- End of WaitOrChoosePackage view -->
 
 		<!-- This is where players select an action slot or confirm that they're ready -->
-		<div class="view" id="GameInputPhase">
+		<!-- <div class="view" id="GameInputPhase">
 			<div class="fullScreenAdaptiveContent">
 				<div class="overlay defaultBlur"></div>
 				<div class="applyScaleMult">
@@ -174,6 +173,57 @@
 					</div>
 				</div>
 			</div>
+		</div> -->
+		<!-- End of GameInputPhase view -->
+
+		<!-- This is where players select an action slot or confirm that they're ready -->
+		<div class="view" id="GameInputPhase">
+			<div class="fullScreenAdaptiveContent">
+				<div class="overlay defaultBlur"></div>
+				<div class="applyScaleMult">
+					<div class="gameInputPanel blurPanel verticalPanelLayout mainPanelTransitionAnimated">
+						<div class="actionInfoContainer fadeInAnimated">
+							<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
+							<div class="verticalCentreLayout">
+								<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
+							</div>
+						</div>
+
+						<div class="actionButtonLayout">
+							<div class="button1TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-0">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+								</div>
+							</div>
+							<div class="button2TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-1">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+								</div>
+							</div>
+							<div class="button3TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-2">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+								</div>
+							</div>
+							<div class="button4TransitionAnimated">
+								<div class="pressEffectButton actionButton" id="interact-button-3">
+									<div class="choose-none"></div>
+									<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+								</div>
+							</div>
+						</div>
+
+						<div class="actionInfoContainer">
+							<div class="verticalCentreLayout fadeInAnimated">
+								<div class="pressEffectButton mainButtonSpacing largeButtonText" id="readyButton">Ready!</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<!-- End of GameInputPhase view -->
 
@@ -216,7 +266,7 @@
 								<p class="infoText">Choose an action for turn 1:</p>
 							</div>
 
-							<div class="actionButtonLayout fadeInAnimated">
+							<div class="actionButtonSquareLayout fadeInAnimated">
 								<div class="pressEffectButton actionButton" id="move-button">
 									<div class="actionButtonImage moveButtonImage"></div>
 								</div>
@@ -269,7 +319,7 @@
 								<p class="infoText">Choose a direction to move in:</p>
 							</div>
 
-							<div class="actionButtonLayout">
+							<div class="actionButtonSquareLayout">
 								<div class="pressEffectButton actionButton" id="move-west-button">
 									<div class="actionButtonImage buttonPromptAnimated moveWestImage"></div>
 								</div>
@@ -321,7 +371,7 @@
 							<p class="infoText">Choose a direction to throw in:</p>
 						</div>
 
-						<div class="actionButtonLayout">
+						<div class="actionButtonSquareLayout">
 							<div class="pressEffectButton actionButton" id="throw-west-button">
 								<div class="actionButtonImage buttonPromptAnimated throwWestImage"></div>
 							</div>
