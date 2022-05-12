@@ -226,11 +226,11 @@ input[type='number'] {
 
 .packagePanelImage {
 	position: relative;
-	top: -2vmin;
-	right: -2vmin;
-	left: -2vmin;
-	width: 44vmin;
-	height: 22vmin;
+	top: 0vmin;
+	right: 0vmin;
+	left: 0vmin;
+	width: 45vmin;
+	height: 20.6vmin;
 	border-top-left-radius: 4.5vmin;
 	border-top-right-radius: 4.5vmin;
 	background-image: url('Assets/Background1.png');
@@ -239,10 +239,10 @@ input[type='number'] {
 
 .packagePanelSeparator {
 	position: relative;
-	left: -2.5vmin;
-	top: -2vmin;
-	width: 45vmin;
-	height: 1vmin;
+	left: -0.5vmin;
+	top: 0vmin;
+	width: 46vmin;
+	height: 0.5vmin;
 	background-color: white;
 }
 
@@ -496,11 +496,13 @@ input[type='number'] {
 }
 
 .largeButtonText {
-	font-size: 9vmin;
+	font-size: 8vmin;
+	margin: 0px;
 }
 
 .smallButtonText {
-	font-size: 6vmin;
+	font-size: 5vmin;
+	margin: 0px;
 }
 
 .pressEffectButton:hover {
@@ -575,6 +577,7 @@ input[type='number'] {
 .actionInfoContainer {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
 .playerImage {
@@ -598,6 +601,15 @@ input[type='number'] {
 	font-weight: bold;
 	font-size: 5vmin;
 	margin: 0px;
+}
+
+.packagePanelText {
+	padding: 1vmin;
+	height: 12vmin;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 .joinFormField {
@@ -668,11 +680,21 @@ input[type='number'] {
 	display: flex;
 	justify-content: center;
 	align-content: center;
-	width: 80vmin;
-	height: 80vmin;
 	flex-direction: row;
 	flex-wrap: wrap;
 	gap: 3vmin;
+}
+
+.actionButtonSquareLayout {
+	/* position: fixed; */
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 3vmin;
+	width: 80vmin;
+	height: 80vmin;
 }
 
 .actionButton {
@@ -710,8 +732,9 @@ input[type='number'] {
 }
 
 .packagePanel {
-	width: 40vmin;
-	height: 40vmin;
+	width: 45vmin;
+	height: 36vmin;
+	padding: 0px;
 }
 
 .leftArrowButton {
@@ -861,6 +884,11 @@ input[type='number'] {
 		width: 68vmin;
 	}
 
+	.actionButtonLayout {
+		width: 80vmin;
+		height: 80vmin;
+	}
+
 	.hideInPortrait {
 		display: none;
 	}
@@ -987,11 +1015,18 @@ input[type='number'] {
 	}
 
 	.adaptivePreviewLayout {
-		width: 40vmin;
+		/* Single column */
+		width: 18vmin;
 	}
 
 	.actionInfoContainer {
-		width: 48vmin;
+		width: 80vmin;
+		height: 16vmin;
+	}
+
+	.actionButtonLayout {
+		width: 165vmin;
+		height: 40vmin;
 	}
 
 	.hideInLandscape {
@@ -1005,7 +1040,7 @@ input[type='number'] {
 
 	@keyframes action1TransitionAnimation {
 		0% {
-			transform: translate(8vmin, -11.5vmin) scale(2.55);
+			transform: translate(-17.4vmin, 28.5vmin) scale(2.55);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1014,7 +1049,7 @@ input[type='number'] {
 
 	@keyframes action2TransitionAnimation {
 		0% {
-			transform: translate(29.5vmin, -11.5vmin) scale(2.55);
+			transform: translate(23.5vmin, 9vmin) scale(2.55);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1023,7 +1058,7 @@ input[type='number'] {
 
 	@keyframes action3TransitionAnimation {
 		0% {
-			transform: translate(8vmin, 10vmin) scale(2.55);
+			transform: translate(64.6vmin, -10.5vmin) scale(2.55);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1032,7 +1067,7 @@ input[type='number'] {
 
 	@keyframes action4TransitionAnimation {
 		0% {
-			transform: translate(29.5vmin, 10vmin) scale(2.55);
+			transform: translate(105.5vmin, -30vmin) scale(2.55);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1041,7 +1076,7 @@ input[type='number'] {
 
 	@keyframes button1TransitionAnimation {
 		0% {
-			transform: translate(-74vmin, 12.5vmin) scale(0.62, 0.35);
+			transform: translate(-47vmin, -24.9vmin) scale(0.789, 0.346);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1050,7 +1085,7 @@ input[type='number'] {
 
 	@keyframes button2TransitionAnimation {
 		0% {
-			transform: translate(-84vmin, 12.5vmin) scale(0.62, 0.35);
+			transform: translate(-88vmin, -7.9vmin) scale(0.789, 0.346);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1059,7 +1094,7 @@ input[type='number'] {
 
 	@keyframes button3TransitionAnimation {
 		0% {
-			transform: translate(-74vmin, -11vmin) scale(0.62, 0.35);
+			transform: translate(-129vmin, 9.2vmin) scale(0.789, 0.346);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1068,7 +1103,7 @@ input[type='number'] {
 
 	@keyframes button4TransitionAnimation {
 		0% {
-			transform: translate(-84vmin, -11vmin) scale(0.62, 0.35);
+			transform: translate(-170vmin, 26.3vmin) scale(0.789, 0.346);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1077,7 +1112,7 @@ input[type='number'] {
 
 	@keyframes inputPanelTransitionAnimation {
 		0% {
-			transform: translate(-21.2vmin, 0vmin) scale(1.595, 0.91);
+			transform: translate(-10vmin, 0vmin) scale(2, 0.875);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1086,7 +1121,7 @@ input[type='number'] {
 
 	@keyframes mainPanelTransitionAnimation {
 		0% {
-			transform: translate(21.2vmin, 0vmin) scale(0.627, 1.1);
+			transform: translate(10.2vmin, 0vmin) scale(0.5, 1.14);
 		}
 		100% {
 			transform: translate(0, 0) scale(1);
@@ -1097,7 +1132,7 @@ input[type='number'] {
 /* Scale things down for near-square aspect ratios */
 @media (min-aspect-ratio: 6/9) and (max-aspect-ratio: 9/6) {
 	html {
-		--scaleMult: 0.8;
+		--scaleMult: 0.75;
 	}
 
 	/* Also always centre content vertically so it fits nicely within the limited viewport */
