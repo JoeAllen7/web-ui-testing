@@ -80,28 +80,34 @@
 				<div class="overlay defaultBlur fadeInAnimated"></div>
 				<div class="verticalCentreLayout applyScaleMult">
 					<!-- <p class="titleText">Waiting to start...</p> -->
-					<p class="titleText fadeInAnimated">Choose a package:</p>
+					<p class="titleText fadeInAnimated" style="font-size: 6vmin">Choose a package:</p>
 
 					<div class="spacer"></div>
 
 					<div class="horizontalPanelLayout" style="gap: 2vmin">
-						<div class="leftArrowButton" id="packageLeftButton"></div>
-						<div class="packagePanel blurPanel enterBounceAnimated" id="packagePreview1">
-							<div class="packagePanelImage"></div>
-							<div class="packagePanelSeparator"></div>
-							<p class="infoText packagePanelText">Package 1</p>
+						<div class="arrowButton leftArrow" id="packageLeftButton" onclick="buttonPreviousPackage()"></div>
+						<div class="enterBounceAnimated animDelay2">
+							<div class="packagePanel sidePackagePanel blurPanel hideInPortrait" id="packagePreviewLeft">
+								<div class="packagePanelImage"></div>
+								<div class="packagePanelSeparator"></div>
+								<p class="infoText packagePanelText" id="packageNameLeft">Package 1</p>
+							</div>
 						</div>
-						<div class="packagePanel blurPanel hideInPortrait enterBounceAnimated animDelay1" id="packagePreview2">
-							<div class="packagePanelImage"></div>
-							<div class="packagePanelSeparator"></div>
-							<p class="infoText packagePanelText">Package 2</p>
+						<div class="enterBounceAnimated animDelay2">
+							<div class="packagePanel mainPackagePanel blurPanel" id="packagePreviewCentre">
+								<div class="packagePanelImage"></div>
+								<div class="packagePanelSeparator"></div>
+								<p class="infoText packagePanelText" id="packageNameCentre">Package 2</p>
+							</div>
 						</div>
-						<div class="packagePanel blurPanel hideInPortrait enterBounceAnimated animDelay2" id="packagePreview3">
-							<div class="packagePanelImage"></div>
-							<div class="packagePanelSeparator"></div>
-							<p class="infoText packagePanelText">Package 3</p>
+						<div class="enterBounceAnimated animDelay2">
+							<div class="packagePanel sidePackagePanel blurPanel hideInPortrait" id="packagePreviewRight">
+								<div class="packagePanelImage"></div>
+								<div class="packagePanelSeparator"></div>
+								<p class="infoText packagePanelText" id="packageNameRight">Package 3</p>
+							</div>
 						</div>
-						<div class="rightArrowButton" id="packageRightButton"></div>
+						<div class="arrowButton rightArrow" id="packageRightButton" onclick="buttonNextPackage()"></div>
 					</div>
 
 					<div class="spacer"></div>
@@ -117,6 +123,7 @@
 		</div>
 		<!-- End of WaitOrChoosePackage view -->
 
+		<!-- OLD GRID LAYOUT -->
 		<!-- This is where players select an action slot or confirm that they're ready -->
 		<!-- <div class="view" id="GameInputPhase">
 			<div class="fullScreenAdaptiveContent">
@@ -407,7 +414,7 @@
 		<!-- End of LookAtScreen view -->
 
 		<div class="fullScreenContent" id="optionsScreen" style="display: none">
-			<div class="overlay darkBlur"></div>
+			<div class="overlay darkBlur fadeInQuickAnimated"></div>
 			<div class="verticalCentreLayout applyScaleMult">
 				<div class="adaptivePanelLayout">
 					<div class="verticalPanelLayout enterBounceAnimated">
@@ -446,7 +453,7 @@
 		</div>
 
 		<div class="fullScreenContent" id="confirmLeaveGame" style="display: none">
-			<div class="overlay darkBlur fadeInAnimated"></div>
+			<div class="overlay darkBlur fadeInQuickAnimated"></div>
 			<div class="verticalCentreLayout applyScaleMult">
 				<div class="verticalPanelLayout blurPanel mainButtonSpacing enterBounceAnimated">
 					<p class="titleText">Do you want to<br />leave the game?</p>
