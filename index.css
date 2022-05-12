@@ -737,19 +737,34 @@ input[type='number'] {
 	padding: 0px;
 }
 
-.leftArrowButton {
-	background-image: url(Assets/Icon_Arrow1_128.png);
-	background-size: cover;
-	width: 15vmin;
-	height: 15vmin;
+.packagePanel.sidePackagePanel {
+	transform: scale(0.9);
+	opacity: 0.75;
 }
 
-.rightArrowButton {
+.arrowButton {
 	background-image: url(Assets/Icon_Arrow1_128.png);
-	transform: scaleX(-1);
 	background-size: cover;
 	width: 15vmin;
 	height: 15vmin;
+	cursor: pointer;
+	transition: 0.05s;
+}
+
+.arrowButton.rightArrow {
+	transform: scaleX(-1);
+}
+
+.arrowButton:hover {
+	opacity: 0.75;
+}
+
+.arrowButton:active {
+	transform: scale(0.8);
+}
+
+.arrowButton.rightArrow:active {
+	transform: scale(-0.8, 0.8);
 }
 
 .overlay {
@@ -832,6 +847,11 @@ input[type='number'] {
 .fadeInAnimated {
 	animation: fadeAnimation 0.3s both;
 	animation-delay: 0.15s;
+}
+
+.fadeInQuickAnimated {
+	animation: fadeAnimation 0.2s both;
+	animation-delay: 0s;
 }
 
 @keyframes fadeAnimation {
