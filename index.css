@@ -740,7 +740,7 @@ input[type='number'] {
 	border-top-left-radius: 3.5vmin;
 	border-top-right-radius: 3.5vmin;
 	padding-top: 0.8vmin;
-	padding-bottom: 1vmin;
+	padding-bottom: 0.8vmin;
 	margin-top: 1vmin;
 	width: 97.5vmin;
 	z-index: 1;
@@ -822,7 +822,7 @@ input[type='number'] {
 }
 .directionalButton:active #moveNorthArrowImage {
 	opacity: 0.9;
-	transform: skew(39deg) rotate(-25deg) translate(3.5vmin, -3vmin);
+	transform: skew(39deg) rotate(-25deg) translate(3.5vmin, -3.5vmin);
 }
 .directionalButton:active #moveEastArrowImage {
 	opacity: 0.9;
@@ -834,7 +834,7 @@ input[type='number'] {
 }
 .directionalButton:active #moveWestArrowImage {
 	opacity: 0.9;
-	transform: skew(39deg) rotate(-25deg) translate(-3.5vmin, -3vmin);
+	transform: skew(39deg) rotate(-25deg) translate(-3.5vmin, -3.5vmin);
 }
 
 .directionalButtonImage {
