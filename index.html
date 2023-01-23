@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="UTF-8" />
 		<meta content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
 		<meta name="color-scheme" content="light only" />
+
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Bangers&display=swap" rel="stylesheet" />
 		<link
 			href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap"
 			rel="stylesheet"
 		/>
-		<link href="index.css" rel="stylesheet" />
-		<title>MultiTurn Co OPERATION</title>
+
+		<link href="GamePad.css" rel="stylesheet" />
+
+		<title>Co OPERATION: MultiTurn</title>
 	</head>
 
 	<body>
@@ -19,119 +23,348 @@
 		<div id="background"></div>
 		<div id="backgroundImage"></div>
 
-		<!-- This is first view players see - they can enter a join code, their name and then press Join Game -->
+		<div id="infoDiv"></div>
+		<div id="logArea">(LOG - HIDDEN USUALLY)</div>
+
+		<!-- Default: The view shown on page load before any game connections are established -->
+		<div class="view" id="Default">
+			<div class="fullScreenContent">
+				<div class="verticalCentreLayout">
+					<img id="splashLogo" alt="Co OPERATION: MultiTurn Logo" src="Images/Logos/Logo_Game_1140.png" />
+				</div>
+			</div>
+		</div>
+		<!-- End of Default view -->
+
+		<!-- Connecting -->
+		<div class="view" id="Connecting">
+			<div class="fullScreenContent">
+				<div class="overlay darkBlur"></div>
+				<div class="verticalCentreLayout">
+					<img class="heartrateLoader fadeInAnimated" src="Images/IconImages/Loader_Heartrate.gif" />
+					<p class="titleText enterBounceAnimated" style="margin-top: -6vmin">Connecting...</p>
+				</div>
+			</div>
+		</div>
+		<!-- End of Connecting view -->
+
+		<!-- Reconnecting -->
+		<div class="view" id="Reconnecting">
+			<div class="fullScreenContent">
+				<div class="overlay darkBlur"></div>
+				<div class="verticalCentreLayout">
+					<img class="heartrateLoader fadeInAnimated" src="Images/IconImages/Loader_Heartrate.gif" />
+					<p class="titleText enterBounceAnimated" style="margin-top: -6vmin">Reconnecting...</p>
+				</div>
+			</div>
+		</div>
+		<!-- End of Reconnecting view -->
+
+		<!-- Lobby: This is first view players see - they can enter a join code, their name and then press Join Game -->
 		<div class="view" id="Lobby">
 			<div class="belowHeaderContent">
-				<div class="verticalCentreLayout applyScaleMult">
-					<div id="joinPanel" class="enterBounceAnimated">
-						<div class="verticalCentreLayout">
-							<p class="titleText">Join Code</p>
+				<form action="" method="get" onsubmit="app.onJoinButtonPressed(); app.consumeEvent(event); return false">
+					<div class="verticalCentreLayout applyScaleMult">
+						<div id="joinPanel" class="enterBounceAnimated">
+							<div class="verticalCentreLayout">
+								<label for="joinCode" id="joinCodeTitle" class="titleText">Join Code</label>
+								<input
+									class="joinFormField"
+									id="joinCode"
+									name="joinCode"
+									placeholder="Enter Code"
+									type="number"
+									ondrop="return false;"
+									onpaste="return false;"
+									onkeypress="return event.charCode>=48 && event.charCode<=57"
+									autocapitalize="off"
+									autocomplete="off"
+									autofocus
+								/>
+								<label id="nameTitleText" for="playerName" class="titleText">Name</label>
+								<input
+									class="joinFormField"
+									id="playerName"
+									name="playerName"
+									placeholder="Enter Name"
+									type="text"
+									ondrop="return false;"
+									onpaste="return false;"
+									autocapitalize="off"
+									autocomplete="off"
+									maxlength="14"
+								/>
+							</div>
+						</div>
+						<div class="enterBounceAnimated animDelay1">
 							<input
-								class="joinFormField"
-								id="joinCode"
-								name="joinCode"
-								placeholder="Enter Code"
-								type="text"
-								ondrop="return false;"
-								onpaste="return false;"
-								onkeypress="return event.charCode>=48 && event.charCode<=57"
-								autocapitalize="off"
-								autocomplete="off"
-								maxlength="4"
+								type="submit"
+								class="pressEffectButton mainButtonSpacing largeButtonText"
+								id="startButton"
+								value="Join Game"
 							/>
-							<p class="titleText">Name</p>
-							<input
-								class="joinFormField"
-								id="playerName"
-								name="playerName"
-								placeholder="Enter Name"
-								type="text"
-								ondrop="return false;"
-								onpaste="return false;"
-								autocapitalize="off"
-								autocomplete="off"
-								maxlength="14"
-							/>
+							<div
+								tabindex="0"
+								class="pressEffectButton mainButtonSpacing smallButtonText"
+								id="cancelJoinButton"
+								style="margin-top: 3vmin; font-size: 5vmin"
+								ontouchend="app.onCancelJoinButtonPressed(); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								Cancel
+							</div>
 						</div>
 					</div>
-					<div class="enterBounceAnimated animDelay1">
-						<div class="pressEffectButton mainButtonSpacing largeButtonText" id="startButton">Join Game</div>
-					</div>
-				</div>
+				</form>
 			</div>
 
 			<div class="applyScaleMult" id="socialLinks">
+				<a href="https://mindfeastgames.com" target="_blank">
+					<img src="Images/Logos/Logo_MindFeast_512.png" alt="Mind Feast Games" class="socialButton" />
+				</a>
 				<a href="https://discord.gg/5RSq85mQ6q" target="_blank">
-					<img src="Assets/Icon_Discord_256.png" alt="Discord" class="socialButton" />
+					<img src="Images/IconImages/Icon_Discord_256.png" alt="Discord" class="socialButton" />
 				</a>
 				<a href="https://twitter.com/MindFeastGames" target="_blank">
-					<img src="Assets/Icon_Twitter_256.png" alt="Twitter" class="socialButton" />
+					<img src="Images/IconImages/Icon_Twitter_256.png" alt="Twitter" class="socialButton" />
 				</a>
-				<a href="https://mindfeastgames.com" target="_blank">
-					<img src="Assets/Logo_MindFeast_512.png" alt="Mind Feast Games" class="socialButton" />
+				<a href="https://instagram.com/MindFeastGames" target="_blank">
+					<img src="Images/IconImages/Icon_Instagram_256.png" alt="Twitter" class="socialButton" />
+				</a>
+				<a href="https://www.tiktok.com/@mindfeastgames" target="_blank">
+					<img src="Images/IconImages/Icon_TikTok_256.png" alt="TikTok" class="socialButton" />
 				</a>
 			</div>
 		</div>
 		<!-- End of Lobby view -->
 
-		<!-- This is what players see after first joining. They are told to wait, and the player with control can select a Package -->
-		<div class="view" id="WaitOrChoosePackage">
-			<div class="belowHeaderContent">
-				<div class="overlay defaultBlur fadeInAnimated"></div>
-				<div class="verticalCentreLayout applyScaleMult">
-					<!-- <p class="titleText">Waiting to start...</p> -->
-					<p class="titleText fadeInAnimated" style="font-size: 6vmin">Choose a package:</p>
-
-					<div class="spacer"></div>
-
-					<div class="horizontalPanelLayout" style="gap: 2vmin">
-						<div class="arrowButton leftArrow" id="packageLeftButton" onclick="buttonPreviousPackage()"></div>
-						<div class="enterBounceAnimated animDelay2">
-							<div class="packagePanel sidePackagePanel blurPanel hideInPortrait" id="packagePreviewLeft">
-								<div class="packagePanelImage"></div>
-								<div class="packagePanelSeparator"></div>
-								<p class="infoText packagePanelText" id="packageNameLeft">Package 1</p>
+		<!-- WaitOrAddPlayers: Shown while waiting for others to join, also lets you add another player on the current device -->
+		<div class="view" id="WaitOrAddPlayers">
+			<div class="fullScreenContent">
+				<div class="overlay defaultBlur"></div>
+				<form action="" method="get" onsubmit="app.onAddPlayerButtonPressed(); app.consumeEvent(event); return false">
+					<div class="adaptivePanelLayout applyScaleMult">
+						<div class="spacer"></div>
+						<div class="spacer"></div>
+						<div class="enterBounceAnimated">
+							<div class="verticalCentreLayout">
+								<div class="lookAtScreenSmallImage"></div>
+								<div class="spacer"></div>
+								<p class="smallText" style="font-size: 5.5vmin; font-weight: bold; margin-top: 0vmin; width: 64vmin">
+									Host:<br />Press 'Everyone's Here!' on the game screen when ready.
+								</p>
 							</div>
 						</div>
-						<div class="enterBounceAnimated animDelay2">
-							<div class="packagePanel mainPackagePanel blurPanel" id="packagePreviewCentre">
-								<div class="packagePanelImage"></div>
-								<div class="packagePanelSeparator"></div>
-								<p class="infoText packagePanelText" id="packageNameCentre">Package 2</p>
+						<div class="spacer"></div>
+						<div class="spacer"></div>
+						<div class="fadeInAnimated">
+							<div class="verticalPanelLayout blurPanel" style="width: 80vmin; padding: 3vmin">
+								<div id="addPlayerInfo">
+									<p class="smallText" style="font-weight: bold; text-align: center">
+										If you'd like to play solo and control multiple characters, or you're sharing<br />this device with
+										a friend, you can:
+									</p>
+									<div class="spacer"></div>
+									<input
+										type="submit"
+										id="addPlayerButton"
+										class="pressEffectButton mainButtonSpacing smallButtonText"
+										style="font-size: 4vmin; margin-top: 0"
+										value="Add another character on this device"
+									/>
+									<div class="spacer"></div>
+									<div class="separator"></div>
+								</div>
+								<div class="verticalCentreLayout" id="playerNamesList">
+									<div id="playerNameListElement" class="horizontalPanelLayout" style="display: none">
+										<p class="playerNameText">Name</p>
+										<div
+											style="padding: 0.5vmin; padding-left: 4vmin; padding-right: 4vmin"
+											class="pressEffectButton smallButtonSpacing smallButtonText"
+											ontouchend="app.onRemovePlayerButtonPressed(event.srcElement); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+										>
+											X
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="enterBounceAnimated animDelay2">
-							<div class="packagePanel sidePackagePanel blurPanel hideInPortrait" id="packagePreviewRight">
-								<div class="packagePanelImage"></div>
-								<div class="packagePanelSeparator"></div>
-								<p class="infoText packagePanelText" id="packageNameRight">Package 3</p>
-							</div>
-						</div>
-						<div class="arrowButton rightArrow" id="packageRightButton" onclick="buttonNextPackage()"></div>
 					</div>
+				</form>
+			</div>
+		</div>
+		<!-- End of WaitOrAddPlayers view -->
 
+		<!-- CharacterSelect: This is where players choose the character they want to play as -->
+		<div class="view" id="CharacterSelect">
+			<div class="fullScreenContent">
+				<div class="overlay defaultBlur"></div>
+				<div class="verticalCentreLayout applyScaleMult">
+					<p class="titleText fadeInAnimated" style="margin-bottom: -2.5vmin">Player Name</p>
+					<p class="titleText fadeInAnimated" style="font-size: 6vmin">Choose a character:</p>
 					<div class="spacer"></div>
+
+					<div class="horizontalPanelLayout blurPanel" style="gap: 2vmin">
+						<div id="characterSelectLayout">
+							<div
+								tabindex="100"
+								id="characterButton1"
+								class="pressEffectButton characterPreview buttonOutline unselectedButton"
+								ontouchend="app.onSelectCharacterButtonPressed(0); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div id="characterIcon1" class="actionButtonImage character1CrossImage"></div>
+							</div>
+							<div
+								tabindex="101"
+								id="characterButton2"
+								class="pressEffectButton characterPreview selectedButton selectedScale"
+								ontouchend="app.onSelectCharacterButtonPressed(1); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div id="characterIcon2" class="actionButtonImage character2SelectedImage"></div>
+							</div>
+							<div
+								tabindex="102"
+								id="characterButton3"
+								class="pressEffectButton characterPreview buttonOutline"
+								ontouchend="app.onSelectCharacterButtonPressed(2); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div id="characterIcon3" class="actionButtonImage character3UnselectedImage"></div>
+							</div>
+							<div
+								tabindex="103"
+								id="characterButton4"
+								class="pressEffectButton characterPreview buttonOutline"
+								ontouchend="app.onSelectCharacterButtonPressed(3); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div id="characterIcon4" class="actionButtonImage character4UnselectedImage"></div>
+							</div>
+						</div>
+					</div>
+					<!-- <div class="spacer"></div>
 
 					<div class="fadeInAnimated">
-						<div class="pressEffectButton mainButtonSpacing" id="playButton">
-							<div class="largeButtonText" style="font-size: 7vmin">Play!</div>
-							<div class="smallButtonText" style="font-size: 4.5vmin">(Everyone's here)</div>
+						<div class="pressEffectButton mainButtonSpacing" id="characterConfirmButton" ontouchend="">
+							<div class="largeButtonText" style="font-size: 7vmin">Confirm</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<!-- End of CharacterSelect view -->
+
+		<!-- Logo header, shown in Lobby and WaitOrChoosePackage views -->
+		<header id="lobbyHeader" class="multiturnHeader">
+			<div class="verticalCentreLayout">
+				<img id="logo" alt="Co OPERATION: MultiTurn Logo" src="Images/Logos/Logo_Game_1140.png" />
+			</div>
+		</header>
+
+		<!-- GameInputPhase: This is where players select an action slot or confirm that they're ready -->
+		<div class="view" id="GameInputPhase">
+			<div class="overlay defaultBlur"></div>
+			<div class="fullScreenAdaptiveContent">
+				<div class="applyScaleMult">
+					<div class="verticalPanelLayout" style="gap: 0">
+						<div class="actionHeaderPanel verticalPanelLayout">
+							<p class="infoText">In this round, my 4 turns are:</p>
+						</div>
+						<div class="horizontalPanelLayout actionButtonPanel">
+							<div class="pressEffectButton actionButton">
+								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
+							</div>
+							<div class="pressEffectButton actionButton">
+								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
+							</div>
+							<div class="pressEffectButton actionButton">
+								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
+							</div>
+							<div class="pressEffectButton actionButton">
+								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
+							</div>
+						</div>
+						<div class="actionHeaderPanel verticalPanelLayout">
+							<p class="infoText">On Turn 0, I will...</p>
+							<div id="actionsStem" class="actionPanelStem"></div>
+						</div>
+						<div class="horizontalPanelLayout actionButtonPanel">
+							<div style="flex-direction: column">
+								<div class="labelText" style="margin-bottom: 0.2vmin">Move</div>
+								<div class="pressEffectButton actionButton">
+									<div id="actionButtonImage0" class="actionButtonImage animatedIcon moveButtonImage"></div>
+								</div>
+							</div>
+							<div style="flex-direction: column">
+								<div class="labelText" style="margin-bottom: 0.2vmin">Interact</div>
+								<div class="pressEffectButton actionButton">
+									<div id="actionButtonImage1" class="actionButtonImage animatedIcon interactButtonImage"></div>
+								</div>
+							</div>
+							<div style="flex-direction: column">
+								<div class="labelText" style="margin-bottom: 0.2vmin">Wait</div>
+								<div class="pressEffectButton actionButton">
+									<div id="actionButtonImage2" class="actionButtonImage animatedIcon waitButtonImage"></div>
+								</div>
+							</div>
+							<div style="flex-direction: column">
+								<div class="labelText" style="margin-bottom: 0.2vmin">Throw</div>
+								<div class="pressEffectButton actionButton">
+									<div id="actionButtonImage3" class="actionButtonImage animatedIcon throwButtonImage"></div>
+								</div>
+							</div>
+						</div>
+						<div
+							class="actionHeaderPanel verticalPanelLayout"
+							style="border-bottom-left-radius: 3.5vmin; border-bottom-right-radius: 3.5vmin; padding-bottom: 1vmin"
+						>
+							<p class="infoText">...In this direction:</p>
+							<div id="directionsStem" class="actionPanelStem" style="bottom: 6.8vmin"></div>
+						</div>
+						<div id="playerPreviewGrid">
+							<div id="westDirectionalButton" class="directionalButton">
+								<div id="moveWestArrowImage" class="directionalButtonImage"></div>
+							</div>
+							<div id="northDirectionalButton" class="directionalButton">
+								<div id="moveNorthArrowImage" class="directionalButtonImage"></div>
+							</div>
+							<div id="eastDirectionalButton" class="directionalButton">
+								<div id="moveEastArrowImage" class="directionalButtonImage"></div>
+							</div>
+							<div id="southDirectionalButton" class="directionalButton">
+								<div id="moveSouthArrowImage" class="directionalButtonImage"></div>
+							</div>
+							<div id="playerPreview"></div>
+						</div>
+						<div
+							class="pressEffectButton mainButtonSpacing largeButtonText"
+							style="margin-top: -20vmin; margin-bottom: 0"
+						>
+							Ready!
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- End of WaitOrChoosePackage view -->
+		<!-- End of GameInputPhase view -->
 
-		<!-- OLD GRID LAYOUT -->
-		<!-- This is where players select an action slot or confirm that they're ready -->
+		<!-- OLD GameInputPhase: This is where players select an action slot or confirm that they're ready -->
 		<!-- <div class="view" id="GameInputPhase">
 			<div class="fullScreenAdaptiveContent">
 				<div class="overlay defaultBlur"></div>
 				<div class="applyScaleMult">
-					<div class="gameInputPanel blurPanel adaptivePanelLayout mainPanelTransitionAnimated">
-						<div class="actionInfoContainer hideInLandscape fadeInAnimated">
-							<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
+					<div class="gameInputPanel blurPanel verticalPanelLayout mainPanelTransitionAnimated">
+						<div class="actionInfoContainer fadeInAnimated">
+							<div class="verticalCentreLayout" style="width: 25vmin">
+								<div id="activePlayerImage" class="playerImage character1SelectedImage"></div>
+							</div>
 							<div class="verticalCentreLayout">
 								<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
 							</div>
@@ -139,152 +372,194 @@
 
 						<div class="actionButtonLayout">
 							<div class="button1TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-0">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+								<div
+									tabindex="101"
+									class="pressEffectButton actionButton"
+									id="interact-button-0"
+									ontouchend="app.onSelectTurnButtonPressed(0, true); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon" id="actionButtonImage0"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
 								</div>
 							</div>
 							<div class="button2TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-1">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+								<div
+									tabindex="102"
+									class="pressEffectButton actionButton"
+									id="interact-button-1"
+									ontouchend="app.onSelectTurnButtonPressed(1, true); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon" id="actionButtonImage1"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
 								</div>
 							</div>
 							<div class="button3TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-2">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+								<div
+									tabindex="103"
+									class="pressEffectButton actionButton"
+									id="interact-button-2"
+									ontouchend="app.onSelectTurnButtonPressed(2, true); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon" id="actionButtonImage2"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
 								</div>
 							</div>
 							<div class="button4TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-3">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+								<div
+									tabindex="104"
+									class="pressEffectButton actionButton"
+									id="interact-button-3"
+									ontouchend="app.onSelectTurnButtonPressed(3, true); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon" id="actionButtonImage3"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
 								</div>
 							</div>
 						</div>
 
 						<div class="actionInfoContainer">
 							<div class="verticalCentreLayout fadeInAnimated">
-								<div class="hideInPortrait">
-									<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
-									<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
-									<p class="infoText"><br /></p>
-								</div>
-
-								<button type="button" class="pressEffectButton mainButtonSpacing largeButtonText" id="readyButton">
+								<div
+									tabindex="105"
+									class="pressEffectButton mainButtonSpacing largeButtonText"
+									id="readyButton"
+									ontouchend="app.onReadyButtonPressed(); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
 									Ready!
-								</button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div> -->
-		<!-- End of GameInputPhase view -->
+		<!-- End of OLD GameInputPhase view -->
 
-		<!-- This is where players select an action slot or confirm that they're ready -->
-		<div class="view" id="GameInputPhase">
-			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur"></div>
-				<div class="applyScaleMult">
-					<div class="gameInputPanel blurPanel verticalPanelLayout mainPanelTransitionAnimated">
-						<div class="actionInfoContainer fadeInAnimated">
-							<img class="playerImage" src="Assets/Doctor-01_0.png" alt="Player" />
-							<div class="verticalCentreLayout">
-								<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
-							</div>
-						</div>
-
-						<div class="actionButtonLayout">
-							<div class="button1TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-0">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
-								</div>
-							</div>
-							<div class="button2TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-1">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
-								</div>
-							</div>
-							<div class="button3TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-2">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
-								</div>
-							</div>
-							<div class="button4TransitionAnimated">
-								<div class="pressEffectButton actionButton" id="interact-button-3">
-									<div class="choose-none"></div>
-									<img class="actionNumberImage" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
-								</div>
-							</div>
-						</div>
-
-						<div class="actionInfoContainer">
-							<div class="verticalCentreLayout fadeInAnimated">
-								<div class="pressEffectButton mainButtonSpacing largeButtonText" id="readyButton">Ready!</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End of GameInputPhase view -->
-
-		<!-- Logo header, shown in Lobby and WaitOrChoosePackage views -->
-		<header id="lobbyHeader" class="multiturnHeader">
-			<div class="verticalCentreLayout">
-				<img id="logo" alt="MultiTurn: Co OPERATION Logo" src="Assets/Logo_Game_1140.png" />
-			</div>
-		</header>
-
-		<!-- This is where players select an action type for a specific slot -->
+		<!-- GameInputPhaseSelectInput: This is where players select an action type for a specific slot -->
 		<div class="view" id="GameInputPhaseSelectInput">
 			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur"></div>
+				<div class="overlay defaultBlur" ontouchend="app.onAreaOutsideMenuPressed(); app.consumeEvent(event)"></div>
 				<div class="applyScaleMult">
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
 						<div class="horizontalPanelLayout adaptivePreviewLayout">
-							<div class="actionPreviewHighlightPanel action1TransitionAnimated">
-								<div class="actionButtonImage nothingButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+							<div class="inputPhaseButtonAnimation action1TransitionAnimated">
+								<div
+									tabindex="101"
+									class="actionPreview0 actionPreviewPanel"
+									ontouchend="app.onSelectTurnButtonPressed(0, false); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="previewImage0 actionButtonImage animatedIcon waitButtonImage"></div>
+									<img
+										class="actionNumberImageSmall"
+										src="Images/IconImages/Icon_ActionNumber1_128.png"
+										alt="Action 1"
+									/>
+								</div>
 							</div>
-							<div class="actionPreviewPanel action2TransitionAnimated">
-								<div class="actionButtonImage nothingButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+							<div class="inputPhaseButtonAnimation action2TransitionAnimated">
+								<div
+									tabindex="102"
+									class="actionPreview1 actionPreviewPanel"
+									ontouchend="app.onSelectTurnButtonPressed(1, false); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="previewImage1 actionButtonImage animatedIcon waitButtonImage"></div>
+									<img
+										class="actionNumberImageSmall"
+										src="Images/IconImages/Icon_ActionNumber2_128.png"
+										alt="Action 2"
+									/>
+								</div>
 							</div>
-							<div class="actionPreviewPanel action3TransitionAnimated">
-								<div class="actionButtonImage nothingButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+							<div class="inputPhaseButtonAnimation action3TransitionAnimated">
+								<div
+									tabindex="103"
+									class="actionPreview2 actionPreviewPanel"
+									ontouchend="app.onSelectTurnButtonPressed(2, false); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="previewImage2 actionButtonImage animatedIcon waitButtonImage"></div>
+									<img
+										class="actionNumberImageSmall"
+										src="Images/IconImages/Icon_ActionNumber3_128.png"
+										alt="Action 3"
+									/>
+								</div>
 							</div>
-							<div class="actionPreviewPanel action4TransitionAnimated">
-								<div class="actionButtonImage nothingButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+							<div class="inputPhaseButtonAnimation action4TransitionAnimated">
+								<div
+									tabindex="104"
+									class="actionPreview3 actionPreviewPanel"
+									ontouchend="app.onSelectTurnButtonPressed(3, false); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="previewImage3 actionButtonImage animatedIcon waitButtonImage"></div>
+									<img
+										class="actionNumberImageSmall"
+										src="Images/IconImages/Icon_ActionNumber4_128.png"
+										alt="Action 4"
+									/>
+								</div>
 							</div>
 						</div>
 
 						<!-- Selection panel -->
-						<div class="blurPanel verticalPanelLayout inputPanelTransitionAnimated">
+						<div
+							id="selectActionPanel"
+							class="blurPanel verticalPanelLayout inputPhaseAnimation inputPanelTransitionAnimated"
+						>
 							<div class="verticalCentreLayout fadeInAnimated">
-								<p class="infoText">Choose an action for turn 1:</p>
+								<p id="turnInfoHeader" class="infoText">Choose an action for turn:</p>
 							</div>
 
 							<div class="actionButtonSquareLayout fadeInAnimated">
-								<div class="pressEffectButton actionButton" id="move-button">
-									<div class="actionButtonImage moveButtonImage"></div>
+								<!-- 'Move' button -->
+								<div
+									tabindex="105"
+									class="pressEffectButton actionButton"
+									id="action1Button"
+									ontouchend="app.onSelectMoveDirectionButtonPressed(); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div id="action1ButtonImg" class="actionButtonImage animatedIcon moveButtonImage"></div>
 								</div>
-								<div class="pressEffectButton actionButton" id="interact-button">
-									<div class="actionButtonImage interactButtonAnimated"></div>
+								<!-- 'Act' button -->
+								<div
+									tabindex="106"
+									class="pressEffectButton actionButton"
+									id="action2Button"
+									ontouchend="app.onSelectActionButtonPressed('act', ''); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div id="action2ButtonImg" class="actionButtonImage animatedIcon interactButtonImage"></div>
+									<!-- actionButtonImage -->
 								</div>
-								<div class="pressEffectButton actionButton" id="throw-button">
-									<div class="actionButtonImage throwButtonImage"></div>
+								<!-- 'Throw' button -->
+								<div
+									tabindex="107"
+									class="pressEffectButton actionButton disabledButton"
+									id="action3Button"
+									ontouchend="app.onSelectThrowDirectionButtonPressed(); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div id="action3ButtonImg" class="actionButtonImage animatedIcon throwButtonImage"></div>
 								</div>
-								<div class="pressEffectButton actionButton" id="nothing-button">
-									<div class="actionButtonImage nothingButtonImage"></div>
+								<!-- 'Do nothing' button -->
+								<div
+									tabindex="108"
+									class="pressEffectButton actionButton"
+									id="action4Button"
+									ontouchend="app.onSelectActionButtonPressed('', ''); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div id="action4ButtonImg" class="actionButtonImage animatedIcon waitButtonImage"></div>
 								</div>
 							</div>
 						</div>
@@ -294,29 +569,49 @@
 		</div>
 		<!-- End of GameInputPhaseSelectInput view -->
 
-		<!-- This is where players select movement direction -->
+		<!-- GameInputPhaseSelectMoveInput: This is where players select movement direction -->
 		<div class="view" id="GameInputPhaseSelectMoveInput">
 			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur"></div>
+				<div class="overlay defaultBlur" ontouchend="app.onAreaOutsideMenuPressed(); app.consumeEvent(event)"></div>
 				<div class="applyScaleMult">
 					<div class="adaptivePanelLayout">
 						<!-- Action slot previews -->
 						<div class="horizontalPanelLayout adaptivePreviewLayout">
-							<div class="actionPreviewHighlightPanel buttonPromptAnimated">
-								<div class="actionButtonImage moveButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+							<div
+								tabindex="101"
+								class="actionPreview0 actionPreviewPanel"
+								ontouchend="app.onSelectTurnButtonPressed(0, false); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="previewImage0 actionButtonImage animatedIcon waitButtonImage"></div>
+								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
 							</div>
-							<div class="actionPreviewPanel">
-								<div class="actionButtonImage nothingButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+							<div
+								tabindex="102"
+								class="actionPreview1 actionPreviewPanel"
+								ontouchend="app.onSelectTurnButtonPressed(1, false); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="previewImage1 actionButtonImage animatedIcon waitButtonImage"></div>
+								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
 							</div>
-							<div class="actionPreviewPanel">
-								<div class="actionButtonImage nothingButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+							<div
+								tabindex="103"
+								class="actionPreview2 actionPreviewPanel"
+								ontouchend="app.onSelectTurnButtonPressed(2, false); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="previewImage2 actionButtonImage animatedIcon waitButtonImage"></div>
+								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
 							</div>
-							<div class="actionPreviewPanel">
-								<div class="actionButtonImage nothingButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+							<div
+								tabindex="104"
+								class="actionPreview3 actionPreviewPanel"
+								ontouchend="app.onSelectTurnButtonPressed(3, false); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="previewImage3 actionButtonImage animatedIcon waitButtonImage"></div>
+								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
 							</div>
 						</div>
 
@@ -327,17 +622,41 @@
 							</div>
 
 							<div class="actionButtonSquareLayout">
-								<div class="pressEffectButton actionButton" id="move-west-button">
-									<div class="actionButtonImage buttonPromptAnimated moveWestImage"></div>
+								<div
+									tabindex="105"
+									class="pressEffectButton actionButton"
+									id="moveWestButton"
+									ontouchend="app.onSelectActionButtonPressed('move', 'west'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage buttonPromptAnimated moveWestButtonImage"></div>
 								</div>
-								<div class="pressEffectButton actionButton" id="move-north-button">
-									<div class="actionButtonImage buttonPromptAnimated moveNorthImage"></div>
+								<div
+									tabindex="106"
+									class="pressEffectButton actionButton"
+									id="moveNorthButton"
+									ontouchend="app.onSelectActionButtonPressed('move', 'north'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage buttonPromptAnimated moveNorthButtonImage"></div>
 								</div>
-								<div class="pressEffectButton actionButton" id="move-south-button">
-									<div class="actionButtonImage buttonPromptAnimated moveSouthImage"></div>
+								<div
+									tabindex="107"
+									class="pressEffectButton actionButton"
+									id="moveSouthButton"
+									ontouchend="app.onSelectActionButtonPressed('move', 'south'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage buttonPromptAnimated moveSouthButtonImage"></div>
 								</div>
-								<div class="pressEffectButton actionButton" id="move-east-button">
-									<div class="actionButtonImage buttonPromptAnimated moveEastImage"></div>
+								<div
+									tabindex="108"
+									class="pressEffectButton actionButton"
+									id="moveEastButton"
+									ontouchend="app.onSelectActionButtonPressed('move', 'east'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage buttonPromptAnimated moveEastButtonImage"></div>
 								</div>
 							</div>
 						</div>
@@ -347,28 +666,48 @@
 		</div>
 		<!-- End of GameInputPhaseSelectMoveInput view -->
 
-		<!-- This is where players select throw direction -->
+		<!-- GameInputPhaseSelectThrowInput: This is where players select throw direction -->
 		<div class="view" id="GameInputPhaseSelectThrowInput">
 			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur"></div>
+				<div class="overlay defaultBlur" ontouchend="app.onAreaOutsideMenuPressed(); app.consumeEvent(event)"></div>
 				<div class="adaptivePanelLayout applyScaleMult">
 					<!-- Action slot previews -->
 					<div class="horizontalPanelLayout adaptivePreviewLayout">
-						<div class="actionPreviewHighlightPanel buttonPromptAnimated">
-							<div class="actionButtonImage throwButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber1_128.png" alt="Action 1" />
+						<div
+							tabindex="101"
+							class="actionPreview0 actionPreviewPanel"
+							ontouchend="app.onSelectTurnButtonPressed(0, false); app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						>
+							<div class="previewImage0 actionButtonImage animatedIcon waitButtonImage"></div>
+							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
 						</div>
-						<div class="actionPreviewPanel">
-							<div class="actionButtonImage nothingButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber2_128.png" alt="Action 2" />
+						<div
+							tabindex="102"
+							class="actionPreview1 actionPreviewPanel"
+							ontouchend="app.onSelectTurnButtonPressed(1, false); app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						>
+							<div class="previewImage1 actionButtonImage animatedIcon waitButtonImage"></div>
+							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
 						</div>
-						<div class="actionPreviewPanel">
-							<div class="actionButtonImage nothingButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber3_128.png" alt="Action 3" />
+						<div
+							tabindex="103"
+							class="actionPreview2 actionPreviewPanel"
+							ontouchend="app.onSelectTurnButtonPressed(2, false); app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						>
+							<div class="previewImage2 actionButtonImage animatedIcon waitButtonImage"></div>
+							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
 						</div>
-						<div class="actionPreviewPanel">
-							<div class="actionButtonImage nothingButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Assets/Icon_ActionNumber4_128.png" alt="Action 4" />
+						<div
+							tabindex="104"
+							class="actionPreview3 actionPreviewPanel"
+							ontouchend="app.onSelectTurnButtonPressed(3, false); app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						>
+							<div class="previewImage3 actionButtonImage animatedIcon waitButtonImage"></div>
+							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
 						</div>
 					</div>
 
@@ -379,17 +718,49 @@
 						</div>
 
 						<div class="actionButtonSquareLayout">
-							<div class="pressEffectButton actionButton" id="throw-west-button">
-								<div class="actionButtonImage buttonPromptAnimated throwWestImage"></div>
+							<div class="buttonPromptAnimated">
+								<div
+									tabindex="105"
+									class="pressEffectButton actionButton"
+									id="throwWestButton"
+									ontouchend="app.onSelectActionButtonPressed('throw', 'west'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon throwWestButtonImage"></div>
+								</div>
 							</div>
-							<div class="pressEffectButton actionButton" id="throw-north-button">
-								<div class="actionButtonImage buttonPromptAnimated throwNorthImage"></div>
+							<div class="buttonPromptAnimated">
+								<div
+									tabindex="106"
+									class="pressEffectButton actionButton"
+									id="throwNorthButton"
+									ontouchend="app.onSelectActionButtonPressed('throw', 'north'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon throwNorthButtonImage"></div>
+								</div>
 							</div>
-							<div class="pressEffectButton actionButton" id="throw-south-button">
-								<div class="actionButtonImage buttonPromptAnimated throwSouthImage"></div>
+							<div class="buttonPromptAnimated">
+								<div
+									tabindex="107"
+									class="pressEffectButton actionButton"
+									id="throwSouthButton"
+									ontouchend="app.onSelectActionButtonPressed('throw', 'south'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon throwSouthButtonImage"></div>
+								</div>
 							</div>
-							<div class="pressEffectButton actionButton" id="throw-east-button">
-								<div class="actionButtonImage buttonPromptAnimated throwEastImage"></div>
+							<div class="buttonPromptAnimated">
+								<div
+									tabindex="108"
+									class="pressEffectButton actionButton"
+									id="throwEastButton"
+									ontouchend="app.onSelectActionButtonPressed('throw', 'east'); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								>
+									<div class="actionButtonImage animatedIcon throwEastButtonImage"></div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -398,22 +769,157 @@
 		</div>
 		<!-- End of GameInputPhaseSelectThrowInput view -->
 
-		<!-- This view prompts players to look at the main screen -->
+		<!-- Header for displaying the active player name while selecting actions -->
+		<div class="applyScaleMult">
+			<div id="playerNameHeader" class="nameHeaderText" style="display: none">Player Name</div>
+		</div>
+
+		<!-- LookAtScreen: Prompts players to look at the main screen -->
 		<div class="view" id="LookAtScreen">
 			<div class="fullScreenContent">
 				<div class="overlay defaultBlur"></div>
 				<div class="verticalCentreLayout applyScaleMult">
 					<!-- <p class="titleText">Waiting to start...</p> -->
 					<div id="lookAtScreenPanel" class="verticalPanelLayout blurPanel enterBounceAnimated">
-						<div id="lookAtScreenImage"></div>
-						<p class="titleText">Look at the main screen!</p>
+						<div id="lookAtScreenImage" class="lookAtScreenImage"></div>
+						<p class="titleText">Look at the game screen!</p>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- End of LookAtScreen view -->
 
-		<div class="fullScreenContent" id="optionsScreen" style="display: none">
+		<!-- Tabs for switching between players on this device -->
+		<div id="playerTabsLayout" style="display: block">
+			<div class="anchorTop applyScaleMult">
+				<div style="position: absolute; top: -2vmin; left: 1.5vmin; right: 1.5vmin; height: 14vmin">
+					<div
+						style="
+							position: absolute;
+							top: 14vmin;
+							left: -1.5vmin;
+							right: -1.5vmin;
+							text-align: center;
+							background-color: rgba(0, 18, 32, 0.4);
+							z-index: 1;
+							padding-bottom: 1vmin;
+							border-bottom-left-radius: 3.5vmin;
+							border-bottom-right-radius: 3.5vmin;
+						"
+					>
+						<p class="infoText">Player Name</p>
+					</div>
+
+					<div
+						style="position: absolute; top: 0vmin; left: -1000vmin; right: -1000vmin; bottom: 0vmin"
+						class="darkBlur"
+					></div>
+					<div class="tabButton" style="position: absolute; width: 12vmin; right: 0; top: -3vmin">
+						<div id="menuImage"></div>
+					</div>
+					<div style="display: flex; justify-content: left">
+						<div id="playerTabs">
+							<div
+								tabindex="201"
+								class="tabButton"
+								id="playerTabButton1"
+								style="display: block"
+								ontouchend="app.onPlayerTabButtonPressed(0); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="tabPlayerImage character1UnselectedImage"></div>
+								<div class="tabReadyImage tickImage"></div>
+							</div>
+							<div
+								tabindex="202"
+								class="tabButton selectedTab"
+								id="playerTabButton2"
+								style="display: block"
+								ontouchend="app.onPlayerTabButtonPressed(1); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="tabPlayerImage character2HighlightedImage"></div>
+								<div class="tabReadyImage tickImage"></div>
+							</div>
+
+							<div
+								tabindex="203"
+								class="tabButton"
+								id="playerTabButton3"
+								style="display: block"
+								ontouchend="app.onPlayerTabButtonPressed(2); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="tabPlayerImage characterPendingPlayer3Image"></div>
+								<div class="tabReadyImage actionsPendingImage"></div>
+							</div>
+							<div
+								tabindex="204"
+								class="tabButton"
+								id="playerTabButton4"
+								style="display: block"
+								ontouchend="app.onPlayerTabButtonPressed(3); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							>
+								<div class="tabPlayerImage characterPendingPlayer4Image"></div>
+								<div class="tabReadyImage actionsPendingImage"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- OLD Player Tabs -->
+		<!-- <div id="playerTabsLayout" style="display: none">
+			<div class="anchorBottom applyScaleMult">
+				<div id="playerTabs">
+					<div
+						tabindex="201"
+						class="tabButton selectedTab"
+						id="playerTabButton1"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(0); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabButtonText">...</div>
+					</div>
+					<div
+						tabindex="202"
+						class="tabButton"
+						id="playerTabButton2"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(1); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabButtonText">...</div>
+					</div>
+					<div
+						tabindex="203"
+						class="tabButton"
+						id="playerTabButton3"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(2); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabButtonText">...</div>
+					</div>
+					<div
+						tabindex="204"
+						class="tabButton"
+						id="playerTabButton4"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(3); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabButtonText">...</div>
+					</div>
+				</div>
+			</div>
+		</div> -->
+
+		<!-- Options screen -->
+		<!-- <div class="fullScreenContent" id="optionsScreen" style="display: none">
 			<div class="overlay darkBlur fadeInQuickAnimated"></div>
 			<div class="verticalCentreLayout applyScaleMult">
 				<div class="adaptivePanelLayout">
@@ -439,19 +945,19 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
+		<!-- End of options screen -->
 
-		<div class="applyScaleMult" id="bottomRightButtons">
+		<!-- Option button at bottom-right of screen -->
+		<!-- <div class="applyScaleMult" id="bottomRightButtons">
 			<div class="horizontalPanelLayout">
 				<div class="pressEffectButton optionsButtonSpacing optionsButton" id="optionsButton">
-					<div class="actionButtonImage optionsImage" onclick="toggleOptions()"></div>
+					<div class="actionButtonImage optionsImage"></div>
 				</div>
-				<!-- <div class="pressEffectButton optionsButtonSpacing optionsButton" id="optionsButton">
-					<div class="actionButtonImage nothingButtonImage"></div>
-				</div> -->
 			</div>
-		</div>
+		</div> -->
 
+		<!-- Leave confirm screen -->
 		<div class="fullScreenContent" id="confirmLeaveGame" style="display: none">
 			<div class="overlay darkBlur fadeInQuickAnimated"></div>
 			<div class="verticalCentreLayout applyScaleMult">
@@ -459,60 +965,63 @@
 					<p class="titleText">Do you want to<br />leave the game?</p>
 					<div class="horizontalPanelLayout">
 						<div
+							tabindex="80"
 							class="pressEffectButton largeButtonText mainButtonSpacing"
 							style="width: 30vmin"
-							onclick="toggleConfirmLeavePopup()"
+							ontouchend="document.getElementById('confirmLeaveGame').style.display = 'none'; app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
 						>
 							Cancel
 						</div>
-						<div class="pressEffectButton largeButtonText mainButtonSpacing" style="width: 25vmin">Yes</div>
+						<div
+							tabindex="81"
+							class="pressEffectButton largeButtonText mainButtonSpacing"
+							style="width: 25vmin"
+							ontouchend="app.resetApp(); document.getElementById('confirmLeaveGame').style.display = 'none'; app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						>
+							Yes
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- End of leave confirm screen -->
 
-		<!-- Test buttons for switching views -->
-		<div id="TestButtons">
-			<div id="tempViewSelection">
-				<div id="test">
-					<button type="button" onclick="toggleViewButtons()">Show/Hide</button>
+		<!-- Error popup -->
+		<div class="fullScreenContent" id="errorPopup" style="display: none">
+			<div class="overlay darkBlur fadeInQuickAnimated"></div>
+			<div class="verticalCentreLayout applyScaleMult">
+				<div class="verticalPanelLayout blurPanel mainButtonSpacing enterBounceAnimated">
+					<p class="titleText">Error</p>
+					<p id="errorText" class="infoText">...</p>
+					<div
+						tabindex="50"
+						id="detailedErrorButton"
+						class="secondaryButton smallText"
+						ontouchend="document.getElementById('detailedErrorText').style.display = 'block';
+										document.getElementById('detailedErrorButton').style.display = 'none';
+										app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						style="width: 40vmin"
+					>
+						Show detailed info
+					</div>
+					<p id="detailedErrorText" class="smallText" style="display: none">Detailed description of error</p>
+					<div
+						tabindex="51"
+						id="errorPopupButton1"
+						class="pressEffectButton smallButtonText mainButtonSpacing"
+						ontouchend="app.viewManager.setErrorPopupResult('button1'); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						Close
+					</div>
 				</div>
-				<button type="button" class="viewButton" id="setViewButton0" onclick="showView('Lobby')">Lobby</button>
-				<button type="button" class="viewButton" id="setViewButton1" onclick="showView('WaitOrChoosePackage')">
-					WaitOrChoosePackage
-				</button>
-				<button type="button" class="viewButton" id="setViewButton2" onclick="showView('GameInputPhase')">
-					GameInputPhase
-				</button>
-				<button type="button" class="viewButton" id="setViewButton3" onclick="showView('GameInputPhaseSelectInput')">
-					...SelectInput
-				</button>
-				<button
-					type="button"
-					class="viewButton"
-					id="setViewButton4"
-					onclick="showView('GameInputPhaseSelectMoveInput')"
-				>
-					...MoveInput
-				</button>
-				<button
-					type="button"
-					class="viewButton"
-					id="setViewButton5"
-					onclick="showView('GameInputPhaseSelectThrowInput')"
-				>
-					...ThrowInput
-				</button>
-				<button type="button" class="viewButton" id="setViewButton6" onclick="showView('LookAtScreen')">
-					LookAtScreen
-				</button>
-				<button type="button" class="viewButton" id="setViewButton7" onclick="showView('Options')">Options</button>
-				<button type="button" class="viewButton" id="setViewButton8" onclick="showView('ConfirmLeave')">
-					ConfirmLeave
-				</button>
 			</div>
 		</div>
+		<!-- End of error popup -->
 
-		<script src="main.js"></script>
+		<script src="code/App.ts" type="module"></script>
 	</body>
 </html>
