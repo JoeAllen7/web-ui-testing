@@ -737,8 +737,8 @@ input[type='number'] {
 	/* backdrop-filter: blur(3vmin); */
 	border-top-left-radius: 3.5vmin;
 	border-top-right-radius: 3.5vmin;
-	padding-top: 1vmin;
-	padding-bottom: 1.2vmin;
+	padding-top: 0.8vmin;
+	padding-bottom: 1vmin;
 	margin-top: 1vmin;
 	width: 91.5vmin;
 	z-index: 1;
@@ -786,7 +786,7 @@ input[type='number'] {
 	background-repeat: no-repeat;
 	width: 32vmin;
 	height: 32vmin;
-	z-index: 2;
+	/* z-index: 2; */
 }
 
 .directionalButton {
@@ -911,7 +911,7 @@ input[type='number'] {
 	width: 21vmin;
 	position: relative;
 	/* flex-grow: 1; */
-	height: 15vmin;
+	height: 14vmin;
 	/* width: 0; */
 	background-color: rgba(255, 255, 255, 0.9);
 	/* backdrop-filter: blur(3vmin); */
@@ -1459,12 +1459,12 @@ input[type='number'] {
 
 #menuImage {
 	position: relative;
-	top: 20%;
-	right: 14%;
-	bottom: 8%;
-	left: 14%;
-	width: 72%;
-	height: 72%;
+	top: 26%;
+	right: 16%;
+	bottom: 6%;
+	left: 16%;
+	width: 68%;
+	height: 68%;
 	background-size: 100%;
 	background-repeat: no-repeat;
 	background-position: bottom;
@@ -1473,8 +1473,8 @@ input[type='number'] {
 
 .tabPlayerImage {
 	position: absolute;
-	left: 0.6vmin;
-	bottom: 0.6vmin;
+	left: 0.8vmin;
+	bottom: 0.4vmin;
 	width: 10vmin;
 	height: 10vmin;
 	background-size: cover;
