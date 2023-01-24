@@ -911,7 +911,7 @@ input[type='number'] {
 }
 
 .tabButton {
-	width: 21vmin;
+	width: 20.2vmin;
 	position: relative;
 	/* flex-grow: 1; */
 	height: 15vmin;
@@ -1452,6 +1452,12 @@ input[type='number'] {
 .applyScaleMult {
 	transform: scale(var(--scaleMult));
 }
+.applyScaleMultY {
+	transform: scaleY(var(--scaleMult));
+}
+.applyScaleMultX {
+	transform: scaleX(var(--scaleMult));
+}
 
 .playerImage {
 	width: 16vmin;
@@ -1492,7 +1498,7 @@ input[type='number'] {
 
 .tabReadyImage {
 	position: absolute;
-	right: 0.4vmin;
+	right: 0.3vmin;
 	bottom: 0.6vmin;
 	width: 9vmin;
 	height: 9vmin;

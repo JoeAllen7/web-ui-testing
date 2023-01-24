@@ -2,10 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			content="user-scalable=no, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
-			name="viewport"
-		/>
+		<meta content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
 		<meta name="color-scheme" content="light only" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -794,9 +791,21 @@
 
 		<!-- Tabs for switching between players on this device -->
 		<div id="playerTabsLayout" style="display: block">
-			<div class="anchorTop applyScaleMult">
-				<div style="position: absolute; top: -2vmin; left: 1.5vmin; right: 1.5vmin; height: 14vmin">
-					<div
+			<div
+				class="anchorTop applyScaleMultY darkBlur"
+				style="
+					display: flex;
+					flex-direction: column;
+					align-items: stretch;
+					left: 0;
+					right: 0;
+					top: 0;
+					transform-origin: top;
+					height: 12.5vmin;
+					z-index: 1;
+				"
+			>
+				<!-- <div
 						style="
 							position: absolute;
 							top: 13vmin;
@@ -811,72 +820,128 @@
 						"
 					>
 						<p class="infoText">Player Name</p>
+					</div> -->
+
+				<!-- <div class="tabButton" style="position: absolute; width: 12vmin; right: 0; top: -3vmin; z-index: 2">
+					<div id="menuImage"></div>
+				</div> -->
+				<div
+					style="
+						display: flex;
+						flex-direction: row;
+						justify-content: flex-end;
+						gap: 1vmin;
+						height: 20vmin;
+						overflow-x: hidden;
+						margin-top: -5vmin;
+						padding-left: 1.5vmin;
+						padding-right: 1.5vmin;
+					"
+					class="applyScaleMultX"
+				>
+					<div class="tabButton" style="width: 12vmin; z-index: 2">
+						<div id="menuImage"></div>
+					</div>
+				</div>
+				<div
+					style="
+						display: flex;
+						flex-direction: row;
+						justify-content: flex-start;
+						gap: 1vmin;
+						height: 20vmin;
+						overflow-x: hidden;
+						margin-top: -17.5vmin;
+						padding-left: 1.5vmin;
+						padding-right: 1.5vmin;
+					"
+					class="applyScaleMultX"
+				>
+					<div
+						tabindex="201"
+						class="tabButton"
+						id="playerTabButton1"
+						style="display: block"
+						ontouchend="app.onPlayerTabButtonPressed(0); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabPlayerImage character1UnselectedImage"></div>
+						<div class="tabReadyImage tickImage"></div>
+					</div>
+					<div
+						tabindex="202"
+						class="tabButton selectedTab"
+						id="playerTabButton2"
+						style="display: block"
+						ontouchend="app.onPlayerTabButtonPressed(1); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabPlayerImage character2HighlightedImage"></div>
+						<div class="tabReadyImage tickImage"></div>
 					</div>
 
 					<div
-						style="
-							position: fixed;
-							top: 0vmin;
-							left: -1000vmin;
-							right: -1000vmin;
-							height: 12vmin;
-							overflow-x: hidden;
-							background-color: rgba(0, 18, 32, 0.8);
-						"
-					></div>
-					<div class="tabButton" style="position: absolute; width: 12vmin; right: 0; top: -3vmin">
-						<div id="menuImage"></div>
+						tabindex="203"
+						class="tabButton"
+						id="playerTabButton3"
+						style="display: block"
+						ontouchend="app.onPlayerTabButtonPressed(2); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabPlayerImage characterPendingPlayer3Image"></div>
+						<div class="tabReadyImage actionsPendingImage"></div>
 					</div>
-					<div style="display: flex; justify-content: left">
-						<div id="playerTabs">
-							<div
-								tabindex="201"
-								class="tabButton"
-								id="playerTabButton1"
-								style="display: block"
-								ontouchend="app.onPlayerTabButtonPressed(0); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="tabPlayerImage character1UnselectedImage"></div>
-								<div class="tabReadyImage tickImage"></div>
-							</div>
-							<div
-								tabindex="202"
-								class="tabButton selectedTab"
-								id="playerTabButton2"
-								style="display: block"
-								ontouchend="app.onPlayerTabButtonPressed(1); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="tabPlayerImage character2HighlightedImage"></div>
-								<div class="tabReadyImage tickImage"></div>
-							</div>
-
-							<div
-								tabindex="203"
-								class="tabButton"
-								id="playerTabButton3"
-								style="display: block"
-								ontouchend="app.onPlayerTabButtonPressed(2); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="tabPlayerImage characterPendingPlayer3Image"></div>
-								<div class="tabReadyImage actionsPendingImage"></div>
-							</div>
-							<div
-								tabindex="204"
-								class="tabButton"
-								id="playerTabButton4"
-								style="display: block"
-								ontouchend="app.onPlayerTabButtonPressed(3); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="tabPlayerImage characterPendingPlayer4Image"></div>
-								<div class="tabReadyImage actionsPendingImage"></div>
-							</div>
-						</div>
+					<div
+						tabindex="204"
+						class="tabButton"
+						id="playerTabButton4"
+						style="display: block"
+						ontouchend="app.onPlayerTabButtonPressed(3); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+					>
+						<div class="tabPlayerImage characterPendingPlayer4Image"></div>
+						<div class="tabReadyImage actionsPendingImage"></div>
+					</div>
+					<div
+						class="infoText"
+						style="
+							font-size: 5vmin;
+							padding-top: 7.5vmin;
+							padding-left: 1.5vmin;
+							width: 60vmin;
+							height: 7vmin;
+							text-overflow: ellipsis;
+							overflow: hidden;
+							white-space: nowrap;
+							display: none;
+						"
+					>
+						Player Name
 					</div>
 				</div>
+			</div>
+			<div
+				class="anchorTop applyScaleMultY defaultBlur"
+				style="
+					display: flex;
+					flex-direction: column;
+					align-items: stretch;
+					left: 0;
+					right: 0;
+					top: calc(12vmin * var(--scaleMult));
+					transform-origin: top;
+					height: 7vmin;
+					text-align: center;
+					display: block;
+				"
+			>
+				<div class="applyScaleMultX infoText" style="font-size: 4.2vmin; padding-top: 0.9vmin">Player Name</div>
+
+				<!-- <div style="display: flex; justify-content: left">
+				<div id="playerTabs">
+					
+				</div>
+			</div> -->
 			</div>
 		</div>
 
