@@ -267,87 +267,106 @@
 		<!-- GameInputPhase: This is where players select an action slot or confirm that they're ready -->
 		<div class="view" id="GameInputPhase">
 			<div class="overlay defaultBlur"></div>
-			<div class="fullScreenAdaptiveContent">
+			<div class="belowPlayerTabsContent">
 				<div class="applyScaleMult">
+					<!-- Parent layout containing all widgets -->
 					<div class="verticalPanelLayout" style="gap: 0">
-						<div class="actionHeaderPanel verticalPanelLayout">
-							<p class="infoText">In this round, my 4 turns are:</p>
-						</div>
-						<div class="horizontalPanelLayout actionButtonPanel">
-							<div class="pressEffectButton actionButton">
-								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
-								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
+						<!-- Round selection layout -->
+						<div class="verticalPanelLayout" style="gap: 0">
+							<div class="actionHeaderPanel hideInLandscape">
+								<p class="infoText">In this round, my 4 turns are:</p>
 							</div>
-							<div class="pressEffectButton actionButton">
-								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
-								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
-							</div>
-							<div class="pressEffectButton actionButton">
-								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
-								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
-							</div>
-							<div class="pressEffectButton actionButton">
-								<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
-								<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
-							</div>
-						</div>
-						<div class="actionHeaderPanel verticalPanelLayout">
-							<p class="infoText">On Turn 0, I will...</p>
-							<div id="actionsStem" class="actionPanelStem"></div>
-						</div>
-						<div class="horizontalPanelLayout actionButtonPanel">
-							<div style="flex-direction: column">
-								<div class="labelText">Move</div>
+							<div class="horizontalPanelLayout actionButtonPanel">
 								<div class="pressEffectButton actionButton">
-									<div id="actionButtonImage0" class="actionButtonImage animatedIcon moveButtonImage"></div>
+									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
+								</div>
+								<div class="pressEffectButton actionButton">
+									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
+								</div>
+								<div class="pressEffectButton actionButton">
+									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
+								</div>
+								<div class="pressEffectButton actionButton">
+									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
 								</div>
 							</div>
-							<div style="flex-direction: column">
-								<div class="labelText">Interact</div>
-								<div class="pressEffectButton actionButton">
-									<div id="actionButtonImage1" class="actionButtonImage animatedIcon interactButtonImage"></div>
+						</div>
+						<!-- Turn and direction layout -->
+						<div class="adaptiveInputPhaseLayout">
+							<!-- Turn buttons layout -->
+							<div class="verticalPanelLayout" style="gap: 0">
+								<div class="actionHeaderPanel">
+									<p class="infoText">On Turn 0, I will...</p>
+									<div id="actionsStem" class="actionPanelStem hideInLandscape"></div>
+								</div>
+								<div class="horizontalPanelLayout actionButtonPanel">
+									<div style="flex-direction: column">
+										<div class="labelText">Move</div>
+										<div class="pressEffectButton actionButton">
+											<div id="actionButtonImage0" class="actionButtonImage animatedIcon moveButtonImage"></div>
+										</div>
+									</div>
+									<div style="flex-direction: column">
+										<div class="labelText">Interact</div>
+										<div class="pressEffectButton actionButton">
+											<div id="actionButtonImage1" class="actionButtonImage animatedIcon interactButtonImage"></div>
+										</div>
+									</div>
+									<div style="flex-direction: column">
+										<div class="labelText">Wait</div>
+										<div class="pressEffectButton actionButton">
+											<div id="actionButtonImage2" class="actionButtonImage animatedIcon waitButtonImage"></div>
+										</div>
+									</div>
+									<div style="flex-direction: column">
+										<div class="labelText">Throw</div>
+										<div class="pressEffectButton actionButton">
+											<div id="actionButtonImage3" class="actionButtonImage animatedIcon throwButtonImage"></div>
+										</div>
+									</div>
 								</div>
 							</div>
-							<div style="flex-direction: column">
-								<div class="labelText">Wait</div>
-								<div class="pressEffectButton actionButton">
-									<div id="actionButtonImage2" class="actionButtonImage animatedIcon waitButtonImage"></div>
+							<!-- Direction buttons layout -->
+							<div id="directionButtonsLayout" class="verticalPanelLayout" style="gap: 0">
+								<div
+									id="directionHeaderPanel"
+									class="actionHeaderPanel"
+									style="border-bottom-left-radius: 3.5vmin; border-bottom-right-radius: 3.5vmin"
+								>
+									<p class="infoText">...In this direction:</p>
+									<div id="directionsStem" class="actionPanelStem hideInLandscape"></div>
+									<div
+										class="actionPanelStem hideInPortrait"
+										style="transform: rotate(-90deg); left: -6vmin; bottom: 0vmin"
+									></div>
 								</div>
-							</div>
-							<div style="flex-direction: column">
-								<div class="labelText">Throw</div>
-								<div class="pressEffectButton actionButton">
-									<div id="actionButtonImage3" class="actionButtonImage animatedIcon throwButtonImage"></div>
+								<div id="playerPreviewGrid">
+									<div id="westDirectionalButton" class="directionalButton">
+										<div id="moveWestArrowImage" class="directionalButtonImage"></div>
+									</div>
+									<div id="northDirectionalButton" class="directionalButton">
+										<div id="moveNorthArrowImage" class="directionalButtonImage"></div>
+									</div>
+									<div id="eastDirectionalButton" class="directionalButton">
+										<div id="moveEastArrowImage" class="directionalButtonImage"></div>
+									</div>
+									<div id="southDirectionalButton" class="directionalButton">
+										<div id="moveSouthArrowImage" class="directionalButtonImage"></div>
+									</div>
+									<div id="playerPreview"></div>
 								</div>
 							</div>
 						</div>
 						<div
-							class="actionHeaderPanel verticalPanelLayout"
-							style="border-bottom-left-radius: 3.5vmin; border-bottom-right-radius: 3.5vmin"
-						>
-							<p class="infoText">...In this direction:</p>
-							<div id="directionsStem" class="actionPanelStem"></div>
-						</div>
-						<div id="playerPreviewGrid">
-							<div id="westDirectionalButton" class="directionalButton">
-								<div id="moveWestArrowImage" class="directionalButtonImage"></div>
-							</div>
-							<div id="northDirectionalButton" class="directionalButton">
-								<div id="moveNorthArrowImage" class="directionalButtonImage"></div>
-							</div>
-							<div id="eastDirectionalButton" class="directionalButton">
-								<div id="moveEastArrowImage" class="directionalButtonImage"></div>
-							</div>
-							<div id="southDirectionalButton" class="directionalButton">
-								<div id="moveSouthArrowImage" class="directionalButtonImage"></div>
-							</div>
-							<div id="playerPreview"></div>
-						</div>
-						<div
+							id="readyButton"
 							class="pressEffectButton mainButtonSpacing largeButtonText"
-							style="margin-top: -19vmin; margin-bottom: 0"
+							style="margin-top: -19vmin; margin-bottom: 0; padding-left: 10vmin; padding-right: 10vmin"
 						>
-							Ready!
+							I'm Ready!
 						</div>
 					</div>
 				</div>
@@ -789,7 +808,7 @@
 		</div>
 		<!-- End of LookAtScreen view -->
 
-		<!-- Tabs for switching between players on this device -->
+		<!-- Player tabs, player name and menu button -->
 		<div id="playerTabsLayout" style="display: block">
 			<div
 				class="anchorTop applyScaleMultY darkBlur"
@@ -805,26 +824,6 @@
 					z-index: 1;
 				"
 			>
-				<!-- <div
-						style="
-							position: absolute;
-							top: 13vmin;
-							left: -1vmin;
-							right: -1vmin;
-							text-align: center;
-							background-color: rgba(0, 18, 32, 0.4);
-							padding-top: 1vmin;
-							padding-bottom: 1vmin;
-							/* border-bottom-left-radius: 3.5vmin;
-							border-bottom-right-radius: 3.5vmin; */
-						"
-					>
-						<p class="infoText">Player Name</p>
-					</div> -->
-
-				<!-- <div class="tabButton" style="position: absolute; width: 12vmin; right: 0; top: -3vmin; z-index: 2">
-					<div id="menuImage"></div>
-				</div> -->
 				<div
 					style="
 						display: flex;
@@ -854,6 +853,7 @@
 						margin-top: -17.5vmin;
 						padding-left: 1.5vmin;
 						padding-right: 1.5vmin;
+						pointer-events: none;
 					"
 					class="applyScaleMultX"
 				>
@@ -936,14 +936,9 @@
 				"
 			>
 				<div class="applyScaleMultX infoText" style="font-size: 4.2vmin; padding-top: 0.9vmin">Player Name</div>
-
-				<!-- <div style="display: flex; justify-content: left">
-				<div id="playerTabs">
-					
-				</div>
-			</div> -->
 			</div>
 		</div>
+		<!-- End of player tabs -->
 
 		<!-- OLD Player Tabs -->
 		<!-- <div id="playerTabsLayout" style="display: none">

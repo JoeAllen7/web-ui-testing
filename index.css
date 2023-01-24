@@ -1,6 +1,8 @@
 html {
 	/* Scale multiplier, changes based on orientation/aspect ratio to ensure content fits nicely within the viewport */
 	--scaleMult: 1;
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden;
 }
 
 body {
@@ -644,12 +646,12 @@ input[type='number'] {
 	justify-content: center;
 }
 
-.fullScreenAdaptiveContent {
+.belowPlayerTabsContent {
 	position: fixed;
-	left: 0px;
-	right: 0px;
-	bottom: 0px;
-	top: 0px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	top: 9%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -735,6 +737,7 @@ input[type='number'] {
 
 .actionHeaderPanel {
 	position: relative;
+	text-align: center;
 	background-color: rgba(0, 18, 32, 0.8);
 	/* backdrop-filter: blur(3vmin); */
 	border-top-left-radius: 3.5vmin;
@@ -927,6 +930,7 @@ input[type='number'] {
 	box-shadow: 0 1vmin rgba(255, 255, 255, 0.75);
 	cursor: pointer;
 	transition: 0.05s;
+	pointer-events: auto;
 }
 
 .selectedTab {
@@ -1214,6 +1218,12 @@ input[type='number'] {
 	justify-content: center;
 	align-items: center;
 	gap: 2.5vmin;
+}
+
+.adaptiveInputPhaseLayout {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .verticalPanelLayout {
@@ -1530,6 +1540,11 @@ input[type='number'] {
 		flex-direction: column;
 	}
 
+	.adaptiveInputPhaseLayout {
+		flex-direction: column;
+		gap: 0;
+	}
+
 	.adaptivePreviewLayout {
 		width: 80vmin;
 	}
@@ -1545,11 +1560,6 @@ input[type='number'] {
 
 	.hideInPortrait {
 		display: none;
-	}
-
-	/* Content is pushed down vertically in portrait to make buttons easier to reach */
-	.fullScreenAdaptiveContent {
-		top: 9%;
 	}
 
 	@keyframes action1TransitionAnimation {
@@ -1643,12 +1653,48 @@ input[type='number'] {
 	}
 }
 
+/* Scale things down for increasingly near-square portrait aspect ratios */
+@media (min-aspect-ratio: 11/18) {
+	html {
+		--scaleMult: 0.86;
+	}
+}
+@media (min-aspect-ratio: 13/18) {
+	html {
+		--scaleMult: 0.7;
+	}
+}
+@media (min-aspect-ratio: 16/18) {
+	html {
+		--scaleMult: 0.62;
+	}
+}
+
 /* Landscape screens */
 @media (orientation: landscape) {
 	html {
-		-webkit-backface-visibility: hidden; /* Safari */
-		backface-visibility: hidden;
-		--scaleMult: 0.75;
+		--scaleMult: 0.55;
+	}
+
+	#directionHeaderPanel {
+		width: 76vmin;
+	}
+
+	#directionButtonsLayout {
+		width: 85vmin;
+	}
+
+	#playerPreviewGrid {
+		transform-origin: top;
+		transform: scale(0.8);
+	}
+
+	#readyButton {
+		margin-top: -29vmin !important;
+	}
+
+	.belowPlayerTabsContent {
+		top: 16%;
 	}
 
 	.multiturnHeader {
@@ -1661,6 +1707,11 @@ input[type='number'] {
 
 	.adaptivePanelLayout {
 		flex-direction: row;
+	}
+
+	.adaptiveInputPhaseLayout {
+		flex-direction: row;
+		align-items: flex-start;
 	}
 
 	.adaptivePreviewLayout {
@@ -1680,11 +1731,6 @@ input[type='number'] {
 
 	.hideInLandscape {
 		display: none;
-	}
-
-	/* Content is centred vertically in landscape */
-	.fullScreenAdaptiveContent {
-		top: 0%;
 	}
 
 	@keyframes action1TransitionAnimation {
@@ -1778,33 +1824,39 @@ input[type='number'] {
 	}
 }
 
-/* Scale things down for near-square aspect ratios */
+/* 
 @media (min-aspect-ratio: 11/18) and (max-aspect-ratio: 18/11) {
 	html {
 		--scaleMult: 0.92;
 	}
 }
 
-/* Scale things down for near-square aspect ratios */
 @media (min-aspect-ratio: 13/19) and (max-aspect-ratio: 18/13) {
 	html {
 		--scaleMult: 0.7;
 	}
-
-	/* Also always centre content vertically so it fits nicely within the limited viewport */
-	/* .fullScreenAdaptiveContent {
-		top: 0%;
-	} */
 }
 
-/* Scale things down even more for very-near-square aspect ratios */
 @media (min-aspect-ratio: 16/18) and (max-aspect-ratio: 18/16) {
 	html {
 		--scaleMult: 0.62;
 	}
+}
+*/
 
-	/* Also always centre content vertically so it fits nicely within the limited viewport */
-	/* .fullScreenAdaptiveContent {
-		top: 0%;
-	} */
+/* Scale things back up for increasingly wide landscape aspect ratios */
+@media (min-aspect-ratio: 18/16) {
+	html {
+		--scaleMult: 0.6;
+	}
+}
+@media (min-aspect-ratio: 18/13) {
+	html {
+		--scaleMult: 0.75;
+	}
+}
+@media (min-aspect-ratio: 18/11) {
+	html {
+		--scaleMult: 0.9;
+	}
 }
