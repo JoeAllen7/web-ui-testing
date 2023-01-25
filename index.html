@@ -272,11 +272,13 @@
 					<!-- Parent layout containing all widgets -->
 					<div class="verticalPanelLayout" style="gap: 0">
 						<!-- Round selection layout -->
-						<div class="verticalPanelLayout" style="gap: 0">
-							<div class="actionHeaderPanel hideInLandscape">
-								<p class="infoText">In this round, my 4 turns are:</p>
+						<div class="adaptivePanelLayout" style="gap: 0">
+							<div id="turnHeaderPanel" class="actionHeaderPanel">
+								<div id="turnInfoTextContainer" style="display: flex; justify-content: center; align-items: center">
+									<p class="infoText">In this round, my 4 turns are:</p>
+								</div>
 							</div>
-							<div class="horizontalPanelLayout actionButtonPanel">
+							<div id="turnButtonsPanel" class="horizontalPanelLayout actionButtonPanel">
 								<div class="pressEffectButton actionButton">
 									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0"></div>
 									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
@@ -833,8 +835,8 @@
 						height: 20vmin;
 						overflow-x: hidden;
 						margin-top: -5vmin;
-						padding-left: 1.5vmin;
-						padding-right: 1.5vmin;
+						padding-left: 2vmin;
+						padding-right: 2vmin;
 					"
 					class="applyScaleMultX"
 				>
@@ -847,19 +849,20 @@
 						display: flex;
 						flex-direction: row;
 						justify-content: flex-start;
-						gap: 1vmin;
+						gap: 0vmin;
 						height: 20vmin;
 						overflow-x: hidden;
 						margin-top: -17.5vmin;
-						padding-left: 1.5vmin;
-						padding-right: 1.5vmin;
+						padding-left: 2vmin;
+						right: 5vmin;
 						pointer-events: none;
 					"
 					class="applyScaleMultX"
 				>
+					<!-- Tab button 1 -->
 					<div
 						tabindex="201"
-						class="tabButton"
+						class="tabButton playerTab"
 						id="playerTabButton1"
 						style="display: block"
 						ontouchend="app.onPlayerTabButtonPressed(0); app.consumeEvent(event)"
@@ -868,9 +871,10 @@
 						<div class="tabPlayerImage character1UnselectedImage"></div>
 						<div class="tabReadyImage tickImage"></div>
 					</div>
+					<!-- Tab button 2 -->
 					<div
 						tabindex="202"
-						class="tabButton selectedTab"
+						class="tabButton playerTab selectedTab"
 						id="playerTabButton2"
 						style="display: block"
 						ontouchend="app.onPlayerTabButtonPressed(1); app.consumeEvent(event)"
@@ -879,23 +883,24 @@
 						<div class="tabPlayerImage character2HighlightedImage"></div>
 						<div class="tabReadyImage tickImage"></div>
 					</div>
-
+					<!-- Tab button 3 -->
 					<div
 						tabindex="203"
-						class="tabButton"
+						class="tabButton playerTab"
 						id="playerTabButton3"
-						style="display: block"
+						style="display: none"
 						ontouchend="app.onPlayerTabButtonPressed(2); app.consumeEvent(event)"
 						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
 					>
 						<div class="tabPlayerImage characterPendingPlayer3Image"></div>
 						<div class="tabReadyImage actionsPendingImage"></div>
 					</div>
+					<!-- Tab button 4 -->
 					<div
 						tabindex="204"
-						class="tabButton"
+						class="tabButton playerTab"
 						id="playerTabButton4"
-						style="display: block"
+						style="display: none"
 						ontouchend="app.onPlayerTabButtonPressed(3); app.consumeEvent(event)"
 						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
 					>
@@ -903,24 +908,28 @@
 						<div class="tabReadyImage actionsPendingImage"></div>
 					</div>
 					<div
+						id="playerNameTop"
 						class="infoText"
 						style="
+							flex-grow: 1;
+							flex-basis: 0;
+							/* background-color: rgba(255, 0, 255, 0.7); */
 							font-size: 5vmin;
 							padding-top: 7.5vmin;
-							padding-left: 1.5vmin;
-							width: 60vmin;
+							padding-right: 14vmin;
 							height: 7vmin;
 							text-overflow: ellipsis;
 							overflow: hidden;
 							white-space: nowrap;
-							display: none;
+							visibility: visible;
 						"
 					>
-						Player Name
+						&nbspPlayer Name
 					</div>
 				</div>
 			</div>
 			<div
+				id="playerNameSeparatePanel"
 				class="anchorTop applyScaleMultY defaultBlur"
 				style="
 					display: flex;
@@ -932,7 +941,7 @@
 					transform-origin: top;
 					height: 7vmin;
 					text-align: center;
-					display: block;
+					visibility: hidden;
 				"
 			>
 				<div class="applyScaleMultX infoText" style="font-size: 4.2vmin; padding-top: 0.9vmin">Player Name</div>

@@ -755,8 +755,8 @@ input[type='number'] {
 	padding-left: 1.5vmin;
 	padding-right: 1.5vmin;
 	padding-bottom: 2.5vmin;
-	border-bottom-left-radius: 5vmin;
-	border-bottom-right-radius: 5vmin;
+	border-bottom-left-radius: 4.8vmin;
+	border-bottom-right-radius: 4.8vmin;
 }
 
 .actionPanelStem {
@@ -914,7 +914,7 @@ input[type='number'] {
 }
 
 .tabButton {
-	width: 20.2vmin;
+	width: 20vmin;
 	position: relative;
 	/* flex-grow: 1; */
 	height: 15vmin;
@@ -931,6 +931,10 @@ input[type='number'] {
 	cursor: pointer;
 	transition: 0.05s;
 	pointer-events: auto;
+}
+
+.playerTab {
+	margin-right: 1vmin;
 }
 
 .selectedTab {
@@ -1676,6 +1680,27 @@ input[type='number'] {
 		--scaleMult: 0.55;
 	}
 
+	#turnHeaderPanel {
+		height: 20.2vmin;
+		width: 30vmin;
+		border-top-right-radius: 0;
+		border-top-left-radius: 4.8vmin;
+		border-bottom-left-radius: 4.8vmin;
+		margin-top: 0;
+		padding: 3vmin;
+	}
+
+	#turnInfoTextContainer {
+		height: 19vmin;
+	}
+
+	#turnButtonsPanel {
+		border-top-right-radius: 4.8vmin;
+		border-bottom-right-radius: 4.8vmin;
+		border-bottom-left-radius: 0;
+		padding-top: 0.3vmin;
+	}
+
 	#directionHeaderPanel {
 		width: 76vmin;
 	}
@@ -1687,15 +1712,16 @@ input[type='number'] {
 	#playerPreviewGrid {
 		transform-origin: top;
 		transform: scale(0.8);
+		margin-top: -1vmin;
 	}
 
 	#readyButton {
 		margin-top: -29vmin !important;
 	}
 
-	.belowPlayerTabsContent {
-		top: 16%;
-	}
+	/* .belowPlayerTabsContent {
+		top: 9%;
+	} */
 
 	.multiturnHeader {
 		height: 20%;
