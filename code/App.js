@@ -1,4 +1,5 @@
 addEventListener('resize', onWindowResized);
+updatePlayerNameLayout();
 
 function onWindowResized(event) {
     updatePlayerNameLayout();
