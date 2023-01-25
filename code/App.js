@@ -1,5 +1,7 @@
+addEventListener('resize', onWindowResized);
+
 function onWindowResized(event) {
-    this.updatePlayerNameLayout();
+    updatePlayerNameLayout();
 }
 
 function updatePlayerNameLayout() {
@@ -22,5 +24,3 @@ function updatePlayerNameLayout() {
     playerNameTop.style.visibility = displayAtTop ? 'visible' : 'hidden';
     playerNameSeparate.style.visibility = displayAtTop ? 'hidden' : 'visible';
 }
-
-addEventListener('resize', this.onWindowResized);
