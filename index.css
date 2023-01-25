@@ -641,7 +641,7 @@ input[type='number'] {
 }
 
 #readyButton {
-	z-index: 3;
+	margin-top: -14vmin;
 }
 
 .characterPreview {
@@ -680,7 +680,7 @@ input[type='number'] {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	top: 10%;
+	top: 11%;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
@@ -805,6 +805,11 @@ input[type='number'] {
 	display: none;
 } */
 
+#directionButtonsLayout {
+	/* height: 10vmin; */
+	/* margin-bottom: 20vmin; */
+}
+
 #playerPreviewGrid {
 	/* background-color: rgba(0, 47, 70, 0.7); */
 	position: relative;
@@ -812,15 +817,14 @@ input[type='number'] {
 	background-size: 100%;
 	background-repeat: no-repeat;
 	width: 98vmin;
-	height: 62vmin;
-	margin-top: -28vmin;
-	z-index: 2;
+	height: 54vmin;
+	margin-top: 1vmin;
 }
 
 #playerPreview {
 	position: absolute;
 	left: 33vmin;
-	bottom: 33.5vmin;
+	bottom: 25.5vmin;
 	/* background-color: rgba(0, 47, 70, 0.7); */
 	background-image: url(Images/IconImages/PlayerPreview3_400.png);
 	pointer-events: none;
@@ -902,19 +906,19 @@ input[type='number'] {
 
 #northDirectionalButton {
 	right: 19vmin;
-	bottom: 42vmin;
+	bottom: 34vmin;
 }
 #eastDirectionalButton {
 	right: 19vmin;
-	bottom: 24.5vmin;
+	bottom: 16.5vmin;
 }
 #southDirectionalButton {
 	left: 19vmin;
-	bottom: 24.5vmin;
+	bottom: 16.5vmin;
 }
 #westDirectionalButton {
 	left: 19vmin;
-	bottom: 42vmin;
+	bottom: 34vmin;
 }
 
 .pressEffectButton {
@@ -1142,8 +1146,7 @@ input[type='number'] {
 	color: white;
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
-	/* font-size: 4vmin; */
-	font-size: 4.2vmin;
+	font-size: 4vmin;
 	margin: 0px;
 	-webkit-user-select: none; /* Chrome all / Safari all */
 	-moz-user-select: none; /* Firefox all */
@@ -1172,7 +1175,7 @@ input[type='number'] {
 }
 
 .tutorialText {
-	padding-top: 0.5vmin;
+	padding-top: 0.2vmin;
 	margin-bottom: -1vmin;
 }
 
@@ -1730,12 +1733,12 @@ input[type='number'] {
 }
 
 /* Scale things down for increasingly near-square portrait aspect ratios */
-@media (min-aspect-ratio: 11/18) {
+@media (min-aspect-ratio: 12/18) {
 	html {
 		--scaleMult: 0.86;
 	}
 }
-@media (min-aspect-ratio: 13/18) {
+@media (min-aspect-ratio: 14/18) {
 	html {
 		--scaleMult: 0.7;
 	}
@@ -1768,7 +1771,7 @@ input[type='number'] {
 
 	#directionButtonsLayout {
 		width: 85vmin;
-		transform: translateY(-10vmin);
+		transform: translate(2vmin, -24.5vmin);
 	}
 
 	#playerPreviewGrid {
@@ -1776,8 +1779,8 @@ input[type='number'] {
 	}
 
 	#readyButton {
-		margin-top: -31vmin !important;
-		margin-left: 70vmin;
+		margin-top: -25vmin !important;
+		margin-left: 66vmin;
 	}
 
 	/* .belowPlayerTabsContent {
