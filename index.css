@@ -1677,7 +1677,7 @@ input[type='number'] {
 /* Landscape screens */
 @media (orientation: landscape) {
 	html {
-		--scaleMult: 0.55;
+		--scaleMult: 0.5;
 	}
 
 	#turnHeaderPanel {
@@ -1873,16 +1873,16 @@ input[type='number'] {
 /* Scale things back up for increasingly wide landscape aspect ratios */
 @media (min-aspect-ratio: 18/16) {
 	html {
-		--scaleMult: 0.6;
+		--scaleMult: 0.55;
 	}
 }
 @media (min-aspect-ratio: 18/13) {
 	html {
-		--scaleMult: 0.75;
+		--scaleMult: 0.72;
 	}
 }
 @media (min-aspect-ratio: 18/11) {
 	html {
-		--scaleMult: 0.9;
+		--scaleMult: 0.85;
 	}
 }
