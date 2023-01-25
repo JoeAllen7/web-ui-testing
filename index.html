@@ -270,31 +270,30 @@
 			<div class="belowPlayerTabsContent">
 				<div class="applyScaleMult">
 					<!-- Parent layout containing all widgets -->
-					<div class="verticalPanelLayout" style="gap: 0">
+					<div id="gameInputMainLayout" class="verticalPanelLayout" style="gap: 0">
 						<!-- Round selection layout -->
-						<div class="adaptivePanelLayout" style="gap: 0">
-							<div id="turnHeaderPanel" class="actionHeaderPanel">
-								<div id="turnInfoTextContainer" style="display: flex; justify-content: center; align-items: center">
-									<p class="infoText">In this round, my 4 turns are:</p>
-								</div>
+						<!-- <div class="turnButtonsLayout adaptivePanelLayout" style="gap: 0"> -->
+						<div class="actionsWithHeadingLayout verticalPanelLayout">
+							<div class="actionHeadingPanel">
+								<p class="infoText tutorialText">In this round, my 4 turns are:</p>
 							</div>
 							<div id="turnButtonsPanel" class="horizontalPanelLayout actionButtonPanel">
-								<div class="pressEffectButton actionButton selectedActionButton">
+								<div class="actionButton">
 									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
 										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
 									</div>
 								</div>
-								<div class="pressEffectButton actionButton">
+								<div class="actionButton">
 									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
 										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
 									</div>
 								</div>
-								<div class="pressEffectButton actionButton">
+								<div class="actionButton">
 									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
 										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
 									</div>
 								</div>
-								<div class="pressEffectButton actionButton">
+								<div class="actionButton">
 									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
 										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
 									</div>
@@ -304,33 +303,33 @@
 						<!-- Turn and direction layout -->
 						<div class="adaptiveInputPhaseLayout">
 							<!-- Turn buttons layout -->
-							<div class="verticalPanelLayout" style="gap: 0">
-								<div class="actionHeaderPanel">
-									<p class="infoText">On Turn 0, I will...</p>
+							<div class="actionsWithHeadingLayout verticalPanelLayout">
+								<div class="actionHeadingPanel">
+									<p class="infoText tutorialText">On Turn 0, I will...</p>
 									<div id="actionsStem" class="actionPanelStem hideInLandscape"></div>
 								</div>
-								<div class="horizontalPanelLayout actionButtonPanel">
-									<div style="flex-direction: column">
-										<div class="labelText">Move</div>
-										<div class="pressEffectButton actionButton selectedActionButton">
+								<div id="actionSelectButtonsPanel" class="horizontalPanelLayout actionButtonPanel">
+									<div style="display: flex; flex-direction: column; align-items: center">
+										<div class="actionLabelText">Move</div>
+										<div class="actionButton">
 											<div id="actionButtonImage0" class="actionButtonImage animatedIcon moveButtonImage"></div>
 										</div>
 									</div>
-									<div style="flex-direction: column">
-										<div class="labelText">Interact</div>
-										<div class="pressEffectButton actionButton">
+									<div style="display: flex; flex-direction: column; align-items: center">
+										<div class="actionLabelText">Interact</div>
+										<div class="actionButton">
 											<div id="actionButtonImage1" class="actionButtonImage animatedIcon interactButtonImage"></div>
 										</div>
 									</div>
-									<div style="flex-direction: column">
-										<div class="labelText">Wait</div>
-										<div class="pressEffectButton actionButton">
+									<div style="display: flex; flex-direction: column; align-items: center">
+										<div class="actionLabelText">Wait</div>
+										<div class="actionButton">
 											<div id="actionButtonImage2" class="actionButtonImage animatedIcon waitButtonImage"></div>
 										</div>
 									</div>
-									<div style="flex-direction: column">
-										<div class="labelText">Throw</div>
-										<div class="pressEffectButton actionButton">
+									<div style="display: flex; flex-direction: column; align-items: center">
+										<div class="actionLabelText">Throw</div>
+										<div class="actionButton">
 											<div id="actionButtonImage3" class="actionButtonImage animatedIcon throwButtonImage"></div>
 										</div>
 									</div>
@@ -339,11 +338,12 @@
 							<!-- Direction buttons layout -->
 							<div id="directionButtonsLayout" class="verticalPanelLayout" style="gap: 0">
 								<div
-									id="directionHeaderPanel"
-									class="actionHeaderPanel"
+									class="actionHeadingPanel"
 									style="border-bottom-left-radius: 3.5vmin; border-bottom-right-radius: 3.5vmin"
 								>
-									<p class="infoText">...In this direction:</p>
+									<div id="directionHeading" class="actionsWithHeadingLayout">
+										<p class="infoText tutorialText">...In this direction:</p>
+									</div>
 									<div id="directionsStem" class="actionPanelStem hideInLandscape"></div>
 									<div
 										class="actionPanelStem hideInPortrait"
