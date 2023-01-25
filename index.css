@@ -345,12 +345,12 @@ input[type='number'] {
 
 .actionButtonImage {
 	position: relative;
-	top: 4%;
-	right: 4%;
-	bottom: 4%;
-	left: 4%;
-	width: 92%;
-	height: 92%;
+	top: 3%;
+	right: 3%;
+	bottom: 3%;
+	left: 3%;
+	width: 94%;
+	height: 94%;
 	background-size: 100%; /* ?? */
 }
 
@@ -1268,10 +1268,23 @@ input[type='number'] {
 
 .actionButton {
 	text-align: center;
-	width: 22.5vmin;
-	height: 22.5vmin;
+	width: 20.9vmin;
+	height: 20.9vmin;
 	margin-top: 1vmin;
+	border: 0.8vmin solid transparent;
 	/* height: 50%; */
+}
+
+.selectedActionButton {
+	/* background-color: rgb(0, 18, 32); */
+	background-color: white;
+	border: 0.8vmin solid rgb(0, 192, 133);
+}
+
+.selectedActionButton .actionButtonImage {
+	/* opacity: 1; */
+	/* transform: scale(1.06); */
+	/* filter: blur(0.2vmin); */
 }
 
 .disabledButton {
@@ -1302,8 +1315,8 @@ input[type='number'] {
 	position: relative;
 	width: 5vmin;
 	height: 5vmin;
-	left: 0vmin;
-	top: -19.5vmin;
+	left: 0.3vmin;
+	top: 0.3vmin;
 	-webkit-user-select: none; /* Chrome all / Safari all */
 	-moz-user-select: none; /* Firefox all */
 	-ms-user-select: none; /* IE 10+ */
