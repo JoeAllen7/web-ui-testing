@@ -13,7 +13,7 @@
 			rel="stylesheet"
 		/>
 
-		<link href="index.css" rel="stylesheet" />
+		<link href="GamePad.css" rel="stylesheet" />
 
 		<title>Co OPERATION: MultiTurn</title>
 	</head>
@@ -41,7 +41,7 @@
 			<div class="fullScreenContent">
 				<div class="overlay darkBlur"></div>
 				<div class="verticalCentreLayout">
-					<img class="heartrateLoader fadeInAnimated" src="Images/IconImages/Loader_Heartrate.gif" />
+					<img class="heartrateLoader fadeInAnimated" src="Images/IconImages/Loader_Heartrate.gif" alt="Loading" />
 					<p class="titleText enterBounceAnimated" style="margin-top: -6vmin">Connecting...</p>
 				</div>
 			</div>
@@ -53,8 +53,11 @@
 			<div class="fullScreenContent">
 				<div class="overlay darkBlur"></div>
 				<div class="verticalCentreLayout">
-					<img class="heartrateLoader fadeInAnimated" src="Images/IconImages/Loader_Heartrate.gif" />
+					<img class="heartrateLoader fadeInAnimated" src="Images/IconImages/Loader_Heartrate.gif" alt="Loading" />
 					<p class="titleText enterBounceAnimated" style="margin-top: -6vmin">Reconnecting...</p>
+				</div>
+				<div>
+					<p class="infoText enterBounceAnimated" style="margin-top: -6vmin">(If problems, try reloading page.)</p>
 				</div>
 			</div>
 		</div>
@@ -63,7 +66,11 @@
 		<!-- Lobby: This is first view players see - they can enter a join code, their name and then press Join Game -->
 		<div class="view" id="Lobby">
 			<div class="belowHeaderContent">
-				<form action="" method="get" onsubmit="app.onJoinButtonPressed(); app.consumeEvent(event); return false">
+				<form
+					action=""
+					method="get"
+					onsubmit="app.onJoinButtonPressed(event.srcElement); app.consumeEvent(event); return false"
+				>
 					<div class="verticalCentreLayout applyScaleMult">
 						<div id="joinPanel" class="enterBounceAnimated">
 							<div class="verticalCentreLayout">
@@ -108,8 +115,8 @@
 								class="pressEffectButton mainButtonSpacing smallButtonText"
 								id="cancelJoinButton"
 								style="margin-top: 3vmin; font-size: 5vmin"
-								ontouchend="app.onCancelJoinButtonPressed(); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								ontouchend="app.onCancelJoinButtonPressed(event.srcElement); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 							>
 								Cancel
 							</div>
@@ -142,7 +149,11 @@
 		<div class="view" id="WaitOrAddPlayers">
 			<div class="fullScreenContent">
 				<div class="overlay defaultBlur"></div>
-				<form action="" method="get" onsubmit="app.onAddPlayerButtonPressed(); app.consumeEvent(event); return false">
+				<form
+					action=""
+					method="get"
+					onsubmit="app.onAddPlayerButtonPressed(event.srcElement); app.consumeEvent(event); return false"
+				>
 					<div class="adaptivePanelLayout applyScaleMult">
 						<div class="spacer"></div>
 						<div class="spacer"></div>
@@ -150,43 +161,61 @@
 							<div class="verticalCentreLayout">
 								<div class="lookAtScreenSmallImage"></div>
 								<div class="spacer"></div>
-								<p class="smallText" style="font-size: 5.5vmin; font-weight: bold; margin-top: 0vmin; width: 64vmin">
-									Host:<br />Press 'Everyone's Here!' on the game screen when ready.
+								<p class="smallText" style="font-size: 5vmin; font-weight: bold; margin-top: 0vmin; width: 80vmin">
+									Host: Press 'Everyone's Here!' on the game screen when ready.
 								</p>
 							</div>
 						</div>
 						<div class="spacer"></div>
-						<div class="spacer"></div>
 						<div class="fadeInAnimated">
-							<div class="verticalPanelLayout blurPanel" style="width: 80vmin; padding: 3vmin">
-								<div id="addPlayerInfo">
+							<div class="verticalPanelLayout blurPanel" style="width: 82vmin; padding: 3vmin; align-items: stretch">
+								<div id="addPlayerInfo" class="verticalPanelLayout" style="align-items: stretch">
 									<p class="smallText" style="font-weight: bold; text-align: center">
 										If you'd like to play solo and control multiple characters, or you're sharing<br />this device with
 										a friend, you can:
 									</p>
-									<div class="spacer"></div>
 									<input
 										type="submit"
 										id="addPlayerButton"
 										class="pressEffectButton mainButtonSpacing smallButtonText"
-										style="font-size: 4vmin; margin-top: 0"
+										style="font-size: 4vmin; margin-top: 0; text-align: center"
 										value="Add another character on this device"
 									/>
-									<div class="spacer"></div>
 									<div class="separator"></div>
 								</div>
-								<div class="verticalCentreLayout" id="playerNamesList">
+								<div class="verticalCentreLayout" id="playerNamesList" style="margin-bottom: 0.8vmin">
 									<div id="playerNameListElement" class="horizontalPanelLayout" style="display: none">
-										<p class="playerNameText">Name</p>
+										<p class="playerNameText">...</p>
 										<div
 											style="padding: 0.5vmin; padding-left: 4vmin; padding-right: 4vmin"
-											class="pressEffectButton smallButtonSpacing smallButtonText"
+											class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
 											ontouchend="app.onRemovePlayerButtonPressed(event.srcElement); app.consumeEvent(event)"
-											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
 											X
 										</div>
 									</div>
+								</div>
+								<div class="separator"></div>
+								<div class="horizontalPanelLayout" style="gap: 1.5vmin; margin-top: -1vmin">
+									<p class="smallText" style="font-weight: bold; font-size: 4vmin">Connected with join code:</p>
+									<p id="joinCodeText" class="smallText" style="font-weight: bold; font-size: 5.5vmin; color: #00fdb0">
+										----
+									</p>
+								</div>
+								<div
+									style="
+										text-align: center;
+										font-size: 4vmin;
+										margin-left: 8vmin;
+										margin-right: 8vmin;
+										margin-top: -2vmin;
+									"
+									class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
+									ontouchend="app.resetApp(); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									Join a different game
 								</div>
 							</div>
 						</div>
@@ -201,7 +230,7 @@
 			<div class="fullScreenContent">
 				<div class="overlay defaultBlur"></div>
 				<div class="verticalCentreLayout applyScaleMult">
-					<p class="titleText fadeInAnimated" style="margin-bottom: -2.5vmin">Player Name</p>
+					<!-- <p class="titleText fadeInAnimated" style="margin-bottom: -2.5vmin">Player Name</p> -->
 					<p class="titleText fadeInAnimated" style="font-size: 6vmin">Choose a character:</p>
 					<div class="spacer"></div>
 
@@ -211,8 +240,8 @@
 								tabindex="100"
 								id="characterButton1"
 								class="pressEffectButton characterPreview buttonOutline unselectedButton"
-								ontouchend="app.onSelectCharacterButtonPressed(0); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								ontouchend="app.onSelectCharacterButtonPressed(event.srcElement, 0); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 							>
 								<div id="characterIcon1" class="actionButtonImage character1CrossImage"></div>
 							</div>
@@ -220,8 +249,8 @@
 								tabindex="101"
 								id="characterButton2"
 								class="pressEffectButton characterPreview selectedButton selectedScale"
-								ontouchend="app.onSelectCharacterButtonPressed(1); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								ontouchend="app.onSelectCharacterButtonPressed(event.srcElement, 1); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 							>
 								<div id="characterIcon2" class="actionButtonImage character2SelectedImage"></div>
 							</div>
@@ -229,8 +258,8 @@
 								tabindex="102"
 								id="characterButton3"
 								class="pressEffectButton characterPreview buttonOutline"
-								ontouchend="app.onSelectCharacterButtonPressed(2); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								ontouchend="app.onSelectCharacterButtonPressed(event.srcElement, 2); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 							>
 								<div id="characterIcon3" class="actionButtonImage character3UnselectedImage"></div>
 							</div>
@@ -238,8 +267,8 @@
 								tabindex="103"
 								id="characterButton4"
 								class="pressEffectButton characterPreview buttonOutline"
-								ontouchend="app.onSelectCharacterButtonPressed(3); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+								ontouchend="app.onSelectCharacterButtonPressed(event.srcElement, 3); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 							>
 								<div id="characterIcon4" class="actionButtonImage character4UnselectedImage"></div>
 							</div>
@@ -270,33 +299,61 @@
 			<div class="belowPlayerTabsContent">
 				<div class="applyScaleMult">
 					<!-- Parent layout containing all widgets -->
-					<div id="gameInputMainLayout" class="verticalPanelLayout" style="gap: 0">
+					<div id="gameInputMainLayout" class="verticalPanelLayout fadeInAnimated animDelay1" style="gap: 0">
 						<!-- Round selection layout -->
 						<!-- <div class="turnButtonsLayout adaptivePanelLayout" style="gap: 0"> -->
 						<div class="actionsWithHeadingLayout verticalPanelLayout">
 							<div class="actionHeadingPanel">
-								<p class="infoText tutorialText">In this round, my 4 turns are:</p>
+								<p id="turnHeadingText" class="infoText tutorialText">My 4 turns are:</p>
 							</div>
 							<div id="turnButtonsPanel" class="horizontalPanelLayout actionButtonPanel">
-								<div class="actionButton">
-									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
-										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
+								<div
+									tabindex="101"
+									id="turnButton0"
+									class="actionButton actionButtonSelected"
+									ontouchend="app.onSelectTurnButtonPressed(event.srcElement, 0); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div id="turnButtonInner0" class="actionButtonInner">
+										<div id="turnButtonImage0" class="actionButtonImage animatedIcon moveNorthImage"></div>
 									</div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Turn 1" />
 								</div>
-								<div class="actionButton">
-									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
-										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
+								<div
+									tabindex="102"
+									id="turnButton1"
+									class="actionButton"
+									ontouchend="app.onSelectTurnButtonPressed(event.srcElement, 1); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div id="turnButtonInner1" class="actionButtonInner">
+										<div id="turnButtonImage1" class="actionButtonImage animatedIcon actNorthImage"></div>
 									</div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Turn 2" />
 								</div>
-								<div class="actionButton">
-									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
-										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
+								<div
+									tabindex="103"
+									id="turnButton2"
+									class="actionButton"
+									ontouchend="app.onSelectTurnButtonPressed(event.srcElement, 2); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div id="turnButtonInner2" class="actionButtonInner">
+										<div id="turnButtonImage2" class="actionButtonImage animatedIcon throwNorthImage"></div>
 									</div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Turn 3" />
 								</div>
-								<div class="actionButton">
-									<div class="actionButtonImage animatedIcon moveButtonImage" id="actionButtonImage0">
-										<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
+								<div
+									tabindex="104"
+									id="turnButton3"
+									class="actionButton"
+									ontouchend="app.onSelectTurnButtonPressed(event.srcElement, 3); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div id="turnButtonInner3" class="actionButtonInner">
+										<div id="turnButtonImage3" class="actionButtonImage animatedIcon waitImage"></div>
 									</div>
+									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Turn 4" />
 								</div>
 							</div>
 						</div>
@@ -305,495 +362,156 @@
 							<!-- Turn buttons layout -->
 							<div class="actionsWithHeadingLayout verticalPanelLayout">
 								<div class="actionHeadingPanel">
-									<p class="infoText tutorialText">On Turn 0, I will...</p>
+									<p id="actionsHeadingText" class="infoText tutorialText">On Turn 0, I will...</p>
 									<div id="actionsStem" class="actionPanelStem hideInLandscape"></div>
 								</div>
 								<div id="actionSelectButtonsPanel" class="horizontalPanelLayout actionButtonPanel">
 									<div style="display: flex; flex-direction: column; align-items: center">
-										<div class="actionLabelText">Move</div>
-										<div class="actionButton">
-											<div id="actionButtonImage0" class="actionButtonImage animatedIcon moveButtonImage"></div>
+										<div
+											id="actionButton0"
+											tabindex="105"
+											class="actionButton actionButtonWithLabel actionButtonSelected actionButtonPreviewMove"
+											ontouchend="app.onSelectActionButtonPressed(event.srcElement, 0); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="actionButtonInner0" class="actionButtonInner">
+												<div id="actionButtonImage0" class="actionButtonImage animatedIcon moveImage"></div>
+											</div>
+											<div id="actionLabel0" class="actionLabelText">...</div>
 										</div>
 									</div>
 									<div style="display: flex; flex-direction: column; align-items: center">
-										<div class="actionLabelText">Interact</div>
-										<div class="actionButton">
-											<div id="actionButtonImage1" class="actionButtonImage animatedIcon interactButtonImage"></div>
+										<div
+											id="actionButton1"
+											tabindex="106"
+											class="actionButton actionButtonWithLabel actionButtonPreviewInteract"
+											ontouchend="app.onSelectActionButtonPressed(event.srcElement, 1); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="actionButtonInner1" class="actionButtonInner">
+												<div id="actionButtonImage1" class="actionButtonImage animatedIcon actImage"></div>
+											</div>
+											<div id="actionLabel1" class="actionLabelText">...</div>
 										</div>
 									</div>
 									<div style="display: flex; flex-direction: column; align-items: center">
-										<div class="actionLabelText">Wait</div>
-										<div class="actionButton">
-											<div id="actionButtonImage2" class="actionButtonImage animatedIcon waitButtonImage"></div>
+										<div
+											id="actionButton2"
+											tabindex="107"
+											class="actionButton actionButtonWithLabel actionButtonPreviewWait"
+											ontouchend="app.onSelectActionButtonPressed(event.srcElement, 2); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="actionButtonInner2" class="actionButtonInner">
+												<div id="actionButtonImage2" class="actionButtonImage animatedIcon waitImage"></div>
+											</div>
+											<div id="actionLabel2" class="actionLabelText">...</div>
 										</div>
 									</div>
 									<div style="display: flex; flex-direction: column; align-items: center">
-										<div class="actionLabelText">Throw</div>
-										<div class="actionButton">
-											<div id="actionButtonImage3" class="actionButtonImage animatedIcon throwButtonImage"></div>
+										<div
+											id="actionButton3"
+											tabindex="108"
+											class="actionButton actionButtonWithLabel actionButtonPreviewThrow"
+											ontouchend="app.onSelectActionButtonPressed(event.srcElement, 3); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="actionButtonInner3" class="actionButtonInner">
+												<div id="actionButtonImage3" class="actionButtonImage animatedIcon throwImage"></div>
+											</div>
+											<div id="actionLabel3" class="actionLabelText">...</div>
 										</div>
 									</div>
 								</div>
 							</div>
 							<!-- Direction buttons layout -->
-							<div id="directionButtonsLayout" class="verticalPanelLayout actionsWithHeadingLayout" style="z-index: 0">
-								<div class="actionHeadingPanel">
-									<p class="infoText tutorialText">...In this direction:</p>
-									<div id="directionsStem" class="actionPanelStem hideInLandscape"></div>
-									<div
-										class="actionPanelStem hideInPortrait"
-										style="transform: rotate(-90deg); left: -5.8vmin; bottom: -0.25vmin"
-									></div>
-								</div>
-								<div id="playerPreviewGrid">
-									<div id="westDirectionalButton" class="directionalButton">
-										<div id="moveWestArrowImage" class="directionalButtonImage"></div>
+							<div id="directionButtonsLayout">
+								<div class="verticalPanelLayout actionsWithHeadingLayout">
+									<div class="actionHeadingPanel">
+										<p class="infoText tutorialText">...In this direction:</p>
+										<div id="directionsStem" class="actionPanelStem hideInLandscape"></div>
+										<div
+											class="actionPanelStem hideInPortrait"
+											style="transform: rotate(-90deg); left: -5.8vmin; bottom: -0.25vmin"
+										></div>
 									</div>
-									<div id="northDirectionalButton" class="directionalButton">
-										<div id="moveNorthArrowImage" class="directionalButtonImage"></div>
+									<div id="playerPreviewGrid">
+										<div
+											tabindex="112"
+											id="westDirectionalButton"
+											class="directionalButton"
+											ontouchend="app.onSelectDataButtonPressed(event.srcElement, 'west'); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="westArrowImage" class="directionalButtonImage actWestImage"></div>
+										</div>
+										<div
+											tabindex="109"
+											id="northDirectionalButton"
+											class="directionalButton"
+											ontouchend="app.onSelectDataButtonPressed(event.srcElement, 'north'); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="northArrowImage" class="directionalButtonImage actNorthImage"></div>
+										</div>
+										<div
+											tabindex="110"
+											id="eastDirectionalButton"
+											class="directionalButton"
+											ontouchend="app.onSelectDataButtonPressed(event.srcElement, 'east'); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="eastArrowImage" class="directionalButtonImage actEastImage"></div>
+										</div>
+										<div
+											tabindex="111"
+											id="southDirectionalButton"
+											class="directionalButton"
+											ontouchend="app.onSelectDataButtonPressed(event.srcElement, 'south'); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											<div id="southArrowImage" class="directionalButtonImage actSouthImage"></div>
+										</div>
+										<div id="characterPreview" class="characterPreviewImage3"></div>
 									</div>
-									<div id="eastDirectionalButton" class="directionalButton">
-										<div id="moveEastArrowImage" class="directionalButtonImage"></div>
-									</div>
-									<div id="southDirectionalButton" class="directionalButton">
-										<div id="moveSouthArrowImage" class="directionalButtonImage"></div>
-									</div>
-									<div id="playerPreview"></div>
 								</div>
 							</div>
 						</div>
 						<div
+							tabindex="113"
 							id="readyButton"
 							class="pressEffectButton mainButtonSpacing largeButtonText"
 							style="
 								margin-bottom: 0;
-								padding-left: 15vmin;
-								padding-right: 15vmin;
+								padding-left: 10vmin;
+								padding-right: 10vmin;
 								padding-top: 2vmin;
 								padding-bottom: 2vmin;
 							"
+							ontouchend="app.onReadyButtonPressed(event.srcElement); app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 						>
 							Ready!
+						</div>
+						<div
+							tabindex="114"
+							id="unreadyButton"
+							class="pressEffectButton mainButtonSpacing largeButtonText"
+							ontouchend="app.onUnreadyButtonPressed(event.srcElement); app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+						>
+							<img
+								src="Images/IconImages/Icon_Undo_128.png"
+								id="unreadyImage"
+								class="actionButtonImage"
+								alt="Undo Ready"
+							/>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- End of GameInputPhase view -->
-
-		<!-- OLD GameInputPhase: This is where players select an action slot or confirm that they're ready -->
-		<!-- <div class="view" id="GameInputPhase">
-			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur"></div>
-				<div class="applyScaleMult">
-					<div class="gameInputPanel blurPanel verticalPanelLayout mainPanelTransitionAnimated">
-						<div class="actionInfoContainer fadeInAnimated">
-							<div class="verticalCentreLayout" style="width: 25vmin">
-								<div id="activePlayerImage" class="playerImage character1SelectedImage"></div>
-							</div>
-							<div class="verticalCentreLayout">
-								<p class="infoText">Schedule 4 actions with the buttons, then press 'Ready!'</p>
-							</div>
-						</div>
-
-						<div class="actionButtonLayout">
-							<div class="button1TransitionAnimated">
-								<div
-									tabindex="101"
-									class="pressEffectButton actionButton"
-									id="interact-button-0"
-									ontouchend="app.onSelectTurnButtonPressed(0, true); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon" id="actionButtonImage0"></div>
-									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
-								</div>
-							</div>
-							<div class="button2TransitionAnimated">
-								<div
-									tabindex="102"
-									class="pressEffectButton actionButton"
-									id="interact-button-1"
-									ontouchend="app.onSelectTurnButtonPressed(1, true); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon" id="actionButtonImage1"></div>
-									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
-								</div>
-							</div>
-							<div class="button3TransitionAnimated">
-								<div
-									tabindex="103"
-									class="pressEffectButton actionButton"
-									id="interact-button-2"
-									ontouchend="app.onSelectTurnButtonPressed(2, true); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon" id="actionButtonImage2"></div>
-									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
-								</div>
-							</div>
-							<div class="button4TransitionAnimated">
-								<div
-									tabindex="104"
-									class="pressEffectButton actionButton"
-									id="interact-button-3"
-									ontouchend="app.onSelectTurnButtonPressed(3, true); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon" id="actionButtonImage3"></div>
-									<img class="actionNumberImage" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
-								</div>
-							</div>
-						</div>
-
-						<div class="actionInfoContainer">
-							<div class="verticalCentreLayout fadeInAnimated">
-								<div
-									tabindex="105"
-									class="pressEffectButton mainButtonSpacing largeButtonText"
-									id="readyButton"
-									ontouchend="app.onReadyButtonPressed(); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									Ready!
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div> -->
-		<!-- End of OLD GameInputPhase view -->
-
-		<!-- GameInputPhaseSelectInput: This is where players select an action type for a specific slot -->
-		<div class="view" id="GameInputPhaseSelectInput">
-			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur" ontouchend="app.onAreaOutsideMenuPressed(); app.consumeEvent(event)"></div>
-				<div class="applyScaleMult">
-					<div class="adaptivePanelLayout">
-						<!-- Action slot previews -->
-						<div class="horizontalPanelLayout adaptivePreviewLayout">
-							<div class="inputPhaseButtonAnimation action1TransitionAnimated">
-								<div
-									tabindex="101"
-									class="actionPreview0 actionPreviewPanel"
-									ontouchend="app.onSelectTurnButtonPressed(0, false); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="previewImage0 actionButtonImage animatedIcon waitButtonImage"></div>
-									<img
-										class="actionNumberImageSmall"
-										src="Images/IconImages/Icon_ActionNumber1_128.png"
-										alt="Action 1"
-									/>
-								</div>
-							</div>
-							<div class="inputPhaseButtonAnimation action2TransitionAnimated">
-								<div
-									tabindex="102"
-									class="actionPreview1 actionPreviewPanel"
-									ontouchend="app.onSelectTurnButtonPressed(1, false); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="previewImage1 actionButtonImage animatedIcon waitButtonImage"></div>
-									<img
-										class="actionNumberImageSmall"
-										src="Images/IconImages/Icon_ActionNumber2_128.png"
-										alt="Action 2"
-									/>
-								</div>
-							</div>
-							<div class="inputPhaseButtonAnimation action3TransitionAnimated">
-								<div
-									tabindex="103"
-									class="actionPreview2 actionPreviewPanel"
-									ontouchend="app.onSelectTurnButtonPressed(2, false); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="previewImage2 actionButtonImage animatedIcon waitButtonImage"></div>
-									<img
-										class="actionNumberImageSmall"
-										src="Images/IconImages/Icon_ActionNumber3_128.png"
-										alt="Action 3"
-									/>
-								</div>
-							</div>
-							<div class="inputPhaseButtonAnimation action4TransitionAnimated">
-								<div
-									tabindex="104"
-									class="actionPreview3 actionPreviewPanel"
-									ontouchend="app.onSelectTurnButtonPressed(3, false); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="previewImage3 actionButtonImage animatedIcon waitButtonImage"></div>
-									<img
-										class="actionNumberImageSmall"
-										src="Images/IconImages/Icon_ActionNumber4_128.png"
-										alt="Action 4"
-									/>
-								</div>
-							</div>
-						</div>
-
-						<!-- Selection panel -->
-						<div
-							id="selectActionPanel"
-							class="blurPanel verticalPanelLayout inputPhaseAnimation inputPanelTransitionAnimated"
-						>
-							<div class="verticalCentreLayout fadeInAnimated">
-								<p id="turnInfoHeader" class="infoText">Choose an action for turn:</p>
-							</div>
-
-							<div class="actionButtonSquareLayout fadeInAnimated">
-								<!-- 'Move' button -->
-								<div
-									tabindex="105"
-									class="pressEffectButton actionButton"
-									id="action1Button"
-									ontouchend="app.onSelectMoveDirectionButtonPressed(); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div id="action1ButtonImg" class="actionButtonImage animatedIcon moveButtonImage"></div>
-								</div>
-								<!-- 'Act' button -->
-								<div
-									tabindex="106"
-									class="pressEffectButton actionButton"
-									id="action2Button"
-									ontouchend="app.onSelectActionButtonPressed('act', ''); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div id="action2ButtonImg" class="actionButtonImage animatedIcon interactButtonImage"></div>
-									<!-- actionButtonImage -->
-								</div>
-								<!-- 'Throw' button -->
-								<div
-									tabindex="107"
-									class="pressEffectButton actionButton disabledButton"
-									id="action3Button"
-									ontouchend="app.onSelectThrowDirectionButtonPressed(); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div id="action3ButtonImg" class="actionButtonImage animatedIcon throwButtonImage"></div>
-								</div>
-								<!-- 'Do nothing' button -->
-								<div
-									tabindex="108"
-									class="pressEffectButton actionButton"
-									id="action4Button"
-									ontouchend="app.onSelectActionButtonPressed('', ''); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div id="action4ButtonImg" class="actionButtonImage animatedIcon waitButtonImage"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End of GameInputPhaseSelectInput view -->
-
-		<!-- GameInputPhaseSelectMoveInput: This is where players select movement direction -->
-		<div class="view" id="GameInputPhaseSelectMoveInput">
-			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur" ontouchend="app.onAreaOutsideMenuPressed(); app.consumeEvent(event)"></div>
-				<div class="applyScaleMult">
-					<div class="adaptivePanelLayout">
-						<!-- Action slot previews -->
-						<div class="horizontalPanelLayout adaptivePreviewLayout">
-							<div
-								tabindex="101"
-								class="actionPreview0 actionPreviewPanel"
-								ontouchend="app.onSelectTurnButtonPressed(0, false); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="previewImage0 actionButtonImage animatedIcon waitButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
-							</div>
-							<div
-								tabindex="102"
-								class="actionPreview1 actionPreviewPanel"
-								ontouchend="app.onSelectTurnButtonPressed(1, false); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="previewImage1 actionButtonImage animatedIcon waitButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
-							</div>
-							<div
-								tabindex="103"
-								class="actionPreview2 actionPreviewPanel"
-								ontouchend="app.onSelectTurnButtonPressed(2, false); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="previewImage2 actionButtonImage animatedIcon waitButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
-							</div>
-							<div
-								tabindex="104"
-								class="actionPreview3 actionPreviewPanel"
-								ontouchend="app.onSelectTurnButtonPressed(3, false); app.consumeEvent(event)"
-								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-							>
-								<div class="previewImage3 actionButtonImage animatedIcon waitButtonImage"></div>
-								<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
-							</div>
-						</div>
-
-						<!-- Selection panel -->
-						<div class="blurPanel verticalPanelLayout">
-							<div class="verticalCentreLayout">
-								<p class="infoText">Choose a direction to move in:</p>
-							</div>
-
-							<div class="actionButtonSquareLayout">
-								<div
-									tabindex="105"
-									class="pressEffectButton actionButton"
-									id="moveWestButton"
-									ontouchend="app.onSelectActionButtonPressed('move', 'west'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage buttonPromptAnimated moveWestButtonImage"></div>
-								</div>
-								<div
-									tabindex="106"
-									class="pressEffectButton actionButton"
-									id="moveNorthButton"
-									ontouchend="app.onSelectActionButtonPressed('move', 'north'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage buttonPromptAnimated moveNorthButtonImage"></div>
-								</div>
-								<div
-									tabindex="107"
-									class="pressEffectButton actionButton"
-									id="moveSouthButton"
-									ontouchend="app.onSelectActionButtonPressed('move', 'south'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage buttonPromptAnimated moveSouthButtonImage"></div>
-								</div>
-								<div
-									tabindex="108"
-									class="pressEffectButton actionButton"
-									id="moveEastButton"
-									ontouchend="app.onSelectActionButtonPressed('move', 'east'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage buttonPromptAnimated moveEastButtonImage"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End of GameInputPhaseSelectMoveInput view -->
-
-		<!-- GameInputPhaseSelectThrowInput: This is where players select throw direction -->
-		<div class="view" id="GameInputPhaseSelectThrowInput">
-			<div class="fullScreenAdaptiveContent">
-				<div class="overlay defaultBlur" ontouchend="app.onAreaOutsideMenuPressed(); app.consumeEvent(event)"></div>
-				<div class="adaptivePanelLayout applyScaleMult">
-					<!-- Action slot previews -->
-					<div class="horizontalPanelLayout adaptivePreviewLayout">
-						<div
-							tabindex="101"
-							class="actionPreview0 actionPreviewPanel"
-							ontouchend="app.onSelectTurnButtonPressed(0, false); app.consumeEvent(event)"
-							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-						>
-							<div class="previewImage0 actionButtonImage animatedIcon waitButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber1_128.png" alt="Action 1" />
-						</div>
-						<div
-							tabindex="102"
-							class="actionPreview1 actionPreviewPanel"
-							ontouchend="app.onSelectTurnButtonPressed(1, false); app.consumeEvent(event)"
-							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-						>
-							<div class="previewImage1 actionButtonImage animatedIcon waitButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber2_128.png" alt="Action 2" />
-						</div>
-						<div
-							tabindex="103"
-							class="actionPreview2 actionPreviewPanel"
-							ontouchend="app.onSelectTurnButtonPressed(2, false); app.consumeEvent(event)"
-							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-						>
-							<div class="previewImage2 actionButtonImage animatedIcon waitButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber3_128.png" alt="Action 3" />
-						</div>
-						<div
-							tabindex="104"
-							class="actionPreview3 actionPreviewPanel"
-							ontouchend="app.onSelectTurnButtonPressed(3, false); app.consumeEvent(event)"
-							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-						>
-							<div class="previewImage3 actionButtonImage animatedIcon waitButtonImage"></div>
-							<img class="actionNumberImageSmall" src="Images/IconImages/Icon_ActionNumber4_128.png" alt="Action 4" />
-						</div>
-					</div>
-
-					<!-- Selection panel -->
-					<div class="blurPanel verticalPanelLayout">
-						<div class="verticalCentreLayout">
-							<p class="infoText">Choose a direction to throw in:</p>
-						</div>
-
-						<div class="actionButtonSquareLayout">
-							<div class="buttonPromptAnimated">
-								<div
-									tabindex="105"
-									class="pressEffectButton actionButton"
-									id="throwWestButton"
-									ontouchend="app.onSelectActionButtonPressed('throw', 'west'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon throwWestButtonImage"></div>
-								</div>
-							</div>
-							<div class="buttonPromptAnimated">
-								<div
-									tabindex="106"
-									class="pressEffectButton actionButton"
-									id="throwNorthButton"
-									ontouchend="app.onSelectActionButtonPressed('throw', 'north'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon throwNorthButtonImage"></div>
-								</div>
-							</div>
-							<div class="buttonPromptAnimated">
-								<div
-									tabindex="107"
-									class="pressEffectButton actionButton"
-									id="throwSouthButton"
-									ontouchend="app.onSelectActionButtonPressed('throw', 'south'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon throwSouthButtonImage"></div>
-								</div>
-							</div>
-							<div class="buttonPromptAnimated">
-								<div
-									tabindex="108"
-									class="pressEffectButton actionButton"
-									id="throwEastButton"
-									ontouchend="app.onSelectActionButtonPressed('throw', 'east'); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-								>
-									<div class="actionButtonImage animatedIcon throwEastButtonImage"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End of GameInputPhaseSelectThrowInput view -->
 
 		<!-- Header for displaying the active player name while selecting actions -->
 		<div class="applyScaleMult">
@@ -816,233 +534,112 @@
 		<!-- End of LookAtScreen view -->
 
 		<!-- Player tabs, player name and menu button -->
-		<div id="playerTabsLayout" style="display: block">
-			<div
-				class="anchorTop applyScaleMultY darkBlur"
-				style="
-					display: flex;
-					flex-direction: column;
-					align-items: stretch;
-					left: 0;
-					right: 0;
-					top: 0;
-					transform-origin: top;
-					height: 12.5vmin;
-					z-index: 1;
-				"
-			>
-				<div
-					style="
-						display: flex;
-						flex-direction: row;
-						justify-content: flex-end;
-						gap: 1vmin;
-						height: 20vmin;
-						overflow-x: hidden;
-						margin-top: -5vmin;
-						padding-left: 2vmin;
-						padding-right: 2vmin;
-					"
-					class="applyScaleMultX"
-				>
-					<div class="tabButton" style="width: 12vmin; z-index: 2">
+		<div id="playerTabsAndMenu" style="display: none">
+			<div id="playerTabsAndMenuLayout" class="anchorTop applyScaleMultY darkBlur">
+				<div id="menuButtonLayout" class="applyScaleMultX">
+					<!-- Menu button -->
+					<div
+						tabindex="205"
+						class="tabButton"
+						style="width: 12vmin; z-index: 2"
+						ontouchend="app.onMenuButtonPressed(); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+					>
 						<div id="menuImage"></div>
 					</div>
 				</div>
-				<div
-					style="
-						display: flex;
-						flex-direction: row;
-						justify-content: flex-start;
-						gap: 0vmin;
-						height: 20vmin;
-						overflow-x: hidden;
-						margin-top: -17.5vmin;
-						padding-left: 2vmin;
-						right: 5vmin;
-						pointer-events: none;
-					"
-					class="applyScaleMultX"
-				>
+				<div id="playerTabsLayout" class="applyScaleMultX">
 					<!-- Tab button 1 -->
 					<div
 						tabindex="201"
-						class="tabButton playerTab"
-						id="playerTabButton1"
-						style="display: block"
+						class="tabButton playerTab selectedTab"
+						id="playerTabButton0"
 						ontouchend="app.onPlayerTabButtonPressed(0); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 					>
-						<div class="tabPlayerImage character1UnselectedImage"></div>
-						<div class="tabReadyImage tickImage"></div>
+						<div id="playerTabImage0" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator0" class="tabReadyImage actionsPendingImage"></div>
 					</div>
 					<!-- Tab button 2 -->
 					<div
 						tabindex="202"
-						class="tabButton playerTab selectedTab"
-						id="playerTabButton2"
-						style="display: block"
+						class="tabButton playerTab"
+						id="playerTabButton1"
+						style="display: none"
 						ontouchend="app.onPlayerTabButtonPressed(1); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 					>
-						<div class="tabPlayerImage character2HighlightedImage"></div>
-						<div class="tabReadyImage tickImage"></div>
+						<div id="playerTabImage1" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator1" class="tabReadyImage actionsPendingImage"></div>
 					</div>
 					<!-- Tab button 3 -->
 					<div
 						tabindex="203"
 						class="tabButton playerTab"
-						id="playerTabButton3"
+						id="playerTabButton2"
 						style="display: none"
 						ontouchend="app.onPlayerTabButtonPressed(2); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 					>
-						<div class="tabPlayerImage characterPendingPlayer3Image"></div>
-						<div class="tabReadyImage actionsPendingImage"></div>
+						<div id="playerTabImage2" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator2" class="tabReadyImage actionsPendingImage"></div>
 					</div>
 					<!-- Tab button 4 -->
 					<div
 						tabindex="204"
 						class="tabButton playerTab"
-						id="playerTabButton4"
-						style="display: none"
-						ontouchend="app.onPlayerTabButtonPressed(3); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-					>
-						<div class="tabPlayerImage characterPendingPlayer4Image"></div>
-						<div class="tabReadyImage actionsPendingImage"></div>
-					</div>
-					<div
-						id="playerNameTop"
-						class="infoText"
-						style="
-							flex-grow: 1;
-							flex-basis: 0;
-							/* background-color: rgba(255, 0, 255, 0.7); */
-							font-size: 5vmin;
-							padding-top: 7.5vmin;
-							padding-right: 14vmin;
-							height: 7vmin;
-							text-overflow: ellipsis;
-							overflow: hidden;
-							white-space: nowrap;
-							visibility: visible;
-						"
-					>
-						&nbspPlayer Name
-					</div>
-				</div>
-			</div>
-			<div
-				id="playerNameSeparatePanel"
-				class="anchorTop applyScaleMultY defaultBlur"
-				style="
-					display: flex;
-					flex-direction: column;
-					align-items: stretch;
-					left: 0;
-					right: 0;
-					top: calc(12vmin * var(--scaleMult));
-					transform-origin: top;
-					height: 7vmin;
-					text-align: center;
-					visibility: visible;
-				"
-			>
-				<div class="applyScaleMultX infoText" style="font-size: 4.2vmin; padding-top: 0.9vmin">Player Name</div>
-			</div>
-		</div>
-		<!-- End of player tabs -->
-
-		<!-- OLD Player Tabs -->
-		<!-- <div id="playerTabsLayout" style="display: none">
-			<div class="anchorBottom applyScaleMult">
-				<div id="playerTabs">
-					<div
-						tabindex="201"
-						class="tabButton selectedTab"
-						id="playerTabButton1"
-						style="display: none"
-						ontouchend="app.onPlayerTabButtonPressed(0); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-					>
-						<div class="tabButtonText">...</div>
-					</div>
-					<div
-						tabindex="202"
-						class="tabButton"
-						id="playerTabButton2"
-						style="display: none"
-						ontouchend="app.onPlayerTabButtonPressed(1); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-					>
-						<div class="tabButtonText">...</div>
-					</div>
-					<div
-						tabindex="203"
-						class="tabButton"
 						id="playerTabButton3"
 						style="display: none"
-						ontouchend="app.onPlayerTabButtonPressed(2); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
-					>
-						<div class="tabButtonText">...</div>
-					</div>
-					<div
-						tabindex="204"
-						class="tabButton"
-						id="playerTabButton4"
-						style="display: none"
 						ontouchend="app.onPlayerTabButtonPressed(3); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 					>
-						<div class="tabButtonText">...</div>
+						<div id="playerTabImage3" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator3" class="tabReadyImage actionsPendingImage"></div>
 					</div>
+					<!-- This is where player name is displayed when there is enough space next to the tabs -->
+					<div id="playerNameTop" class="infoText">&nbsp;...</div>
 				</div>
 			</div>
-		</div> -->
+			<!-- This is where player name is displayed when there's not enough space next to the tabs -->
+			<div id="playerNameOverflowPanel" class="anchorTop applyScaleMultY defaultBlur">
+				<div id="playerNameOverflow" class="applyScaleMultX infoText">...</div>
+			</div>
+		</div>
+		<!-- End of player tabs/menu -->
 
-		<!-- Options screen -->
-		<!-- <div class="fullScreenContent" id="optionsScreen" style="display: none">
+		<!-- Game menu -->
+		<div id="gameMenu" class="belowPlayerTabsContent" style="display: none; z-index: 5">
 			<div class="overlay darkBlur fadeInQuickAnimated"></div>
 			<div class="verticalCentreLayout applyScaleMult">
-				<div class="adaptivePanelLayout">
-					<div class="verticalPanelLayout enterBounceAnimated">
-						<p class="infoText">Music: Off</p>
-						<div class="pressEffectButton configButton">
-							<div class="actionButtonImage musicOffImage" id="toggleMusicButton"></div>
+				<div class="verticalPanelLayout mainButtonSpacing enterBounceAnimated">
+					<p class="titleText" style="font-size: 10vmin">Menu</p>
+					<div class="verticalPanelLayout">
+						<div
+							tabindex="81"
+							class="pressEffectButton largeButtonText mainButtonSpacing"
+							style="width: 50vmin"
+							ontouchend="app.viewManager.showConfirmLeaveDialog(); document.getElementById('gameMenu').style.display = 'none'; app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+						>
+							Leave Game
 						</div>
-					</div>
-					<div></div>
-					<div class="verticalPanelLayout enterBounceAnimated animDelay1">
-						<p class="infoText">Sounds: Off</p>
-						<div class="pressEffectButton configButton">
-							<div class="actionButtonImage soundOffImage" id="toggleSoundButton"></div>
-						</div>
-					</div>
-					<div></div>
-					<div class="verticalPanelLayout enterBounceAnimated animDelay2">
-						<p class="infoText">Timer: Off</p>
-						<div class="pressEffectButton configButton">
-							<div class="actionButtonImage timerOffImage" id="toggleTimerButton"></div>
+						<div
+							tabindex="80"
+							class="pressEffectButton largeButtonText mainButtonSpacing"
+							style="width: 50vmin"
+							ontouchend="document.getElementById('gameMenu').style.display = 'none'; app.consumeEvent(event)"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+						>
+							Close
 						</div>
 					</div>
 				</div>
 			</div>
-		</div> -->
-		<!-- End of options screen -->
-
-		<!-- Option button at bottom-right of screen -->
-		<!-- <div class="applyScaleMult" id="bottomRightButtons">
-			<div class="horizontalPanelLayout">
-				<div class="pressEffectButton optionsButtonSpacing optionsButton" id="optionsButton">
-					<div class="actionButtonImage optionsImage"></div>
-				</div>
-			</div>
-		</div> -->
+		</div>
+		<!-- End of game menu -->
 
 		<!-- Leave confirm screen -->
-		<div class="fullScreenContent" id="confirmLeaveGame" style="display: none">
+		<div class="fullScreenContent" id="confirmLeaveGame" style="display: none; z-index: 5">
 			<div class="overlay darkBlur fadeInQuickAnimated"></div>
 			<div class="verticalCentreLayout applyScaleMult">
 				<div class="verticalPanelLayout blurPanel mainButtonSpacing enterBounceAnimated">
@@ -1053,7 +650,7 @@
 							class="pressEffectButton largeButtonText mainButtonSpacing"
 							style="width: 30vmin"
 							ontouchend="document.getElementById('confirmLeaveGame').style.display = 'none'; app.consumeEvent(event)"
-							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 						>
 							Cancel
 						</div>
@@ -1062,7 +659,7 @@
 							class="pressEffectButton largeButtonText mainButtonSpacing"
 							style="width: 25vmin"
 							ontouchend="app.resetApp(); document.getElementById('confirmLeaveGame').style.display = 'none'; app.consumeEvent(event)"
-							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+							onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 						>
 							Yes
 						</div>
@@ -1073,12 +670,12 @@
 		<!-- End of leave confirm screen -->
 
 		<!-- Error popup -->
-		<div class="fullScreenContent" id="errorPopup" style="display: none">
+		<div class="fullScreenContent" id="infoPopup" style="display: none; z-index: 5">
 			<div class="overlay darkBlur fadeInQuickAnimated"></div>
 			<div class="verticalCentreLayout applyScaleMult">
 				<div class="verticalPanelLayout blurPanel mainButtonSpacing enterBounceAnimated">
-					<p class="titleText">Error</p>
-					<p id="errorText" class="infoText">...</p>
+					<p id="popupTitleText" class="titleText">...</p>
+					<p id="popupInfoText" class="infoText">...</p>
 					<div
 						tabindex="50"
 						id="detailedErrorButton"
@@ -1086,18 +683,18 @@
 						ontouchend="document.getElementById('detailedErrorText').style.display = 'block';
 										document.getElementById('detailedErrorButton').style.display = 'none';
 										app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 						style="width: 40vmin"
 					>
 						Show detailed info
 					</div>
-					<p id="detailedErrorText" class="smallText" style="display: none">Detailed description of error</p>
+					<p id="detailedErrorText" class="smallText" style="display: none">...</p>
 					<div
 						tabindex="51"
 						id="errorPopupButton1"
 						class="pressEffectButton smallButtonText mainButtonSpacing"
-						ontouchend="app.viewManager.setErrorPopupResult('button1'); app.consumeEvent(event)"
-						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('touchend'));"
+						ontouchend="app.viewManager.setInfoPopupResult('button1'); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 					>
 						Close
 					</div>
@@ -1106,6 +703,6 @@
 		</div>
 		<!-- End of error popup -->
 
-		<script src="code/App.js" type="module"></script>
+		<script src="code/App.ts" type="module"></script>
 	</body>
 </html>

@@ -105,18 +105,6 @@ input[type='number'] {
 	display: block;
 }
 
-#GameInputPhaseSelectInput {
-	display: none;
-}
-
-#GameInputPhaseSelectMoveInput {
-	display: none;
-}
-
-#GameInputPhaseSelectThrowInput {
-	display: none;
-}
-
 #LookAtScreen {
 	display: none;
 }
@@ -226,15 +214,41 @@ input[type='number'] {
 	transform-origin: bottom left;
 }
 
-#playerTabs {
-	position: absolute;
-	top: -3vmin;
-	width: 84vmin;
-	height: 10vmin;
+#playerTabsAndMenuLayout {
 	display: flex;
-	align-items: flex-start;
-	transform-origin: bottom left;
+	flex-direction: column;
+	align-items: stretch;
+	left: 0;
+	right: 0;
+	top: 0;
+	transform-origin: top;
+	height: 12.5vmin;
+	z-index: 1;
+}
+
+#playerTabsLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	gap: 0vmin;
+	height: 20vmin;
+	overflow-x: hidden;
+	margin-top: -17.5vmin;
+	padding-left: 2vmin;
+	right: 5vmin;
+	pointer-events: none;
+}
+
+#menuButtonLayout {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
 	gap: 1vmin;
+	height: 20vmin;
+	overflow-x: hidden;
+	margin-top: -5vmin;
+	padding-left: 2vmin;
+	padding-right: 2vmin;
 }
 
 .anchorBottom {
@@ -265,18 +279,58 @@ input[type='number'] {
 	padding-bottom: 28vmin;
 }
 
+#playerNameTop {
+	flex-grow: 1;
+	flex-basis: 0;
+	font-size: 5vmin;
+	padding-top: 7.5vmin;
+	padding-right: 14vmin;
+	height: 7vmin;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	visibility: visible;
+}
+
+#playerNameOverflowPanel {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	left: 0;
+	right: 0;
+	top: calc(12vmin * var(--scaleMult));
+	transform-origin: top;
+	height: 7vmin;
+	text-align: center;
+	visibility: visible;
+}
+
+#playerNameOverflow {
+	font-size: 4.2vmin;
+	padding-top: 0.9vmin;
+}
+
 .spacer {
-	display: block;
 	width: 2vmin;
 	height: 2vmin;
 }
 
 .separator {
-	position: absolute;
 	height: 0.7vmin;
 	background: white;
-	width: 101%;
-	left: -0.5%;
+	margin-left: -3.5vmin;
+	margin-right: -3.5vmin;
+}
+
+.disabledFromCode {
+	pointer-events: none !important;
+	opacity: 0.3 !important;
+}
+
+.disabledFade {
+	opacity: 0.1;
+	pointer-events: none;
+	filter: grayscale(1);
 }
 
 /* Character Icons */
@@ -328,17 +382,8 @@ input[type='number'] {
 .character4HighlightedImage {
 	background-image: url('Images/IconImages/Icon_CharacterPreview4_Highlighted.png');
 }
-.characterPendingPlayer1Image {
-	background-image: url('Images/IconImages/Icon_CharacterPreview_Pending1_128.png');
-}
-.characterPendingPlayer2Image {
-	background-image: url('Images/IconImages/Icon_CharacterPreview_Pending2_128.png');
-}
-.characterPendingPlayer3Image {
-	background-image: url('Images/IconImages/Icon_CharacterPreview_Pending3_128.png');
-}
-.characterPendingPlayer4Image {
-	background-image: url('Images/IconImages/Icon_CharacterPreview_Pending4_128.png');
+.characterPendingImage {
+	background-image: url('Images/IconImages/Icon_CharacterPreview_Pending_128.png');
 }
 .tickImage {
 	background-image: url('Images/IconImages/Icon_Tick_128.png');
@@ -347,17 +392,6 @@ input[type='number'] {
 	background-image: url('Images/IconImages/Icon_ActionsPending_128.png');
 }
 
-/* With white padding */
-/* .actionButtonImage {
-	position: relative;
-	top: 3%;
-	right: 3%;
-	bottom: 3%;
-	left: 3%;
-	width: 94%;
-	height: 94%;
-	background-size: 100%;
-} */
 .actionButtonImage {
 	position: relative;
 	top: 0;
@@ -387,117 +421,108 @@ input[type='number'] {
 	/* background-color:rgba(0, 18, 32, 0.6); */
 	background-image: linear-gradient(180deg, rgba(0, 18, 32, 0.3) 80%, transparent 100%);
 	border-radius: 3vmin;
-	z-index: 1;
 }
 
-.moveButtonImage {
-	background-image: url('Images/IconImages/UI_Direction_RUN.png') !important;
-}
+/* Action Images */
+/* ============= */
 
-.throwButtonImage {
-	background-image: url('Images/IconImages/UI_Direction Throw.png') !important;
-	background-size: 200%; /* for 2 images */
-	animation-name: spritesheetAnimation2x1;
+.moveImage {
+	background-image: url('Images/IconImages/Icon_Move_256.png');
 }
-
-.waitButtonImage {
-	background-image: url('Images/IconImages/UI_Wait_Sprite Sheet.png') !important;
+.actImage {
+	background-image: url('Images/IconImages/Icon_Interact_3x3_768.png'); /* CSS3 anim */
+	background-size: 300%; /* for 3x3 images */
+	animation-duration: 4s;
+	animation-name: interactButtonAnimation;
+}
+.waitImage {
+	background-image: url('Images/IconImages/Icon_Wait_4x1_256.png');
 	background-size: 400%; /* for 4 images */
 	animation-name: spritesheetAnimation4x1;
 }
-
-.lockedButtonImage {
-	background-image: url('Images/IconImages/UI_LOCK.png') !important;
+.throwImage {
+	background-image: url('Images/IconImages/Icon_Throw_3x1_256.png');
+	background-size: 300%; /* for 3 images */
+	animation-duration: 1s;
+	animation-name: spritesheetAnimation3x1;
+}
+.lockedImage {
+	background-image: url('Images/IconImages/Icon_Padlock_256.png') !important;
+	background-size: 100% !important;
+	animation-name: none !important;
 }
 
-.interactButtonImage {
-	background-image: url('Images/IconImages/UI_Interact_Sprite Sheet.png') !important; /* CSS3 anim */
-	background-size: 300%; /* for 3x3 images */
-	animation-name: interactButtonAnimation;
-	animation-duration: 4s;
+/* Directional Action Images */
+/* ========================= */
+
+.moveNorthImage {
+	background-image: url('Images/IconImages/Icon_MoveNorth_256.png') !important;
+}
+.moveEastImage {
+	background-image: url('Images/IconImages/Icon_MoveEast_256.png') !important;
+}
+.moveSouthImage {
+	background-image: url('Images/IconImages/Icon_MoveSouth_256.png') !important;
+}
+.moveWestImage {
+	background-image: url('Images/IconImages/Icon_MoveWest_256.png') !important;
 }
 
-.moveNorthButtonImage {
-	background-image: url('Images/IconImages/UI_Direction_RUN_N.png') !important;
+.actNorthImage {
+	background-image: url('Images/IconImages/Icon_InteractNorth_256.png') !important;
 }
-.moveEastButtonImage {
-	background-image: url('Images/IconImages/UI_Direction_RUN_E.png') !important;
+.actEastImage {
+	background-image: url('Images/IconImages/Icon_InteractEast_256.png') !important;
 }
-.moveSouthButtonImage {
-	background-image: url('Images/IconImages/UI_Direction_RUN_S.png') !important;
+.actSouthImage {
+	background-image: url('Images/IconImages/Icon_InteractSouth_256.png') !important;
 }
-.moveWestButtonImage {
-	background-image: url('Images/IconImages/UI_Direction_RUN_W.png') !important;
+.actWestImage {
+	background-image: url('Images/IconImages/Icon_InteractWest_256.png') !important;
 }
 
-.throwNorthButtonImage {
-	background-image: url('Images/IconImages/UI_Direction Throw N Sprite Sheet.png') !important;
-	background-size: 200%; /* for 2 images */
-	animation-name: spritesheetAnimation2x1;
+.throwNorthImage {
+	background-image: url('Images/IconImages/Icon_ThrowNorth_256.png') !important;
 }
-.throwEastButtonImage {
-	background-image: url('Images/IconImages/UI_Direction Throw E Sprite Sheet.png') !important;
-	background-size: 200%; /* for 2 images */
-	animation-name: spritesheetAnimation2x1;
+.throwEastImage {
+	background-image: url('Images/IconImages/Icon_ThrowEast_256.png') !important;
 }
-.throwSouthButtonImage {
-	background-image: url('Images/IconImages/UI_Direction Throw S Sprite Sheet.png') !important;
-	background-size: 200%; /* for 2 images */
-	animation-name: spritesheetAnimation2x1;
+.throwSouthImage {
+	background-image: url('Images/IconImages/Icon_ThrowSouth_256.png') !important;
 }
-.throwWestButtonImage {
-	background-image: url('Images/IconImages/UI_Direction Throw W Sprite Sheet.png') !important;
-	background-size: 200%; /* for 2 images */
-	animation-name: spritesheetAnimation2x1;
+.throwWestImage {
+	background-image: url('Images/IconImages/Icon_ThrowWest_256.png') !important;
 }
 
 /* Use spreadsheet to generate "MultiTurn phone controller animation calculations". */
 /* Keyframes for 3x3 interact spritesheet */
 @keyframes interactButtonAnimation {
-	0.0% {
+	0% {
 		background-position: 0% 0%;
 	}
-	8.7% {
+	11.11% {
 		background-position: 50% 0%;
 	}
-	13.04% {
+	22.22% {
 		background-position: 100% 0%;
 	}
-	21.74% {
-		background-position: 50% 0%;
-	}
-	26.09% {
-		background-position: 0% 0%;
-	}
-	34.78% {
+	33.33% {
 		background-position: 0% 50%;
 	}
-	43.48% {
+	44.44% {
 		background-position: 50% 50%;
 	}
-	47.83% {
+	55.55% {
 		background-position: 100% 50%;
 	}
-	56.52% {
-		background-position: 50% 50%;
-	}
-	60.87% {
-		background-position: 0% 50%;
-	}
-	69.57% {
+	66.66% {
 		background-position: 0% 100%;
 	}
-	78.26% {
+	77.77% {
 		background-position: 50% 100%;
 	}
-	82.61% {
+	88.88% {
 		background-position: 100% 100%;
-	}
-	91.3% {
-		background-position: 50% 100%;
-	}
-	95.65% {
-		background-position: 0% 100%;
 	}
 }
 
@@ -507,6 +532,19 @@ input[type='number'] {
 		background-position: 0% 0;
 	}
 	50% {
+		background-position: 100% 0;
+	}
+}
+
+/* Keyframes for 3x1 spritesheet */
+@keyframes spritesheetAnimation3x1 {
+	0% {
+		background-position: 0% 0;
+	}
+	33.33% {
+		background-position: 50% 0;
+	}
+	66.66% {
 		background-position: 100% 0;
 	}
 }
@@ -640,7 +678,23 @@ input[type='number'] {
 }
 
 #readyButton {
-	margin-top: -14vmin;
+	margin-top: -12vmin;
+	z-index: 1 !important;
+}
+
+.readyButtonPressed {
+	pointer-events: none;
+	opacity: 0.5;
+	box-shadow: 0 1.2vmin rgba(255, 255, 255, 0.8) !important;
+	color: rgba(0, 47, 70, 0.5) !important;
+}
+
+#unreadyButton {
+	margin-top: -13vmin;
+	padding: 0;
+	width: 13vmin;
+	height: 13vmin;
+	margin-left: 57vmin;
 }
 
 .characterPreview {
@@ -781,8 +835,8 @@ input[type='number'] {
 	/* background-color:rgba(0, 18, 32, 0.6); */
 	/* background-image: linear-gradient(180deg, rgba(0, 18, 32, 0.2) 0%, rgba(0, 18, 32, 0) 100%); */
 	/* background-color: rgba(0, 18, 32, 0.5); */
-	gap: 1.5vmin !important;
-	padding: 1.5vmin;
+	gap: 1vmin !important;
+	padding: 1vmin;
 	border-radius: 3vmin;
 	/* margin-bottom: 2.2vmin; */
 }
@@ -790,7 +844,7 @@ input[type='number'] {
 .actionPanelStem {
 	display: none;
 	position: absolute;
-	background-image: url('Images/IconImages/Icon_Stem_128.png');
+	/* background-image: url('Images/IconImages/Icon_Stem_128.png'); */
 	background-size: 100%;
 	width: 8vmin;
 	height: 8vmin;
@@ -805,8 +859,7 @@ input[type='number'] {
 } */
 
 #directionButtonsLayout {
-	/* height: 10vmin; */
-	/* margin-bottom: 20vmin; */
+	transition: 0.1s;
 }
 
 #playerPreviewGrid {
@@ -820,23 +873,33 @@ input[type='number'] {
 	margin-top: 1vmin;
 }
 
-#playerPreview {
+#characterPreview {
 	position: absolute;
 	left: 33vmin;
 	bottom: 25.5vmin;
-	/* background-color: rgba(0, 47, 70, 0.7); */
-	background-image: url(Images/IconImages/PlayerPreview3_400.png);
 	pointer-events: none;
 	background-size: 100%;
 	background-repeat: no-repeat;
 	width: 32vmin;
 	height: 32vmin;
-	/* z-index: 2; */
+}
+
+.characterPreviewImage1 {
+	background-image: url(Images/IconImages/PlayerPreview1_400.png);
+}
+.characterPreviewImage2 {
+	background-image: url(Images/IconImages/PlayerPreview2_400.png);
+}
+.characterPreviewImage3 {
+	background-image: url(Images/IconImages/PlayerPreview3_400.png);
+}
+.characterPreviewImage4 {
+	background-image: url(Images/IconImages/PlayerPreview4_400.png);
 }
 
 .directionalButton {
 	position: absolute;
-	background-color: rgba(255, 255, 255, 0.9);
+	background-color: white;
 	border-radius: 3.5vmin;
 	border: none;
 	box-shadow: 1.2vmin 1.2vmin rgba(255, 255, 255, 0.65);
@@ -846,6 +909,25 @@ input[type='number'] {
 	width: 21vmin;
 	height: 15.3vmin;
 }
+
+/* Adjustments to position move images more nicely within buttons: */
+.directionalButton .moveNorthImage {
+	bottom: -4.5vmin;
+	left: -4.5vmin;
+}
+.directionalButton .moveEastImage {
+	bottom: -3.5vmin;
+	left: -4.5vmin;
+}
+.directionalButton .moveSouthImage {
+	bottom: -3.5vmin;
+	left: -4.5vmin;
+}
+.directionalButton .moveWestImage {
+	bottom: -4.5vmin;
+	left: -4.5vmin;
+}
+
 .directionalButton:hover {
 	box-shadow: 1.2vmin 1.2vmin rgba(255, 255, 255, 0.5);
 }
@@ -853,6 +935,7 @@ input[type='number'] {
 	opacity: 0.9;
 	transform: skew(39deg) rotate(-25deg) translateY(-1vmin);
 }
+
 .directionalButton:active {
 	background-color: rgba(248, 199, 137, 0.8);
 	box-shadow: 0 0 rgba(0, 0, 0, 0);
@@ -862,45 +945,38 @@ input[type='number'] {
 	opacity: 0.9;
 	transform: skew(39deg) rotate(-25deg);
 }
-.directionalButton:active #moveNorthArrowImage {
-	opacity: 0.9;
+/* Arrows slide when directional buttons are pressed: */
+.directionalButton:active #northArrowImage {
 	transform: skew(39deg) rotate(-25deg) translate(3.5vmin, -3.5vmin);
 }
-.directionalButton:active #moveEastArrowImage {
-	opacity: 0.9;
+.directionalButton:active #eastArrowImage {
 	transform: skew(39deg) rotate(-25deg) translate(3.5vmin, 1vmin);
 }
-.directionalButton:active #moveSouthArrowImage {
-	opacity: 0.9;
+.directionalButton:active #southArrowImage {
 	transform: skew(39deg) rotate(-25deg) translate(-3.5vmin, 1vmin);
 }
-.directionalButton:active #moveWestArrowImage {
-	opacity: 0.9;
+.directionalButton:active #westArrowImage {
 	transform: skew(39deg) rotate(-25deg) translate(-3.5vmin, -3.5vmin);
+}
+
+.directionalButtonSelected {
+	filter: brightness(1.2);
+}
+
+.directionalButtonSelected .directionalButtonImage {
+	transform: skew(39deg) rotate(-25deg) scale(1.1) translateY(-1vmin);
 }
 
 .directionalButtonImage {
 	position: absolute;
-	width: 21vmin;
-	height: 21vmin;
-	left: -2vmin;
-	bottom: -1vmin;
+	width: 26vmin;
+	height: 26vmin;
+	left: -9.8vmin;
+	bottom: 0.5vmin;
 	background-size: 100%;
 	transition: 0.04s;
 	transform: skew(39deg) rotate(-25deg);
-}
-
-#moveNorthArrowImage {
-	background-image: url(Images/IconImages/Icon_ArrowMoveN.png);
-}
-#moveEastArrowImage {
-	background-image: url(Images/IconImages/Icon_ArrowMoveE.png);
-}
-#moveSouthArrowImage {
-	background-image: url(Images/IconImages/Icon_ArrowMoveS.png);
-}
-#moveWestArrowImage {
-	background-image: url(Images/IconImages/Icon_ArrowMoveW.png);
+	pointer-events: none;
 }
 
 #northDirectionalButton {
@@ -1067,6 +1143,19 @@ input[type='number'] {
 	transform: translateY(1.5vmin);
 }
 
+.bootButton {
+	border-radius: 5.5vmin;
+}
+
+.bootButton:hover {
+	box-shadow: 0 1.2vmin rgba(255, 121, 121, 0.7);
+}
+
+.bootButton:active {
+	box-shadow: 0 0 rgba(0, 0, 0, 0);
+	transform: translateY(1.5vmin);
+}
+
 .tabButton:hover {
 	box-shadow: 0 1vmin rgba(255, 255, 255, 0.55);
 }
@@ -1154,19 +1243,14 @@ input[type='number'] {
 }
 
 .actionLabelText {
-	width: 21.6vmin;
-	background-color: rgba(214, 106, 0, 0.8);
-	color: rgba(255, 255, 255, 0.95);
+	position: absolute;
+	width: 22vmin;
+	margin-top: -0.1vmin;
+	color: white;
+	text-shadow: black 0px 0px 2px;
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
 	font-size: 4vmin;
-	margin-bottom: -1.6vmin;
-	padding-top: 0.2vmin;
-	padding-bottom: 1.5vmin;
-	border-top-left-radius: 2vmin;
-	border-top-right-radius: 2vmin;
-	border-bottom-left-radius: 1vmin;
-	border-bottom-right-radius: 1vmin;
 	-webkit-user-select: none; /* Chrome all / Safari all */
 	-moz-user-select: none; /* Firefox all */
 	-ms-user-select: none; /* IE 10+ */
@@ -1307,49 +1391,81 @@ input[type='number'] {
 	height: 80vmin;
 }
 
-/* .actionButton {
-	text-align: center;
-	width: 38vmin;
-	height: 38vmin;
-} */
-
-/* With white padding */
-/* .actionButton {
-	text-align: center;
-	width: 20.9vmin;
-	height: 20.9vmin;
-	margin-top: 1vmin;
-	border: 0.8vmin solid transparent;
-} */
-
 .actionButton {
+	position: relative;
+	background-color: rgba(0, 18, 32, 0.8);
 	text-align: center;
-	width: 22.5vmin;
-	height: 22.5vmin;
+	width: 22vmin;
+	height: 22vmin;
 	transition: 0.03s;
 	cursor: pointer;
+	border-radius: 1.5vmin;
+	border: 0.4vmin solid black;
 }
-
 .actionButton:hover {
 	/* transform: scale(1.02); */
 	filter: brightness(1.1);
 }
-
 .actionButton:active {
 	opacity: 0.8;
 	transform: scale(0.9);
 }
 
-.selectedActionButton {
-	/* background-color: rgb(0, 18, 32); */
-	background-color: white;
-	border: 0.8vmin solid rgb(0, 192, 133);
+.actionButtonDisabled {
+	pointer-events: none;
+	opacity: 0.3;
 }
 
-.selectedActionButton .actionButtonImage {
-	/* opacity: 1; */
-	/* transform: scale(1.06); */
-	/* filter: blur(0.2vmin); */
+.actionButtonInner {
+	position: absolute;
+	/* background-color: rgb(250, 199, 139); */
+	background-color: rgba(255, 255, 255, 0.3);
+	top: 1vmin;
+	right: 1vmin;
+	bottom: 1vmin;
+	left: 1vmin;
+	border-radius: 1vmin;
+	border: 0.4vmin solid black;
+}
+
+.actionButtonWithLabel {
+	height: 25.8vmin;
+}
+.actionButtonWithLabel .actionButtonInner {
+	top: 4.8vmin;
+}
+
+.actionButtonPreviewMove {
+	background-color: #019748;
+}
+.actionButtonPreviewMove .actionButtonInner {
+	background-color: #bdffdc;
+}
+.actionButtonPreviewInteract {
+	background-color: #c86400;
+}
+.actionButtonPreviewInteract .actionButtonInner {
+	background-color: #ffd9b3;
+}
+.actionButtonPreviewWait {
+	background-color: #2397e4;
+}
+.actionButtonPreviewWait .actionButtonInner {
+	background-color: #b9e3ff;
+}
+.actionButtonPreviewThrow {
+	background-color: #e8d734;
+}
+.actionButtonPreviewThrow .actionButtonInner {
+	background-color: #fffdc0;
+}
+
+.actionButtonSelected {
+	border: 0.4vmin solid white;
+}
+.actionButtonSelected .actionButtonInner {
+	/* background-color: rgba(255, 255, 255, 0.9) !important; */
+	border-color: white;
 }
 
 .disabledButton {
@@ -1362,26 +1478,13 @@ input[type='number'] {
 	height: 25vmin;
 }
 
-/* .actionNumberImage {
-	display: block;
-	position: relative;
-	width: 10vmin;
-	height: 10vmin;
-	left: -0.2vmin;
-	top: -34.3vmin;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-} */
-
 .actionNumberImage {
 	display: block;
 	position: relative;
 	width: 6vmin;
 	height: 6vmin;
-	left: 0.3vmin;
-	top: 0.3vmin;
+	left: 0;
+	top: 0;
 	-webkit-user-select: none; /* Chrome all / Safari all */
 	-moz-user-select: none; /* Firefox all */
 	-ms-user-select: none; /* IE 10+ */
@@ -1782,6 +1885,10 @@ input[type='number'] {
 		margin-left: 66vmin;
 	}
 
+	#unreadyButton {
+		margin-left: 110vmin !important;
+	}
+
 	/* .belowPlayerTabsContent {
 		top: 9%;
 	} */
@@ -1916,26 +2023,6 @@ input[type='number'] {
 		}
 	}
 }
-
-/* 
-@media (min-aspect-ratio: 11/18) and (max-aspect-ratio: 18/11) {
-	html {
-		--scaleMult: 0.92;
-	}
-}
-
-@media (min-aspect-ratio: 13/19) and (max-aspect-ratio: 18/13) {
-	html {
-		--scaleMult: 0.7;
-	}
-}
-
-@media (min-aspect-ratio: 16/18) and (max-aspect-ratio: 18/16) {
-	html {
-		--scaleMult: 0.62;
-	}
-}
-*/
 
 /* Scale things back up for increasingly wide landscape aspect ratios */
 @media (min-aspect-ratio: 18/16) {
