@@ -439,7 +439,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'west'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="westArrowImage" class="directionalButtonImage actWestImage"></div>
+											<div id="westArrowImage" class="directionalButtonImage moveWestImage"></div>
 										</div>
 										<div
 											tabindex="109"
@@ -448,7 +448,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'north'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="northArrowImage" class="directionalButtonImage actNorthImage"></div>
+											<div id="northArrowImage" class="directionalButtonImage moveNorthImage"></div>
 										</div>
 										<div
 											tabindex="110"
@@ -457,7 +457,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'east'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="eastArrowImage" class="directionalButtonImage actEastImage"></div>
+											<div id="eastArrowImage" class="directionalButtonImage moveEastImage"></div>
 										</div>
 										<div
 											tabindex="111"
@@ -466,7 +466,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'south'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="southArrowImage" class="directionalButtonImage actSouthImage"></div>
+											<div id="southArrowImage" class="directionalButtonImage moveSouthImage"></div>
 										</div>
 										<div id="characterPreview" class="characterPreviewImage3"></div>
 									</div>
@@ -608,13 +608,13 @@
 							</div>
 							<div id="readyButton_itemVote">
 								<!-- (#readyButton is repositioned here in code) -->
-								<!-- <div id="readyButton" class="pressEffectButton mainButtonSpacing largeButtonText readyButtonItemVote">
+								<div id="readyButton" class="pressEffectButton mainButtonSpacing largeButtonText readyButtonItemVote">
 									Ready!
-								</div> -->
+								</div>
 							</div>
 							<div id="unreadyButton_itemVote">
 								<!-- (#unreadyButton is repositioned here in code) -->
-								<!-- <div
+								<div
 									id="unreadyButton"
 									class="pressEffectButton mainButtonSpacing largeButtonText unreadyButtonItemVote"
 								>
@@ -624,7 +624,7 @@
 										class="actionButtonImage"
 										alt="Undo Ready"
 									/>
-								</div> -->
+								</div>
 							</div>
 						</div>
 					</div>
