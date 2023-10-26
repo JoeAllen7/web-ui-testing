@@ -102,11 +102,11 @@ input[type='number'] {
 }
 
 #GameInputPhase {
-	display: none;
+	display: block;
 }
 
 #ItemPlacementVote {
-	display: blocky;
+	display: none;
 }
 
 #LookAtScreen {
