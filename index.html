@@ -141,6 +141,109 @@
 		</div>
 		<!-- End of Lobby view -->
 
+		<!-- PlayerTypeSelect: This is where players choose what player type to join as (e.g. doctor, writer) -->
+		<div class="view" id="PlayerTypeSelect">
+			<div class="belowHeaderContent">
+				<div class="overlay defaultBlur"></div>
+				<form action="" method="get" onsubmit="app.onJoinButtonPressed(this); app.consumeEvent(event); return false">
+					<div class="applyScaleMult adaptivePanelLayout">
+						<div class="verticalCentreLayout">
+							<div class="titleText" style="width: 100vmin; overflow: hidden; text-overflow: ellipsis">
+								This game currently has...
+							</div>
+							<div>
+								<p
+									class="infoText"
+									style="
+										display: inline-block;
+										overflow: hidden;
+										text-overflow: ellipsis;
+										color: #00fdb0;
+										padding-right: 1.5vmin;
+									"
+								>
+									2 Doctors:
+								</p>
+								<p class="infoText" style="display: inline-block; overflow: hidden; text-overflow: ellipsis">
+									Greg, Dorothy
+								</p>
+							</div>
+							<div>
+								<p
+									class="infoText"
+									style="
+										display: inline-block;
+										overflow: hidden;
+										text-overflow: ellipsis;
+										color: #00fdb0;
+										padding-right: 1.5vmin;
+									"
+								>
+									2 Writers:
+								</p>
+								<p class="infoText" style="display: inline-block; overflow: hidden; text-overflow: ellipsis">
+									Archie, Marlene
+								</p>
+							</div>
+
+							<div class="spacerInPortrait"></div>
+						</div>
+						<div class="verticalCentreLayout">
+							<p class="titleText" style="margin-bottom: 2vmin">I'd like to join as a...</p>
+							<div class="blurPanel enterBounceAnimated">
+								<div class="verticalCentreLayout">
+									<div
+										class="horizontalPanelLayout"
+										style="overflow-x: auto; max-width: 90vmin; justify-content: unset"
+									>
+										<!-- Template button to be cloned: -->
+										<div class="playerButtonWithLabel">
+											<div
+												id="playerTypeButton"
+												class="pressEffectButton"
+												style="width: 40vmin; height: 40vmin; flex-shrink: 0"
+											>
+												<div id="playerTypeIcon" class="actionButtonImage doctorImage"></div>
+											</div>
+											<div
+												id="playerTypeTitleText"
+												class="titleText"
+												style="width: 40vmin; overflow: hidden; text-overflow: ellipsis"
+											>
+												Doctor
+											</div>
+											<div
+												id="playerTypeInfoText"
+												class="infoText"
+												style="width: 40vmin; overflow: hidden; text-overflow: ellipsis; margin-top: -1vmin"
+											>
+												Plan moves, input actions and cure patients
+											</div>
+										</div>
+										<div class="playerButtonWithLabel">
+											<div id="" class="pressEffectButton" style="width: 40vmin; height: 40vmin; flex-shrink: 0">
+												<div id="" class="actionButtonImage writerImage"></div>
+											</div>
+											<div class="titleText" style="width: 40vmin; overflow: hidden; text-overflow: ellipsis">
+												Writer
+											</div>
+											<div
+												class="infoText"
+												style="width: 40vmin; overflow: hidden; text-overflow: ellipsis; margin-top: -1vmin"
+											>
+												Write dialogue for the characters on screen
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<!-- End of PlayerTypeSelect view -->
+
 		<!-- WaitOrAddPlayers: Shown while waiting for others to join, also lets you add another player on the current device -->
 		<div class="view" id="WaitOrAddPlayers">
 			<div class="fullScreenContent">
@@ -439,7 +542,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'west'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="westArrowImage" class="directionalButtonImage moveWestImage"></div>
+											<div id="westArrowImage" class="directionalButtonImage actWestImage"></div>
 										</div>
 										<div
 											tabindex="109"
@@ -448,7 +551,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'north'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="northArrowImage" class="directionalButtonImage moveNorthImage"></div>
+											<div id="northArrowImage" class="directionalButtonImage actNorthImage"></div>
 										</div>
 										<div
 											tabindex="110"
@@ -457,7 +560,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'east'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="eastArrowImage" class="directionalButtonImage moveEastImage"></div>
+											<div id="eastArrowImage" class="directionalButtonImage actEastImage"></div>
 										</div>
 										<div
 											tabindex="111"
@@ -466,7 +569,7 @@
 											ontouchend="app.onSelectDataButtonPressed(this, 'south'); app.consumeEvent(event)"
 											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 										>
-											<div id="southArrowImage" class="directionalButtonImage moveSouthImage"></div>
+											<div id="southArrowImage" class="directionalButtonImage actSouthImage"></div>
 										</div>
 										<div id="characterPreview" class="characterPreviewImage3"></div>
 									</div>
@@ -608,7 +711,81 @@
 							</div>
 							<div id="readyButton_itemVote">
 								<!-- (#readyButton is repositioned here in code) -->
-								<div id="readyButton" class="pressEffectButton mainButtonSpacing largeButtonText readyButtonItemVote">
+								<!-- <div id="readyButton" class="pressEffectButton mainButtonSpacing largeButtonText readyButtonItemVote">
+									Ready!
+								</div> -->
+							</div>
+							<div id="unreadyButton_itemVote">
+								<!-- (#unreadyButton is repositioned here in code) -->
+								<!-- <div
+									id="unreadyButton"
+									class="pressEffectButton mainButtonSpacing largeButtonText unreadyButtonItemVote"
+								>
+									<img
+										src="Images/IconImages/Icon_Undo_128.png"
+										id="unreadyImage"
+										class="actionButtonImage"
+										alt="Undo Ready"
+									/>
+								</div> -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End of ItemPlacementVote view -->
+
+		<!-- WriterTextInput: This is where writer players enter text that will appear on screen -->
+		<div class="view" id="WriterTextInput">
+			<div class="overlay defaultBlur"></div>
+			<div class="belowPlayerTabsContent">
+				<div class="applyScaleMult">
+					<div id="itemPlacementMainLayout" class="adaptivePanelLayout fadeInAnimated animDelay1" style="gap: 0">
+						<div
+							class="characterAvatarImage enterBounceAnimated animDelay1"
+							style="background-image: url('Images/IconImages/Icon_EdBangerTemp_256.png')"
+						></div>
+						<div class="spacer"></div>
+						<div class="spacer"></div>
+						<div id="" class="verticalPanelLayout" style="gap: 0">
+							<div class="actionsWithHeadingLayout verticalPanelLayout" style="gap: 0">
+								<p
+									id="itemPlacementInfoText"
+									class="infoText"
+									style="font-size: 4.5vmin; text-align: center; margin-bottom: -2vmin; margin-top: 3vmin"
+								>
+									Write some dialogue text for
+								</p>
+								<p id="itemPlacementHeadingText" class="titleText">Ed Banger</p>
+								<div class="spacer"></div>
+
+								<div
+									id=""
+									class="horizontalPanelLayout actionsWithHeadingLayout"
+									style="height: 43vmin; width: 96vmin; position: relative"
+								>
+									<textarea
+										name="writerInputField"
+										class="writerInputField"
+										ondrop="return false;"
+										onpaste="return false;"
+										autocapitalize="off"
+										autocomplete="off"
+										placeholder="Enter some text..."
+										style="resize: none"
+										maxlength="250"
+									>
+									</textarea>
+								</div>
+							</div>
+
+							<div id="readyButton_itemVote">
+								<!-- (#readyButton is repositioned here in code) -->
+								<div
+									id="readyButton"
+									class="pressEffectButton mainButtonSpacing largeButtonText readyButtonWriterTextInput"
+								>
 									Ready!
 								</div>
 							</div>
@@ -616,7 +793,7 @@
 								<!-- (#unreadyButton is repositioned here in code) -->
 								<div
 									id="unreadyButton"
-									class="pressEffectButton mainButtonSpacing largeButtonText unreadyButtonItemVote"
+									class="pressEffectButton mainButtonSpacing largeButtonText unreadyButtonWriterTextInput"
 								>
 									<img
 										src="Images/IconImages/Icon_Undo_128.png"
@@ -631,7 +808,7 @@
 				</div>
 			</div>
 		</div>
-		<!-- End of ItemPlacementVote view -->
+		<!-- End of WriterTextInput view -->
 
 		<!-- Header for displaying the active player name while selecting actions -->
 		<div class="applyScaleMult">
@@ -654,7 +831,7 @@
 		<!-- End of LookAtScreen view -->
 
 		<!-- Player tabs, player name and menu button -->
-		<div id="playerTabsAndMenu" style="display: none">
+		<div id="playerTabsAndMenu" style="display: block">
 			<div id="playerTabsAndMenuLayout" class="anchorTop applyScaleMultY darkBlur">
 				<div id="menuButtonLayout" class="applyScaleMultX">
 					<!-- Menu button -->

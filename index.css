@@ -46,6 +46,29 @@ input[type='number'] {
 	color: rgba(0, 47, 70, 0.6);
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+	width: 4vmin;
+	height: 4vmin;
+}
+/* Track */
+::-webkit-scrollbar-track {
+	background: #ffffff;
+	border-radius: 1.6vmin;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: rgba(0, 23, 35, 0.5);
+	border-radius: 1.5vmin;
+	width: 3vmin;
+	height: 3vmin;
+	border: 0.5vmin solid white;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 23, 35, 0.35);
+}
+
 /* -- Background -- */
 /* ---------------- */
 
@@ -89,6 +112,10 @@ input[type='number'] {
 	display: none;
 }
 
+#PlayerTypeSelect {
+	display: none;
+}
+
 #WaitOrAddPlayers {
 	display: none;
 }
@@ -102,11 +129,15 @@ input[type='number'] {
 }
 
 #GameInputPhase {
-	display: block;
+	display: none;
 }
 
 #ItemPlacementVote {
 	display: none;
+}
+
+#WriterTextInput {
+	display: block;
 }
 
 #LookAtScreen {
@@ -348,6 +379,20 @@ input[type='number'] {
 	opacity: 0.1;
 	pointer-events: none;
 	filter: grayscale(1);
+}
+
+.writerImage {
+	background-image: url('Images/IconImages/Icon_Writer_256.png');
+}
+.doctorImage {
+	background-image: url('Images/IconImages/Icon_Doctor_256.png');
+}
+.characterAvatarImage {
+	background-size: 100%;
+	width: 35vmin;
+	height: 35vmin;
+	border: 1vmin solid white;
+	border-radius: 100vmin;
 }
 
 /* Character Icons */
@@ -708,22 +753,22 @@ input[type='number'] {
 #readyButton {
 	position: relative;
 	margin-top: -12vmin;
+	padding-left: 10vmin !important;
+	padding-right: 10vmin !important;
+	padding-top: 2vmin !important;
+	padding-bottom: 2vmin !important;
 	z-index: 1 !important;
 }
 .readyButtonActionInput {
 	margin-bottom: 0 !important;
-	padding-left: 10vmin !important;
-	padding-right: 10vmin !important;
-	padding-top: 2vmin !important;
-	padding-bottom: 2vmin !important;
 }
 .readyButtonItemVote {
 	margin-top: 1vmin !important;
 	margin-bottom: 0 !important;
-	padding-left: 10vmin !important;
-	padding-right: 10vmin !important;
-	padding-top: 2vmin !important;
-	padding-bottom: 2vmin !important;
+}
+.readyButtonWriterTextInput {
+	margin-top: -1vmin !important;
+	margin-bottom: 0 !important;
 }
 
 .readyButtonPressed {
@@ -1346,6 +1391,17 @@ input[type='number'] {
 	height: 5vmin;
 }
 
+.writerInputField {
+	color: rgb(0, 47, 70);
+	font-family: 'Atkinson Hyperlegible', sans-serif;
+	font-weight: bold;
+	font-size: 5vmin;
+	padding: 2vmin;
+	border-radius: 2vmin;
+	width: 90%;
+	height: 32vmin;
+}
+
 .socialButton {
 	width: 11vmin;
 	height: 11vmin;
@@ -1808,10 +1864,6 @@ input[type='number'] {
 		margin-top: -25vmin !important;
 		margin-left: 110vmin !important;
 	}
-
-	/* .belowPlayerTabsContent {
-		top: 9%;
-	} */
 
 	.multiturnHeader {
 		height: 20%;
