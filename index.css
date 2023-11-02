@@ -767,7 +767,7 @@ input[type='number'] {
 	margin-bottom: 0 !important;
 }
 .readyButtonWriterTextInput {
-	margin-top: -1vmin !important;
+	margin-top: 0 !important;
 	margin-bottom: 0 !important;
 }
 
@@ -1395,11 +1395,12 @@ input[type='number'] {
 	color: rgb(0, 47, 70);
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
-	font-size: 5vmin;
-	padding: 2vmin;
+	font-size: 7vmin;
+	padding: 3vmin;
 	border-radius: 2vmin;
 	width: 90%;
 	height: 32vmin;
+	line-height: 8vmin;
 }
 
 .socialButton {
@@ -1863,6 +1864,10 @@ input[type='number'] {
 	.unreadyButtonActionInput {
 		margin-top: -25vmin !important;
 		margin-left: 110vmin !important;
+	}
+
+	.readyButtonWriterTextInput {
+		margin-top: -3.5vmin !important;
 	}
 
 	.multiturnHeader {
