@@ -1878,6 +1878,10 @@ input[type='number'] {
 		top: 20%;
 	}
 
+	.writerTextInputContent {
+		top: 20% !important;
+	}
+
 	.adaptivePanelLayout {
 		flex-direction: row;
 	}
