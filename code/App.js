@@ -1,6 +1,9 @@
 addEventListener('resize', onWindowResized);
 updatePlayerNameLayout();
 
+var scrollingWriters = false;
+var isScrollingWriterButtons;
+
 function onWindowResized(event) {
     updatePlayerNameLayout();
 }
@@ -27,14 +30,18 @@ function updatePlayerNameLayout() {
 }
 
 function onWriterCharacterButtonPressed(pressedElement) {
-	pressedElement.scrollIntoView({
-		behavior: 'auto',
-		block: 'center',
-		inline: 'center',
-	});
+	if (!scrollingWriters) {
+		pressedElement.scrollIntoView({
+			behavior: 'auto',
+			block: 'center',
+			inline: 'center',
+		});
+	}
 }
 
 function onWriterCharacterSelectScroll(scrollElement) {
+	scrollingWriters = true;
+	
 	var containerRect = scrollElement.getBoundingClientRect();
 	var containerCentreX = containerRect.left + containerRect.width / 2;
 
@@ -66,15 +73,16 @@ function onWriterCharacterSelectScroll(scrollElement) {
 		}
 	}
 
-	// if (this.isScrollingWriterButtons) {
-		// // Clear our timeout throughout the scroll
-		// window.clearTimeout(this.isScrollingWriterButtons);
-	// }
-	// // Set a timeout to run after scrolling ends
-	// this.isScrollingWriterButtons = setTimeout(() => this.writerCharacterScrollEnd(centermostElement!), 400);
+	if (isScrollingWriterButtons) {
+		// Clear our timeout throughout the scroll
+		window.clearTimeout(isScrollingWriterButtons);
+	}
+	// Set a timeout to run after scrolling ends
+	isScrollingWriterButtons = setTimeout(() => writerCharacterScrollEnd(centermostElement), 400);
 }
 
 function writerCharacterScrollEnd(selectedElement) {
+	scrollingWriters = false;
 	selectedElement.scrollIntoView({
 		behavior: 'auto',
 		block: 'center',
