@@ -25,3 +25,11 @@ function updatePlayerNameLayout() {
     playerNameTop.style.visibility = displayAtTop ? 'visible' : 'hidden';
     playerNameSeparate.style.visibility = displayAtTop ? 'hidden' : 'visible';
 }
+
+function writerCharacterScrollEnd(selectedElement) {
+	selectedElement.scrollIntoView({
+		behavior: 'auto',
+		block: 'center',
+		inline: 'center',
+	});
+}
