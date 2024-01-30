@@ -78,7 +78,7 @@ function onWriterCharacterSelectScroll(scrollElement) {
 		window.clearTimeout(isScrollingWriterButtons);
 	}
 	// Set a timeout to run after scrolling ends
-	isScrollingWriterButtons = setTimeout(() => writerCharacterScrollEnd(centermostElement), 400);
+	isScrollingWriterButtons = setTimeout(() => writerCharacterScrollEnd(centermostElement), 66);
 }
 
 function writerCharacterScrollEnd(selectedElement) {
