@@ -26,6 +26,46 @@ function updatePlayerNameLayout() {
     playerNameSeparate.style.visibility = displayAtTop ? 'hidden' : 'visible';
 }
 
+function onWriterCharacterSelectScroll(scrollElement) {
+	var containerRect = scrollElement.getBoundingClientRect();
+	var containerCentreX = containerRect.left + containerRect.width / 2;
+
+	var centermostElement;
+	var minDistance = 1000000;
+
+	for (let child of scrollElement.children) {
+		var childRect = child.getBoundingClientRect();
+		var childCentreX = childRect.left + childRect.width / 2;
+
+		var distanceX = Math.abs(containerCentreX - childCentreX);
+
+		if (!child.classList.contains('placeholderButton') && distanceX < minDistance) {
+			centermostElement = child;
+			minDistance = distanceX;
+		}
+	}
+
+	for (let child of scrollElement.children) {
+		if (child.classList.contains('placeholderButton')) {
+			continue;
+		}
+		if (child === centermostElement) {
+			child.style.opacity = '1';
+			child.classList.add('actionButtonSelected');
+		} else {
+			child.style.opacity = '0.5';
+			child.classList.remove('actionButtonSelected');
+		}
+	}
+
+	// if (this.isScrollingWriterButtons) {
+		// // Clear our timeout throughout the scroll
+		// window.clearTimeout(this.isScrollingWriterButtons);
+	// }
+	// // Set a timeout to run after scrolling ends
+	// this.isScrollingWriterButtons = setTimeout(() => this.writerCharacterScrollEnd(centermostElement!), 400);
+}
+
 function writerCharacterScrollEnd(selectedElement) {
 	selectedElement.scrollIntoView({
 		behavior: 'auto',
