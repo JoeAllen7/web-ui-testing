@@ -852,13 +852,17 @@
 			<div class="overlay defaultBlur"></div>
 			<div class="belowPlayerTabsContent writerTextInputContent">
 				<div class="applyScaleMult">
-					<div id="itemPlacementMainLayout" class="adaptivePanelLayout fadeInAnimated animDelay1" style="gap: 0">
+					<div id="itemPlacementMainLayout" class="verticalPanelLayout fadeInAnimated animDelay1" style="gap: 0">
 						<!-- <div
 							class="characterAvatarImage enterBounceAnimated animDelay2"
 							style="background-image: url('Images/IconImages/Icon_EdBangerTemp_256.png')"
 						></div> -->
-						<div class="horizontalPanelLayout" style="gap: 0">
-							<div id="scrollTest1" class="characterScrollSection" onscroll="onWriterCharacterSelectScroll(this)">
+						<div class="verticalPanelLayout actionsWithHeadingLayout">
+							<div class="actionHeadingPanel">
+								<p id="actionsHeadingText" class="infoText tutorialText">I'd like to write for:</p>
+								<div id="actionsStem" class="actionPanelStem hideInLandscape"></div>
+							</div>
+							<div class="characterScrollSection" onscroll="onWriterCharacterSelectScroll(this)">
 								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
 								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
 								<div
@@ -919,71 +923,66 @@
 								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
 								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
 							</div>
-							<!-- <div id="scrollTest2" class="characterScrollSection">
-								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage2" style="display: grid; scroll-snap-align: center"></div>
+
+							<!-- Left arrow button -->
+							<div
+								id="writerCharacterLeftButton"
+								class="arrowButton fadeInAnimated"
+								style="position: absolute; left: -5vmin; top: 6.5vmin"
+								ontouchend="onWriterCharacterLeftButtonPressed(this); consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+							></div>
+							<!-- Right arrow button -->
+							<div
+								id="writerCharacterRightButton"
+								class="arrowButton rightArrow fadeInAnimated"
+								style="position: absolute; right: -5vmin; top: 6.5vmin"
+								ontouchend="onWriterCharacterRightButtonPressed(this); consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+							></div>
+							<p
+								id="writerCharacterNameText"
+								class="titleText"
+								style="
+									margin-top: -9vmin;
+									border-bottom-left-radius: 3vmin;
+									border-bottom-right-radius: 3vmin;
+									padding-left: 4vmin;
+									padding-right: 4vmin;
+									font-size: 6vmin;
+									z-index: 2;
+								"
+							>
+								Ed Banger
+							</p>
+							<div class="verticalPanelLayout" style="height: 35vmin; width: 96vmin; position: relative">
+								<textarea
+									name="writerInputField"
+									class="writerInputField"
+									ondrop="return false;"
+									onpaste="return false;"
+									autocapitalize="off"
+									autocomplete="off"
+									placeholder="Enter some text..."
+									style="resize: none"
+									maxlength="100"
+								></textarea>
 							</div>
-							<div id="scrollTest3" class="characterScrollSection">
-								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage2" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage3" style="display: grid; scroll-snap-align: center"></div>
-							</div>
-							<div id="scrollTest4" class="characterScrollSection">
-								<div class="characterScrollImage2" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage3" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
-							</div>
-							<div id="scrollTest5" class="characterScrollSection">
-								<div class="characterScrollImage3" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
-								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
-							</div> -->
 						</div>
 
-						<div class="spacer"></div>
-						<div class="spacer"></div>
-						<div id="" class="verticalPanelLayout" style="gap: 0">
-							<div class="actionsWithHeadingLayout verticalPanelLayout" style="gap: 0">
-								<p
-									id="itemPlacementInfoText"
-									class="infoText"
-									style="font-size: 4.5vmin; text-align: center; margin-bottom: -2vmin; margin-top: 2vmin"
-								>
-									Write some dialogue text for
-								</p>
-								<p id="itemPlacementHeadingText" class="titleText" style="margin-bottom: -1vmin">Ed Banger:</p>
-								<div class="spacer"></div>
-
-								<div
-									id=""
-									class="horizontalPanelLayout actionsWithHeadingLayout"
-									style="height: 42vmin; width: 96vmin; position: relative"
-								>
-									<textarea
-										name="writerInputField"
-										class="writerInputField"
-										ondrop="return false;"
-										onpaste="return false;"
-										autocapitalize="off"
-										autocomplete="off"
-										placeholder="Enter some text..."
-										style="resize: none"
-										maxlength="250"
-									></textarea>
-								</div>
-							</div>
-
-							<div id="readyButton_itemVote">
+						<!-- <div class="spacer"></div>
+						<div class="spacer"></div> -->
+						<div class="verticalPanelLayout" style="gap: 0">
+							<div id="readyButton_writerTextInput">
 								<!-- (#readyButton is repositioned here in code) -->
 								<div
 									id="readyButton"
 									class="pressEffectButton mainButtonSpacing largeButtonText readyButtonWriterTextInput"
 								>
-									Ready!
+									Send
 								</div>
 							</div>
-							<div id="unreadyButton_itemVote">
+							<div id="unreadyButton_writerTextInput">
 								<!-- (#unreadyButton is repositioned here in code) -->
 								<!-- <div
 									id="unreadyButton"
