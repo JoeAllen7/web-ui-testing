@@ -26,6 +26,14 @@ function updatePlayerNameLayout() {
     playerNameSeparate.style.visibility = displayAtTop ? 'hidden' : 'visible';
 }
 
+function onWriterCharacterButtonPressed(pressedElement) {
+	pressedElement.scrollIntoView({
+		behavior: 'auto',
+		block: 'center',
+		inline: 'center',
+	});
+}
+
 function onWriterCharacterSelectScroll(scrollElement) {
 	var containerRect = scrollElement.getBoundingClientRect();
 	var containerCentreX = containerRect.left + containerRect.width / 2;
