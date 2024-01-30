@@ -260,12 +260,14 @@
 							<div class="verticalCentreLayout">
 								<div class="lookAtScreenSmallImage"></div>
 								<div class="spacer"></div>
-								<p class="smallText" style="font-size: 5vmin; font-weight: bold; margin-top: 0vmin; width: 80vmin">
+								<p
+									class="smallText"
+									style="font-size: 5vmin; font-weight: bold; margin-top: 0vmin; width: 80vmin; margin-bottom: 1vmin"
+								>
 									Host: Press 'Everyone's Here!' on the game screen when ready.
 								</p>
 							</div>
 						</div>
-						<div class="spacer"></div>
 						<div class="fadeInAnimated">
 							<div class="verticalPanelLayout blurPanel" style="width: 82vmin; padding: 3vmin; align-items: stretch">
 								<div id="addPlayerInfo" class="verticalPanelLayout" style="align-items: stretch">
@@ -277,14 +279,81 @@
 										type="submit"
 										id="addPlayerButton"
 										class="pressEffectButton mainButtonSpacing smallButtonText"
-										style="font-size: 4vmin; margin-top: 0; text-align: center"
+										style="
+											font-size: 4vmin;
+											margin-top: 0;
+											text-align: center;
+											padding-top: 1.5vmin;
+											padding-bottom: 1.5vmin;
+										"
 										value="Add another character on this device"
 									/>
 									<div class="separator"></div>
 								</div>
-								<div class="verticalCentreLayout" id="playerNamesList" style="margin-bottom: 0.8vmin">
-									<div id="playerNameListElement" class="horizontalPanelLayout" style="display: none">
-										<p class="playerNameText">...</p>
+								<div
+									class="verticalCentreLayout"
+									id="playerNamesList"
+									style="
+										margin-top: -2.5vmin;
+										margin-bottom: -2.5vmin;
+										clip-path: inset(-3vmin -3vmin 0 -3vmin round 3.5vmin);
+									"
+								>
+									<div
+										id="playerNameListElement"
+										class="playerNameListElement horizontalPanelLayout"
+										style="display: flex"
+									>
+										<img src="Images/IconImages/Icon_Doctor_256.png" style="width: 8vmin; height: 8vmin" />
+										<p class="playerNameText">Player 1</p>
+										<div
+											style="padding: 0.5vmin; padding-left: 4vmin; padding-right: 4vmin"
+											class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
+											ontouchend="app.onRemovePlayerButtonPressed(this); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											X
+										</div>
+									</div>
+									<div
+										id="playerNameListElement"
+										class="playerNameListElement horizontalPanelLayout"
+										style="display: flex"
+									>
+										<img src="Images/IconImages/Icon_Doctor_256.png" style="width: 8vmin; height: 8vmin" />
+										<p class="playerNameText">Player 2</p>
+										<div
+											style="padding: 0.5vmin; padding-left: 4vmin; padding-right: 4vmin"
+											class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
+											ontouchend="app.onRemovePlayerButtonPressed(this); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											X
+										</div>
+									</div>
+									<div
+										id="playerNameListElement"
+										class="playerNameListElement horizontalPanelLayout"
+										style="display: flex"
+									>
+										<img src="Images/IconImages/Icon_Writer_256.png" style="width: 8vmin; height: 8vmin" />
+										<p class="playerNameText">Player 3</p>
+										<div
+											style="padding: 0.5vmin; padding-left: 4vmin; padding-right: 4vmin"
+											class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
+											ontouchend="app.onRemovePlayerButtonPressed(this); app.consumeEvent(event)"
+											onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+										>
+											X
+										</div>
+									</div>
+									<div
+										id="playerNameListElement"
+										class="playerNameListElement horizontalPanelLayout"
+										style="display: flex"
+									>
+										<img src="Images/IconImages/Icon_Writer_256.png" style="width: 8vmin; height: 8vmin" />
+										<p class="playerNameText">Player 4</p>
 										<div
 											style="padding: 0.5vmin; padding-left: 4vmin; padding-right: 4vmin"
 											class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
@@ -295,27 +364,27 @@
 										</div>
 									</div>
 								</div>
-								<div class="separator"></div>
-								<div class="horizontalPanelLayout" style="gap: 1.5vmin; margin-top: -1vmin">
-									<p class="smallText" style="font-weight: bold; font-size: 4vmin">Connected with join code:</p>
-									<p id="joinCodeText" class="smallText" style="font-weight: bold; font-size: 5.5vmin; color: #00fdb0">
-										----
-									</p>
-								</div>
-								<div
-									style="
-										text-align: center;
-										font-size: 4vmin;
-										margin-left: 8vmin;
-										margin-right: 8vmin;
-										margin-top: -2vmin;
-									"
-									class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
-									ontouchend="app.resetApp(); app.consumeEvent(event)"
-									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
-								>
-									Join a different game
-								</div>
+							</div>
+							<!-- <div class="separator"></div> -->
+							<div class="horizontalPanelLayout" style="gap: 1.5vmin; margin-top: 1vmin">
+								<p class="smallText" style="font-weight: bold; font-size: 4vmin">Connected with join code:</p>
+								<p id="joinCodeText" class="smallText" style="font-weight: bold; font-size: 5.5vmin; color: #00fdb0">
+									----
+								</p>
+							</div>
+							<div
+								style="
+									text-align: center;
+									font-size: 4vmin;
+									margin-left: 12vmin;
+									margin-right: 12vmin;
+									margin-top: 0vmin;
+								"
+								class="pressEffectButton bootButton smallButtonSpacing smallButtonText"
+								ontouchend="app.resetApp(); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+							>
+								Join a different game
 							</div>
 						</div>
 					</div>
@@ -370,6 +439,48 @@
 								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
 							>
 								<div id="characterIcon4" class="actionButtonImage character4UnselectedImage"></div>
+							</div>
+
+							<!-- Temporary writer characters -->
+							<div
+								tabindex="104"
+								id="characterButton5"
+								class="pressEffectButton characterPreview buttonOutline unselectedButton"
+								ontouchend="app.onSelectCharacterButtonPressed(this, 4); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+							>
+								<!--								<div id="characterIcon5" class="actionButtonImage character1CrossImage"></div>-->
+								<div id="characterWriter5" class="actionButtonCharLabel">W1</div>
+							</div>
+							<div
+								tabindex="105"
+								id="characterButton6"
+								class="pressEffectButton characterPreview selectedButton selectedScale"
+								ontouchend="app.onSelectCharacterButtonPressed(this, 5); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+							>
+								<!--								<div id="characterIcon6" class="actionButtonImage character2SelectedImage"></div>-->
+								<div id="characterWriter6" class="actionButtonCharLabel">W2</div>
+							</div>
+							<div
+								tabindex="106"
+								id="characterButton7"
+								class="pressEffectButton characterPreview buttonOutline"
+								ontouchend="app.onSelectCharacterButtonPressed(this, 6); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+							>
+								<!--								<div id="characterIcon7" class="actionButtonImage character3UnselectedImage"></div>-->
+								<div id="characterWriter7" class="actionButtonCharLabel">W3</div>
+							</div>
+							<div
+								tabindex="107"
+								id="characterButton8"
+								class="pressEffectButton characterPreview buttonOutline"
+								ontouchend="app.onSelectCharacterButtonPressed(this, 7); app.consumeEvent(event)"
+								onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+							>
+								<!--								<div id="characterIcon8" class="actionButtonImage character4UnselectedImage"></div>-->
+								<div id="characterWriter8" class="actionButtonCharLabel">W4</div>
 							</div>
 						</div>
 					</div>
@@ -742,10 +853,94 @@
 			<div class="belowPlayerTabsContent writerTextInputContent">
 				<div class="applyScaleMult">
 					<div id="itemPlacementMainLayout" class="adaptivePanelLayout fadeInAnimated animDelay1" style="gap: 0">
-						<div
+						<!-- <div
 							class="characterAvatarImage enterBounceAnimated animDelay2"
 							style="background-image: url('Images/IconImages/Icon_EdBangerTemp_256.png')"
-						></div>
+						></div> -->
+						<div class="horizontalPanelLayout" style="gap: 0">
+							<div id="scrollTest1" class="characterScrollSection" onscroll="app.onWriterCharacterSelectScroll(this)">
+								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
+								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
+								<div
+									tabindex="101"
+									id="writerCharacterButton0"
+									class="actionButtonRound writerCharacterButton"
+									ontouchend="app.onWriterCharacterButtonPressed(this); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div class="actionButtonInner">
+										<img src="Images/IconImages/Icon_CharacterPreview1_Selected.png" class="actionButtonImage" />
+									</div>
+								</div>
+								<div
+									tabindex="102"
+									id="writerCharacterButton1"
+									class="actionButtonRound writerCharacterButton"
+									ontouchend="app.onWriterCharacterButtonPressed(this); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div class="actionButtonInner">
+										<img src="Images/IconImages/Icon_CharacterPreview1_Selected.png" class="actionButtonImage" />
+									</div>
+								</div>
+								<div
+									tabindex="103"
+									id="writerCharacterButton2"
+									class="actionButtonRound writerCharacterButton"
+									ontouchend="app.onWriterCharacterButtonPressed(this); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div class="actionButtonInner">
+										<img src="Images/IconImages/Icon_CharacterPreview1_Selected.png" class="actionButtonImage" />
+									</div>
+								</div>
+								<div
+									tabindex="104"
+									id="writerCharacterButton3"
+									class="actionButtonRound writerCharacterButton"
+									ontouchend="app.onWriterCharacterButtonPressed(this); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div class="actionButtonInner">
+										<img src="Images/IconImages/Icon_CharacterPreview1_Selected.png" class="actionButtonImage" />
+									</div>
+								</div>
+								<div
+									tabindex="105"
+									id="writerCharacterButton4"
+									class="actionButtonRound writerCharacterButton"
+									ontouchend="app.onWriterCharacterButtonPressed(this); app.consumeEvent(event)"
+									onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+								>
+									<div class="actionButtonInner">
+										<img src="Images/IconImages/Icon_CharacterPreview1_Selected.png" class="actionButtonImage" />
+									</div>
+								</div>
+								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
+								<div class="actionButtonRound writerCharacterButton placeholderButton"></div>
+							</div>
+							<!-- <div id="scrollTest2" class="characterScrollSection">
+								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage2" style="display: grid; scroll-snap-align: center"></div>
+							</div>
+							<div id="scrollTest3" class="characterScrollSection">
+								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage2" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage3" style="display: grid; scroll-snap-align: center"></div>
+							</div>
+							<div id="scrollTest4" class="characterScrollSection">
+								<div class="characterScrollImage2" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage3" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
+							</div>
+							<div id="scrollTest5" class="characterScrollSection">
+								<div class="characterScrollImage3" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
+								<div class="characterScrollImage1" style="display: grid; scroll-snap-align: center"></div>
+							</div> -->
+						</div>
+
 						<div class="spacer"></div>
 						<div class="spacer"></div>
 						<div id="" class="verticalPanelLayout" style="gap: 0">
@@ -790,7 +985,7 @@
 							</div>
 							<div id="unreadyButton_itemVote">
 								<!-- (#unreadyButton is repositioned here in code) -->
-								<div
+								<!-- <div
 									id="unreadyButton"
 									class="pressEffectButton mainButtonSpacing largeButtonText unreadyButtonWriterTextInput"
 								>
@@ -800,7 +995,7 @@
 										class="actionButtonImage"
 										alt="Undo Ready"
 									/>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -892,6 +1087,59 @@
 						<div id="playerTabImage3" class="tabPlayerImage characterPendingImage"></div>
 						<div id="readyIndicator3" class="tabReadyImage actionsPendingImage"></div>
 					</div>
+
+					<!-- Tab button 5 -->
+					<div
+						tabindex="205"
+						class="tabButton playerTab"
+						id="playerTabButton4"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(4); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+					>
+						<div id="playerTabImage4" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator4" class="tabReadyImage actionsPendingImage"></div>
+					</div>
+
+					<!-- Tab button 6 -->
+					<div
+						tabindex="206"
+						class="tabButton playerTab"
+						id="playerTabButton5"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(5); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+					>
+						<div id="playerTabImage5" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator5" class="tabReadyImage actionsPendingImage"></div>
+					</div>
+
+					<!-- Tab button 7 -->
+					<div
+						tabindex="207"
+						class="tabButton playerTab"
+						id="playerTabButton6"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(6); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+					>
+						<div id="playerTabImage6" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator6" class="tabReadyImage actionsPendingImage"></div>
+					</div>
+
+					<!-- Tab button 8 -->
+					<div
+						tabindex="208"
+						class="tabButton playerTab"
+						id="playerTabButton7"
+						style="display: none"
+						ontouchend="app.onPlayerTabButtonPressed(7); app.consumeEvent(event)"
+						onkeypress="if('Enter' === event.key) event.target.dispatchEvent(new Event('mouseup'));"
+					>
+						<div id="playerTabImage7" class="tabPlayerImage characterPendingImage"></div>
+						<div id="readyIndicator7" class="tabReadyImage actionsPendingImage"></div>
+					</div>
+
 					<!-- This is where player name is displayed when there is enough space next to the tabs -->
 					<div id="playerNameTop" class="infoText">&nbsp;...</div>
 				</div>
