@@ -1327,8 +1327,8 @@ input[type='number'] {
 	text-overflow: ellipsis;
 	text-align: center;
 	font-size: 5.5vmin;
-	left: 15vmin;
 	margin-top: 3.7vmin;
+	left: 15vmin;
 	right: 2vmin;
 	-webkit-user-select: none; /* Chrome all / Safari all */
 	-moz-user-select: none; /* Firefox all */
@@ -1811,8 +1811,8 @@ input[type='number'] {
 }
 
 .characterSelectButtonImage {
-	position: absolute;
-	bottom: -2vmin;
+	position: relative;
+	bottom: 2vmin;
 	left: -3vmin;
 	width: 18vmin;
 	height: 18vmin;
@@ -1823,7 +1823,7 @@ input[type='number'] {
 	user-select: none;
 }
 .characterSelectButtonImage.nonCharacterButtonImage {
-	bottom: -2vmin;
+	bottom: 2vmin;
 	left: -2.5vmin;
 	width: 16vmin;
 	height: 16vmin;
