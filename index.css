@@ -1800,6 +1800,7 @@ input[type='number'] {
 }
 
 .characterSelectButton {
+	position: relative;
 	width: 46%;
 	height: 14vmin;
 	margin-top: 1vmin;
