@@ -12,8 +12,11 @@ body {
 }
 
 /* Remove 'spin button' from number input: Chrome, Safari, Edge, Opera */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+input[type='number']::-webkit-inner-spin-button {
 	-webkit-appearance: none;
 	margin: 0;
 }
@@ -125,7 +128,7 @@ input[type='number'] {
 }
 
 #CharacterSelect {
-	display: none;
+	display: block;
 }
 
 #GameInputPhase {
@@ -137,7 +140,7 @@ input[type='number'] {
 }
 
 #WriterTextInput {
-	display: block;
+	display: none;
 }
 
 #LookAtScreen {
@@ -358,6 +361,43 @@ input[type='number'] {
 	width: 96vmin;
 }
 
+#characterButtonsPanel {
+	width: 93vmin;
+	min-height: 10vmin;
+	max-height: 38vmin;
+	padding-top: 1vmin;
+	padding-right: 0.5vmin;
+	padding-bottom: 3vmin;
+	padding-left: 0.5vmin;
+	flex-wrap: wrap;
+	gap: 1.5vmin;
+	overflow-x: hidden;
+	overflow-y: auto;
+	align-content: flex-start;
+	clip-path: inset(0 0 0 0 round 3vmin 0 0 3vmin);
+	/* -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 94%, transparent 100%);
+	mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 94%, transparent 100%),
+		linear-gradient(90deg, transparent 0%, transparent 94%, black 95%); */
+}
+#nonCharacterButtonsPanel {
+	width: 93vmin;
+	min-height: 10vmin;
+	max-height: 19vmin;
+	padding-top: 1vmin;
+	padding-right: 0.5vmin;
+	padding-bottom: 3vmin;
+	padding-left: 0.5vmin;
+	flex-wrap: wrap;
+	gap: 1.5vmin;
+	overflow-x: hidden;
+	overflow-y: auto;
+	align-content: flex-start;
+	clip-path: inset(0 0 0 0 round 3vmin 0 0 3vmin);
+	/* -webkit-mask-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 90%, transparent 100%);
+	mask-image: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 90%, transparent 100%),
+		linear-gradient(90deg, transparent 0%, transparent 94%, black 95%); */
+}
+
 .spacer {
 	width: 2vmin;
 	height: 2vmin;
@@ -395,7 +435,7 @@ input[type='number'] {
 	border-radius: 100vmin;
 }
 
-/* Character Icons */
+/* Character Selection Icons */
 .character1SelectedImage {
 	background-image: url('Images/IconImages/Icon_CharacterPreview1_Selected.png');
 }
@@ -444,6 +484,18 @@ input[type='number'] {
 .character4HighlightedImage {
 	background-image: url('Images/IconImages/Icon_CharacterPreview4_Highlighted.png');
 }
+.nonCharacterWriterSelectedImage {
+	background-image: url('Images/IconImages/Icon_NonCharacterWriterPreview_Selected_128.png');
+}
+.nonCharacterWriterUnselectedImage {
+	background-image: url('Images/IconImages/Icon_NonCharacterWriterPreview_Unselected_128.png');
+}
+.nonCharacterWriterCrossImage {
+	background-image: url('Images/IconImages/Icon_NonCharacterWriterPreview_Cross_128.png');
+}
+.nonCharacterWriterHighlightedImage {
+	background-image: url('Images/IconImages/Icon_NonCharacterWriterPreview_Highlighted_128.png');
+}
 .characterPendingImage {
 	background-image: url('Images/IconImages/Icon_CharacterPreview_Pending_128.png');
 }
@@ -452,6 +504,76 @@ input[type='number'] {
 }
 .actionsPendingImage {
 	background-image: url('Images/IconImages/Icon_ActionsPending_128.png');
+}
+
+/* Character Avatar Icons */
+.characterAvatarImage_default {
+	background-image: url('Images/IconImages/Icon_Avatar_Default_128.png') !important;
+}
+.characterAvatarImage_player_clownEthan {
+	background-image: url('Images/IconImages/Icon_Avatar_player_clownEthan_128.png') !important;
+}
+.characterAvatarImage_player_footballerJason {
+	background-image: url('Images/IconImages/Icon_Avatar_player_footballerJason_128.png') !important;
+}
+.characterAvatarImage_player_chefPrisha {
+	background-image: url('Images/IconImages/Icon_Avatar_player_chefPrisha_128.png') !important;
+}
+.characterAvatarImage_player_athleteTamira {
+	background-image: url('Images/IconImages/Icon_Avatar_player_athleteTamira_128.png') !important;
+}
+.characterAvatarImage_cammy {
+	background-image: url('Images/IconImages/Icon_Avatar_cammy_128.png') !important;
+}
+.characterAvatarImage_chris {
+	background-image: url('Images/IconImages/Icon_Avatar_chris_128.png') !important;
+}
+.characterAvatarImage_edBanger {
+	background-image: url('Images/IconImages/Icon_Avatar_edBanger_128.png') !important;
+}
+.characterAvatarImage_grace {
+	background-image: url('Images/IconImages/Icon_Avatar_grace_128.png') !important;
+}
+.characterAvatarImage_oliviaAndAvo {
+	background-image: url('Images/IconImages/Icon_Avatar_oliviaAndAvo_128.png') !important;
+}
+.characterAvatarImage_sammi {
+	background-image: url('Images/IconImages/Icon_Avatar_sammi_128.png') !important;
+}
+
+/* Character Avatar Icons - Cornwall Schools */
+.characterAvatarImage_Beth {
+	background-image: url('Images/IconImages/Icon_Avatar_Beth_128.png') !important;
+}
+.characterAvatarImage_Macey {
+	background-image: url('Images/IconImages/Icon_Avatar_Macey_128.png') !important;
+}
+.characterAvatarImage_Evan {
+	background-image: url('Images/IconImages/Icon_Avatar_Evan_128.png') !important;
+}
+.characterAvatarImage_Eadam {
+	background-image: url('Images/IconImages/Icon_Avatar_Eadam_128.png') !important;
+}
+.characterAvatarImage_Gabe {
+	background-image: url('Images/IconImages/Icon_Avatar_Gabe_128.png') !important;
+}
+.characterAvatarImage_Ronaldo {
+	background-image: url('Images/IconImages/Icon_Avatar_Ronaldo_128.png') !important;
+}
+.characterAvatarImage_EthantheEgg {
+	background-image: url('Images/IconImages/Icon_Avatar_Ethan the Egg_128.png') !important;
+}
+.characterAvatarImage_Hanz {
+	background-image: url('Images/IconImages/Icon_Avatar_Hanz_128.png') !important;
+}
+.characterAvatarImage_Vera {
+	background-image: url('Images/IconImages/Icon_Avatar_Vera_128.png') !important;
+}
+.characterAvatarImage_Mama {
+	background-image: url('Images/IconImages/Icon_Avatar_Mama_128.png') !important;
+}
+.characterAvatarImage_Ashley {
+	background-image: url('Images/IconImages/Icon_Avatar_Ashley_128.png') !important;
 }
 
 .actionButtonImage {
@@ -826,12 +948,6 @@ input[type='number'] {
 	z-index: 1 !important;
 }
 
-.characterPreview {
-	width: 24vmin;
-	height: 24vmin;
-	margin-top: 1vmin;
-}
-
 .optionsButton {
 	width: 14vmin;
 	height: 14vmin;
@@ -879,6 +995,11 @@ input[type='number'] {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+}
+
+.reloadIfHung {
+	/* Hidden at start */
+	display: none;
 }
 
 .enterBounceAnimated {
@@ -1122,7 +1243,7 @@ input[type='number'] {
 }
 
 .selectedScale {
-	scale: 1.08;
+	transform: scale(1.03, 1.05);
 }
 
 .buttonOutline {
@@ -1197,6 +1318,27 @@ input[type='number'] {
 	-moz-user-select: none; /* Firefox all */
 	-ms-user-select: none; /* IE 10+ */
 	user-select: none;
+}
+
+.characterSelectButtonText {
+	position: absolute;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+	font-size: 5.5vmin;
+	left: 15vmin;
+	margin-top: 3.7vmin;
+	right: 2vmin;
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none;
+}
+.characterSelectButtonText.nonCharacterButtonText {
+	font-size: 5.5vmin;
+	margin-top: 2.8vmin;
+	right: 9vmin;
 }
 
 .smallButtonText {
@@ -1379,6 +1521,21 @@ input[type='number'] {
 	margin-bottom: -1vmin;
 }
 
+.writerCharacterNameText {
+	width: 90vmin;
+	margin-top: -9vmin;
+	border-bottom-left-radius: 3vmin;
+	border-bottom-right-radius: 3vmin;
+	padding-left: 4vmin;
+	padding-right: 4vmin;
+	font-size: 6vmin;
+	z-index: 2;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align: center;
+}
+
 .playerNameListElement {
 	background: linear-gradient(rgba(11, 23, 35, 0.5), rgba(11, 23, 35));
 	width: 88vmin;
@@ -1390,9 +1547,9 @@ input[type='number'] {
 	font-family: 'Atkinson Hyperlegible', sans-serif;
 	font-weight: bold;
 	font-size: 5vmin;
-	width: 60vmin;
+	width: 70vmin;
 	margin: 0;
-	/* margin-left: 10vmin; */
+	margin-left: 1vmin;
 	text-align: left;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -1445,8 +1602,10 @@ input[type='number'] {
 	padding: 3vmin;
 	border-radius: 2vmin;
 	width: 90%;
-	height: 25vmin;
+	height: 34vmin;
 	line-height: 8vmin;
+	margin-top: 2vmin;
+	margin-bottom: 2vmin;
 }
 
 .socialButton {
@@ -1640,6 +1799,50 @@ input[type='number'] {
 	height: 25vmin;
 }
 
+.characterSelectButton {
+	width: 46%;
+	height: 14vmin;
+	margin-top: 1vmin;
+	overflow: hidden;
+}
+.characterSelectButton.nonCharacterButton {
+	width: 95%;
+	height: 12vmin;
+}
+
+.characterSelectButtonImage {
+	position: absolute;
+	bottom: -2vmin;
+	left: -3vmin;
+	width: 18vmin;
+	height: 18vmin;
+	background-size: 100%;
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none;
+}
+.characterSelectButtonImage.nonCharacterButtonImage {
+	bottom: -2vmin;
+	left: -2.5vmin;
+	width: 16vmin;
+	height: 16vmin;
+}
+
+.writerCharacterButton {
+	display: grid;
+	scroll-snap-align: center;
+}
+
+.placeholderButton {
+	cursor: auto;
+	opacity: 0;
+	-webkit-user-select: none; /* Chrome all / Safari all */
+	-moz-user-select: none; /* Firefox all */
+	-ms-user-select: none; /* IE 10+ */
+	user-select: none;
+}
+
 .actionNumberImage {
 	display: block;
 	position: relative;
@@ -1660,20 +1863,6 @@ input[type='number'] {
 	height: 5vmin;
 	left: -1vmin;
 	top: -14.6vmin;
-	-webkit-user-select: none; /* Chrome all / Safari all */
-	-moz-user-select: none; /* Firefox all */
-	-ms-user-select: none; /* IE 10+ */
-	user-select: none;
-}
-
-.writerCharacterButton {
-	display: grid;
-	scroll-snap-align: center;
-}
-
-.placeholderButton {
-	cursor: auto;
-	opacity: 0;
 	-webkit-user-select: none; /* Chrome all / Safari all */
 	-moz-user-select: none; /* Firefox all */
 	-ms-user-select: none; /* IE 10+ */
@@ -1724,7 +1913,6 @@ input[type='number'] {
 	margin-top: 0.8vmin;
 	padding-top: 1.5vmin;
 	padding-bottom: 9vmin;
-	border-radius: 3vmin;
 	width: 96vmin;
 	display: grid;
 	grid-auto-flow: column;
@@ -1749,24 +1937,6 @@ input[type='number'] {
 }
 .characterScrollSection::-webkit-scrollbar {
 	display: none; /* for Chrome, Safari, and Opera */
-}
-.characterScrollImage1 {
-	width: 23vmin;
-	height: 23vmin;
-	background-image: url(Images/IconImages/Icon_CharacterPreview1_Selected.png);
-	background-size: 100%;
-}
-.characterScrollImage2 {
-	width: 23vmin;
-	height: 23vmin;
-	background-image: url(Images/IconImages/Icon_CharacterPreview2_Selected.png);
-	background-size: 100%;
-}
-.characterScrollImage3 {
-	width: 23vmin;
-	height: 23vmin;
-	background-image: url(Images/IconImages/Icon_CharacterPreview3_Selected.png);
-	background-size: 100%;
 }
 
 .overlay {
@@ -2005,7 +2175,7 @@ input[type='number'] {
 	}
 
 	.writerTextInputContent {
-		top: 20% !important;
+		top: 5% !important;
 	}
 
 	.adaptivePanelLayout {
@@ -2029,6 +2199,10 @@ input[type='number'] {
 
 	.actionButtonPanel {
 		margin-bottom: 0;
+	}
+
+	.writerInputField {
+		height: 8vmin !important;
 	}
 
 	.hideInLandscape {
